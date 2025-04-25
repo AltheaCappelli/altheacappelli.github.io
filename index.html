@@ -56,12 +56,12 @@
   <h1>My Projects</h1>
 
   <div class="project" onclick="openModal('modal1')">
-    <h2>Analysis of Copernicus' data on climate change</h2>
+    <h2>Analysis of the 2m air temperature data from the Copernicus Climate Data Store (CDS)</h2>
     <p>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</p>
   </div>
 
   <div class="project" onclick="openModal('modal2')">
-    <h2>Machine Learning analysis of Copernicus' data on climate change</h2>
+    <h2>LSTM-based prediction of the 2m air temperature data from the _Copernicus Climate Data Store_ (CDS)__</h2>
     <p>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</p>
   </div>
 
@@ -69,13 +69,17 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal1')">&times;</span>
-      <h2>Analysis of Copernicus' Data on Climate Change</h2>
+      <h2>Analysis of the 2m air temperature data from the Copernicus Climate Data Store (CDS)</h2>
       <p>For this project, I worked with the 2m air temperature data from the 
         <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
       ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
       <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
-      <p>The following plots sum up the main insights of the project, for more information and analysis, see the complete project on Github:</p>
-      <img src="images/temp_anomals_eu.png" alt="Temperature Anomaly Plot" width="70" height="70>
+      <p>The following plots sum up the main insights of the project, for more information and analysis, see the complete project on Github.</p>
+      <h3>Line plot of the temperature anomalies in Europe between 1940 and 2024</h3>
+      <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
+       Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
+      <img src="images/temp_anomals_eu.png" alt="Temperature Anomaly Plot" width="80%">
+      <p>The plot clearly shows how the effects of climate change are strongest in the Arctic region, with Helsinki showing the highest increase. In 2024, the mean temperature anomaly across Europe reached 2.56 °C, showing a very fast warming trend.</p>
       <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">View this project on GitHub</a>
     </div>
   </div>
@@ -84,7 +88,7 @@
   <div id="modal2" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal2')">&times;</span>
-      <h2>LSTM Model for Temperature Prediction</h2>
+      <h2>LSTM-based prediction of the 2m air temperature data from the _Copernicus Climate Data Store_ (CDS)__</h2>
       <img src="images/lstm_results.png" alt="LSTM Model Results">
       <p>This project tests an LSTM model to predict climate trends, evaluating model performance over time.</p>
       <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">View on GitHub</a>
