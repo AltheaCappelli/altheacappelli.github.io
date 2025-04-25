@@ -17,7 +17,10 @@
     }
     .project:hover {
       transform: scale(1.02);
-      background-color: #4b62f7;
+      background-image: url('images/temp_hint.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
+      color: white;
     }
     .modal {
       display: none;
@@ -30,7 +33,11 @@
       background-color: rgba(0, 0, 0, 0.6); 
     }
     .modal-content {
-      background-color: #ffffff;
+      /*background-color: #ffffff;*/
+      background-image: url('images/hintt.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
+      color: white;
       margin: 5% auto;
       padding: 20px;
       border-radius: 10px;
@@ -58,12 +65,12 @@
   <h1>My Projects</h1>
 
   <div class="project" onclick="openModal('modal1')">
-    <h2>Analysis of the 2m air temperature data from the Copernicus Climate Data Store (CDS)</h2>
+    <h2>Analysis of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h2>
     <p>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</p>
   </div>
 
   <div class="project" onclick="openModal('modal2')">
-    <h2>LSTM-based prediction of the 2m air temperature data from the _Copernicus Climate Data Store_ (CDS)__</h2>
+    <h2>LSTM-based prediction of the 2m air temperature data from the <b></b>Copernicus Climate Data Store (CDS)</b></h2>
     <p>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</p>
   </div>
 
@@ -71,32 +78,32 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal1')">&times;</span>
-      <h2>Analysis of the 2m air temperature data from the Copernicus Climate Data Store (CDS)</h2>
+      <h1>Analysis of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h1>
       <p>For this project, I worked with the 2m air temperature data from the 
         <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
       ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
       <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and complete analysis, <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">see the complete project on Github</a>. </h3>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">see the complete project on Github</a>. </h3>
       <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
        Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
-      <img src="images/temp_anomals_eu.png" alt="Temperature anomaly" width="90%">
+      <img src="images/temp_anomals_eu.png" alt="Temperature anomaly" width="100%">
       <p>The plot clearly shows how the effects of climate change are strongest in the Arctic region, with Helsinki showing the highest increase. In 2024, the mean temperature anomaly across Europe reached 2.56 °C, showing a very fast warming trend.</p>
-      <h3>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</h3>
+      <h2>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</h2>
       <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
         with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
-      <img src="images/bubbles_eu.png" alt="Monthly temperature anomaly" width="90%">
+      <img src="images/bubbles_eu.png" alt="Monthly temperature anomaly" width="100%">
       <p>The plot shows that colder months are most affected by climate change, which reflects the broader trend of faster warming in colder seasons and regions, as already seen in the previous section with the Arctic region.
         The highest anomaly was 6.9°C in January 2020.</p>
-      <h3>Animation of the scatter plot</h3>
+      <h2>Animation of the scatter plot</h2>
       <p>For completeness, I added an animation of the previous scatter plot including all the years between 1940 and 2024.</p>
-      <video width="80%" controls>
+      <video width="100%" controls>
         <source src="images/bubble_ani.mp4" type="video/mp4">
       </video>I 
       <p>It's interesting to observe how the bubbles gradually get redder and larger as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer, and the anomalies are becoming more extreme, especially in the colder months.</p>
-      <h3>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</h3>
+      <h2>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</h2>
       <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
-      <img src="images/temp_map_eu.png" alt="European temperature and temperature anomaly" width="90%">
+      <img src="images/temp_map_eu.png" alt="European temperature and temperature anomaly" width="100%">
       <p>The temperature changes between 1940 and 2024 are obvious, with blue regions from 1940 being much lighter in 2024. The temperature anomaly map highlights this warming, which, again, is the strongest in northern areas like the 
         Nordic countries, Baltic states, Iceland, and the Alps. However, significant warming can also seen in Italy, Eastern Europe, and Central Europe, showing that climate change impacts all of Europe, and is not bound to any specific region.</p>
       </div>
@@ -106,10 +113,27 @@
   <div id="modal2" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal2')">&times;</span>
-      <h2>LSTM-based prediction of the 2m air temperature data from the _Copernicus Climate Data Store_ (CDS)__</h2>
-      <img src="images/lstm_results.png" alt="LSTM Model Results">
-      <p>This project tests an LSTM model to predict climate trends, evaluating model performance over time.</p>
-      <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">View on GitHub</a>
+      <h1>LSTM-based prediction of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h1>
+      <p>For this project, I worked with the 2m air temperature data from the 
+        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
+      ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
+      <p>The goal of this project was to build a simple LSTM neural network, using Python and Tensorflow, good enough to predict the mean temperature anomaly in Europe. 
+        The model was trained and tested on data up to 2024, and then used to estimate future anomalies.</p>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">see the complete project on Github</a>. </h3>
+      <h2>Accuracy of the lstm neural network</h2>
+      <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
+      <img src="images/lstm_accuracy.png" alt="Accuracy of the lstm model">
+      <p> The plot shows that both losses decrease quickly, with the validation loss eventually dropping below the training loss after a few epochs. This could be because the validation data is smoother
+      and has fewer sharp peaks, making it easier for the model to learn from. Moreover, the lstm contains a dropout layer, which is active during training but turned off during validation by default in Keras,
+      which may also contribute to the lower validation loss. Still, both losses reach low enough values after some epochs, indicating that the model is learning well.</p>
+      <h2>Results of the lstm predictions</h2>
+      <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
+      <img src="images/lstm_temp_comparison.png" alt="Accuracy of the lstm model">
+      <p>The plot shows that the MC dropout mean predictions, in red and orange, are very similar to the original model predictions in green and blue, almost overlapping due to the low dropout rate of 0.2. The uncertainty
+        remains low during the training period, indicating the model's confidence with familiar data, but increases clearly in the test period, as the model deals with unknown data. 
+        Still, both predictions reproduce the observed temperature anomaly trend well, showing that even a simple LSTM model can capture the overall temperature rise in Europe.</p>
+      <h2>+++Estimation of future temperature evolution+++</h2>
+      <p>coming soon :)</p>      
     </div>
   </div>
 
