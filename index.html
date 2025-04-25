@@ -64,51 +64,69 @@
       height: auto;
       margin: 10px 0;
     }
-    .cv-box {
-      background-color: rgba(255, 255, 255, 0.6);
-      transition: background-color 0.3s ease;
-    }
-    .cv-box:hover {
-      background-color: #cce5ff;
-    }
+
+
+
+
+    .cv-section {
+  text-align: center;
+  margin: 80px 0;
+}
+
+.cv-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.cv-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.cv-box {
+  padding: 16px 32px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+/* English CV - blue */
+.cv-box.eng {
+  background-image: url('images/eng.png'); /* Adjust the path as needed */
+  background-size: cover;
+  background-position: center;
+  color: black;
+}
+.cv-box.eng:hover {
+  background-image: url('images/eng_click.png'); /* Adjust the path as needed */
+  background-size: cover;
+  background-position: center;
+  colow: white;
+}
+
+/* German CV - dark red */
+.cv-box.deu {
+  background-image: url('images/deu.png'); /* Adjust the path as needed */
+  background-size: cover;
+  background-position: center;
+  color: black;
+}
+.cv-box.deu:hover {
+  background-image: url('images/deu_click.png'); /* Adjust the path as needed */
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+
+
+
     
-    .cv-buttons {
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-    }
-    
-    .cv-btn {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      color: white;
-      transition: background-color 0.3s;
-    }
-    
-    .cv-btn.eng {
-      background-image: url('images/eng.png'); /* Adjust the path as needed */
-      background-size: cover;
-      background-position: center;
-    }
-    .cv-btn.eng:hover {
-      background-image: url('images/eng_click.png'); /* Adjust the path as needed */
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .cv-btn.deu {
-      background-image: url('images/deu.png'); /* Adjust the path as needed */
-      background-size: cover;
-      background-position: center;
-    }
-    .cv-btn.deu:hover {
-      background-image: url('images/deu_click.png'); /* Adjust the path as needed */
-      background-size: cover;
-      background-position: center;
-    }
 
   </style>
 </head>
@@ -133,7 +151,7 @@
       <p>For this project, I worked with the 2m air temperature data from the 
         <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
       <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/anomalies_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/analysis_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
       <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
        Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
