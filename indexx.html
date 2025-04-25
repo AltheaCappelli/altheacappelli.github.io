@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>althea Cappelli Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .project {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: scale(1.02);
+      background-color: #4b62f7;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); 
+    }
+    .modal-content {
+      background-color: #ffffff;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 800px;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    img {src: "images/temp_anomals_eu.png"
+      max-width: 100%;
+      height: auto;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Projects</h1>
+
+  <div class="project" onclick="openModal('modal1')">
+    <h2>Analysis of Copernicus' data on climate change</h2>
+    <p>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</p>
+  </div>
+
+  <div class="project" onclick="openModal('modal2')">
+    <h2>Machine Learning analysis of Copernicus' data on climate change</h2>
+    <p>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</p>
+  </div>
+
+  <!-- Modal 1 -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal1')">&times;</span>
+      <h2>Climate Data Analysis</h2>
+      <img src="images/temperature_anomaly_plot.png" alt="Temperature Anomaly Plot">
+      <p>This project visualizes European temperature anomalies using Python tools and Copernicus climate datasets.</p>
+      <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal2')">&times;</span>
+      <h2>LSTM Model for Temperature Prediction</h2>
+      <img src="images/lstm_results.png" alt="LSTM Model Results">
+      <p>This project tests an LSTM model to predict climate trends, evaluating model performance over time.</p>
+      <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
