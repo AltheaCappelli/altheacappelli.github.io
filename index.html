@@ -6,7 +6,8 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-    }
+      background-image: url('images/hint.png')
+    }   
     .project {
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -37,7 +38,7 @@
       background-image: url('images/hintt.png'); /* Adjust the path as needed */
       background-size: cover;
       background-position: center;
-      color: white;
+      color: black;
       margin: 5% auto;
       padding: 20px;
       border-radius: 10px;
@@ -62,7 +63,8 @@
   </style>
 </head>
 <body>
-  <h1>My Projects</h1>
+  <title>My projects</title>
+  <!--<h1>My Projects</h1>-->
 
   <div class="project" onclick="openModal('modal1')">
     <h2>Analysis of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h2>
@@ -70,7 +72,7 @@
   </div>
 
   <div class="project" onclick="openModal('modal2')">
-    <h2>LSTM-based prediction of the 2m air temperature data from the <b></b>Copernicus Climate Data Store (CDS)</b></h2>
+    <h2>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
     <p>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</p>
   </div>
 
@@ -78,10 +80,9 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal1')">&times;</span>
-      <h1>Analysis of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h1>
+      <h1>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
       <p>For this project, I worked with the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
-      ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
+        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
       <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
       <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">see the complete project on Github</a>. </h3>
       <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
