@@ -8,9 +8,11 @@
       font-family: Arial, sans-serif;
       background-image: url('images/hint.png');
       background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
     }   
     .project {
-      background-color: rgba(255, 255, 255, 0.6)
+      background-color: rgba(255, 255, 255, 0.6);
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 16px;
@@ -40,6 +42,7 @@
       background-image: url('images/hintt.png'); /* Adjust the path as needed */
       background-size: cover;
       background-position: center;
+      opacity: 0.2;
       color: black;
       margin: 5% auto;
       padding: 20px;
@@ -65,17 +68,16 @@
   </style>
 </head>
 <body>
-  <h1>My Projects</h1>
-  <h1 align="center">My projects</h1>.
+  <h1 align="center"><b>My projects</b></h1>.
 
   <div class="project" onclick="openModal('modal1')">
     <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-    <p>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</p>
+    <h3>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</h3>
   </div>
 
   <div class="project" onclick="openModal('modal2')">
     <h2>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-    <p>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</p>
+    <h3>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</h3>
   </div>
 
   <!-- Modal 1 -->
