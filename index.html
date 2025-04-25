@@ -113,7 +113,7 @@
   </style>
 </head>
 <body>
-  <h1 align="center" style="font-size:24px;"> <b>My projects</b></h1>.
+  <h1 align="center" style="font-size:44px;"> <b>My projects</b></h1>.
 
   <div class="project" onclick="openModal('modal1')">
     <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
@@ -133,7 +133,7 @@
       <p>For this project, I worked with the 2m air temperature data from the 
         <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
       <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">see the complete project on Github</a>. </h3>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/anomalies_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
       <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
        Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
@@ -169,7 +169,7 @@
       ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
       <p>The goal of this project was to build a simple LSTM neural network, using Python and Tensorflow, good enough to predict the mean temperature anomaly in Europe. 
         The model was trained and tested on data up to 2024, and then used to estimate future anomalies.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/AltheaCappelli.github.io" target="_blank">see the complete project on Github</a>. </h3>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
       <h2>Accuracy of the lstm neural network</h2>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
       <img src="images/lstm_accuracy.png" alt="Accuracy of the lstm model">
@@ -188,23 +188,13 @@
   </div>
 
   <!-- CV Box -->
-<div class="project cv-box" onclick="openModal('modalCV')">
-  <h2>Curriculum Vitae</h2>
-  <p>Click to view CV in your preferred language</p>
-  <div class="cv-buttons">
-    <button class="cv-btn eng" onclick="event.stopPropagation(); openCV('images/CV_Cappelli_eng.pdf')">ENG</button>
-    <button class="cv-btn deu" onclick="event.stopPropagation(); openCV('images/CV_Cappelli_deu.pdf')">DEU</button>
+  <div class="cv-section">
+   <h1 align="center" style="font-size:44px;"> <b>Curriculum Vitae</b></h1>.
+    <div class="cv-options">
+      <div class="cv-box" onclick="openPdf('cv_deu.pdf')">DEU</div>
+      <div class="cv-box" onclick="openPdf('cv_eng.pdf')">ENG</div>
+    </div>
   </div>
-</div>
-
-<!-- CV Modal -->
-<div id="modalCV" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('modalCV')">&times;</span>
-    <h2>My CV</h2>
-    <iframe id="cvFrame" src="" width="100%" height="600px" style="border: none;"></iframe>
-  </div>
-</div>
 
 
   <script>
