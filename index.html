@@ -65,7 +65,7 @@
       margin: 10px 0;
     }
     .cv-box {
-      background-color: #f0f8ff;
+      background-color: rgba(255, 255, 255, 0.6);
       transition: background-color 0.3s ease;
     }
     .cv-box:hover {
@@ -89,17 +89,25 @@
     }
     
     .cv-btn.eng {
-      background-color: #4CAF50;
+      background-image: url('images/eng.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
     }
     .cv-btn.eng:hover {
-      background-color: #45a049;
+      background-image: url('images/eng_click.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
     }
     
     .cv-btn.deu {
-      background-color: #007BFF;
+      background-image: url('images/deu.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
     }
     .cv-btn.deu:hover {
-      background-color: #0056b3;
+      background-image: url('images/deu_click.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
     }
 
   </style>
@@ -206,14 +214,16 @@
     function closeModal(id) {
       document.getElementById(id).style.display = 'none';
     }
+    function openCV(file) {
+      document.getElementById('cvFrame').src = file;
+        openModal('modalCV');
+    }  
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
       }
     }
-    function openCV(file) {
-      document.getElementById('cvFrame').src = file;
-        openModal('modalCV');
+    
 
   </script>
 </body>
