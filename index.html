@@ -2,13 +2,15 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>althea Cappelli Website</title>
+  <title>Althea Cappelli Website</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('images/hint.png')
+      background-image: url('images/hint.png');
+      background-repeat: no-repeat;
     }   
     .project {
+      background-color: rgba(255, 255, 255, 0.6)
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 16px;
@@ -63,11 +65,11 @@
   </style>
 </head>
 <body>
-  <title>My projects</title>
-  <!--<h1>My Projects</h1>-->
+  <h1>My Projects</h1>
+  <h1 align="center">My projects</h1>.
 
   <div class="project" onclick="openModal('modal1')">
-    <h2>Analysis of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h2>
+    <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
     <p>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</p>
   </div>
 
