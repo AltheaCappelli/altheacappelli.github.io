@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('images/hint.png');
+      background-image: url('images/hintt.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
@@ -64,6 +64,44 @@
       height: auto;
       margin: 10px 0;
     }
+    .cv-box {
+      background-color: #f0f8ff;
+      transition: background-color 0.3s ease;
+    }
+    .cv-box:hover {
+      background-color: #cce5ff;
+    }
+    
+    .cv-buttons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .cv-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    
+    .cv-btn.eng {
+      background-color: #4CAF50;
+    }
+    .cv-btn.eng:hover {
+      background-color: #45a049;
+    }
+    
+    .cv-btn.deu {
+      background-color: #007BFF;
+    }
+    .cv-btn.deu:hover {
+      background-color: #0056b3;
+    }
+
   </style>
 </head>
 <body>
@@ -141,6 +179,26 @@
     </div>
   </div>
 
+  <!-- CV Box -->
+<div class="project cv-box" onclick="openModal('modalCV')">
+  <h2>Curriculum Vitae</h2>
+  <p>Click to view CV in your preferred language</p>
+  <div class="cv-buttons">
+    <button class="cv-btn eng" onclick="event.stopPropagation(); openCV('images/CV_Cappelli_eng.pdf')">ENG</button>
+    <button class="cv-btn deu" onclick="event.stopPropagation(); openCV('images/CV_Cappelli_deu.pdf')">DEU</button>
+  </div>
+</div>
+
+<!-- CV Modal -->
+<div id="modalCV" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalCV')">&times;</span>
+    <h2>My CV</h2>
+    <iframe id="cvFrame" src="" width="100%" height="600px" style="border: none;"></iframe>
+  </div>
+</div>
+
+
   <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
@@ -153,6 +211,10 @@
         event.target.style.display = 'none';
       }
     }
+    function openCV(file) {
+      document.getElementById('cvFrame').src = file;
+        openModal('modalCV');
+
   </script>
 </body>
 </html>
