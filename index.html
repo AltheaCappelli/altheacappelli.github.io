@@ -248,13 +248,48 @@
   <div id="modalCode1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalCode1')">&times;</span>
-      <h2>Project 1 Code</h2>
-      <p>GitHub link or explanation...</p>
+      <h2>Code</h2>
+      <p>+++coming soon+++</p>
     </div>
   </div>
 
+
+<div id="modalResults2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalResults2')">&times;</span>
+      <h1>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
+      <p>For this project, I worked with the 2m air temperature data from the 
+        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
+      ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
+      <p>The goal of this project was to build a simple LSTM neural network, using Python and Tensorflow, good enough to predict the mean temperature anomaly in Europe. 
+        The model was trained and tested on data up to 2024, and then used to estimate future anomalies.</p>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
+      <h2>Accuracy of the lstm neural network</h2>
+      <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
+      <img src="images/lstm_accuracy.png" alt="Accuracy of the lstm model">
+      <p> The plot shows that both losses decrease quickly, with the validation loss eventually dropping below the training loss after a few epochs. This could be because the validation data is smoother
+      and has fewer sharp peaks, making it easier for the model to learn from. Moreover, the lstm contains a dropout layer, which is active during training but turned off during validation by default in Keras,
+      which may also contribute to the lower validation loss. Still, both losses reach low enough values after some epochs, indicating that the model is learning well.</p>
+      <h2>Results of the lstm predictions</h2>
+      <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
+      <img src="images/lstm_temp_comparison.png" alt="Accuracy of the lstm model">
+      <p>The plot shows that the MC dropout mean predictions, in red and orange, are very similar to the original model predictions in green and blue, almost overlapping due to the low dropout rate of 0.2. The uncertainty
+        remains low during the training period, indicating the model's confidence with familiar data, but increases clearly in the test period, as the model deals with unknown data. 
+        Still, both predictions reproduce the observed temperature anomaly trend well, showing that even a simple LSTM model can capture the overall temperature rise in Europe.</p>
+      <h2>+++Estimation of future temperature evolution+++</h2>
+      <p>coming soon :)</p>    
+    </div>
+  </div>
   
-  <!-- Modal 2 -->
+  <div id="modalCode2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalCode2')">&times;</span>
+      <h2>Code</h2>
+      <p>++coming soon++</p>
+    </div>
+  </div>
+  
+  <!-- Modal 2 
   <div id="modal2" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal2')">&times;</span>
@@ -280,14 +315,14 @@
       <h2>+++Estimation of future temperature evolution+++</h2>
       <p>coming soon :)</p>      
     </div>
-  </div>
+  </div>-->
 
   <!-- CV Box -->
   <div class="cv-section">
    <h1 align="center" style="font-size:44px;"> <b>Curriculum Vitae</b></h1>.
     <div class="cv-options">
-      <div class="cv-box" onclick="openPdf('cv_deu.pdf')">DEU</div>
-      <div class="cv-box" onclick="openPdf('cv_eng.pdf')">ENG</div>
+      <div class="cv-box" onclick="openPdf('images/CV_Cappelli_deu.pdf')">DEU</div>
+      <div class="cv-box" onclick="openPdf('images/CV_Cappelli_eng.pdf')">ENG</div>
     </div>
   </div>
 
