@@ -64,86 +64,120 @@
       height: auto;
       margin: 10px 0;
     }
-
-
-
-
     .cv-section {
-  text-align: center;
-  margin: 80px 0;
-}
-
-.cv-title {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.cv-options {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.cv-box {
-  padding: 16px 32px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border: none;
-}
-
-/* English CV - blue */
-.cv-box.eng {
-  background-image: url('images/eng.png'); /* Adjust the path as needed */
-  background-size: cover;
-  background-position: center;
-  color: black;
-}
-.cv-box.eng:hover {
-  background-image: url('images/eng_click.png'); /* Adjust the path as needed */
-  background-size: cover;
-  background-position: center;
-  colow: white;
-}
-
-/* German CV - dark red */
-.cv-box.deu {
-  background-image: url('images/deu.png'); /* Adjust the path as needed */
-  background-size: cover;
-  background-position: center;
-  color: black;
-}
-.cv-box.deu:hover {
-  background-image: url('images/deu_click.png'); /* Adjust the path as needed */
-  background-size: cover;
-  background-position: center;
-  color: white;
-}
-
-
-
-
+      text-align: center;
+      margin: 80px 0;
+    }
     
+    .cv-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .cv-options {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    
+    .cv-box {
+      padding: 16px 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border: none;
+    }
+    
+    /* English CV - blue */
+    .cv-box.eng {
+      background-image: url('images/eng.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
+      color: black;
+    }
+    .cv-box.eng:hover {
+      background-image: url('images/eng_click.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
+      colow: white;
+    }
+    
+    /* German CV - dark red */
+    .cv-box.deu {
+      background-image: url('images/deu.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
+      color: black;
+    }
+    .cv-box.deu:hover {
+      background-image: url('images/deu_click.png'); /* Adjust the path as needed */
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+    .project-buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+    
+    .results-btn {
+      background-color: #4CAF50; /* Green */
+      color: white;
+    }
+    .results-btn:hover {
+      background-color: #45a049;
+    }
+    
+    .code-btn {
+      background-color: #2196F3; /* Blue */
+      color: white;
+    }
+    .code-btn:hover {
+      background-color: #0b7dda;
+    }
+
 
   </style>
 </head>
 <body>
   <h1 align="center" style="font-size:44px;"> <b>My projects</b></h1>.
-
+<!--
   <div class="project" onclick="openModal('modal1')">
     <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
     <h3>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</h3>
-  </div>
+  </div> -->
 
+<div class="project">
+  <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
+  <h3>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</h3>
+  <div class="project-buttons">
+    <button class="btn results-btn" onclick="openModal('modalResults1')">Results</button>
+    <button class="btn code-btn" onclick="openModal('modalCode1')">Code</button>
+  </div>
+</div>
+
+  
   <div class="project" onclick="openModal('modal2')">
     <h2>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
     <h3>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</h3>
   </div>
 
-  <!-- Modal 1 -->
+  <!-- Modal 1 
+ 
   <div id="modal1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal1')">&times;</span>
@@ -175,13 +209,56 @@
       <p>The temperature changes between 1940 and 2024 are obvious, with blue regions from 1940 being much lighter in 2024. The temperature anomaly map highlights this warming, which, again, is the strongest in northern areas like the 
         Nordic countries, Baltic states, Iceland, and the Alps. However, significant warming can also seen in Italy, Eastern Europe, and Central Europe, showing that climate change impacts all of Europe, and is not bound to any specific region.</p>
       </div>
+  </div> -->
+
+<!-- Modals for Project 1 -->
+  <div id="modalResults1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalResults1')">&times;</span>
+      <h1>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
+      <p>For this project, I worked with the 2m air temperature data from the 
+        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
+      <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
+      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/analysis_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
+      <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
+      <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
+       Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
+      <img src="images/temp_anomals_eu.png" alt="Temperature anomaly" width="100%">
+      <p>The plot clearly shows how the effects of climate change are strongest in the Arctic region, with Helsinki showing the highest increase. In 2024, the mean temperature anomaly across Europe reached 2.56 °C, showing a very fast warming trend.</p>
+      <h2>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</h2>
+      <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
+        with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
+      <img src="images/bubbles_eu.png" alt="Monthly temperature anomaly" width="100%">
+      <p>The plot shows that colder months are most affected by climate change, which reflects the broader trend of faster warming in colder seasons and regions, as already seen in the previous section with the Arctic region.
+        The highest anomaly was 6.9°C in January 2020.</p>
+      <h2>Animation of the scatter plot</h2>
+      <p>For completeness, I added an animation of the previous scatter plot including all the years between 1940 and 2024.</p>
+      <video width="100%" controls>
+        <source src="images/bubble_ani.mp4" type="video/mp4">
+      </video>I 
+      <p>It's interesting to observe how the bubbles gradually get redder and larger as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer, and the anomalies are becoming more extreme, especially in the colder months.</p>
+      <h2>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</h2>
+      <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
+      <img src="images/temp_map_eu.png" alt="European temperature and temperature anomaly" width="100%">
+      <p>The temperature changes between 1940 and 2024 are obvious, with blue regions from 1940 being much lighter in 2024. The temperature anomaly map highlights this warming, which, again, is the strongest in northern areas like the 
+        Nordic countries, Baltic states, Iceland, and the Alps. However, significant warming can also seen in Italy, Eastern Europe, and Central Europe, showing that climate change impacts all of Europe, and is not bound to any specific region.</p>     
+    </div>
+  </div>
+  
+  <div id="modalCode1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalCode1')">&times;</span>
+      <h2>Project 1 Code</h2>
+      <p>GitHub link or explanation...</p>
+    </div>
   </div>
 
+  
   <!-- Modal 2 -->
   <div id="modal2" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modal2')">&times;</span>
-      <h1>LSTM-based prediction of the 2m air temperature data from the <b>Copernicus Climate Data Store (CDS)</b></h1>
+      <h1>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
       <p>For this project, I worked with the 2m air temperature data from the 
         <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
       ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
