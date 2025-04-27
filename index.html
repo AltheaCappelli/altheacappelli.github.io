@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Prism.js for code highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   <meta charset="UTF-8">
   <title>Althea Cappelli Website</title>
   <style>
@@ -38,16 +42,16 @@
       background-color: rgba(0, 0, 0, 0.6); 
     }
     .modal-content {
-      /*background-color: #ffffff;*/
-      background-image: url('images/hintt.png'); /* Adjust the path as needed */
-      background-size: cover;
-      background-position: center;
+      background-color: #ffffff;
+      /*background-image: url('images/hintt.png'); /* Adjust the path as needed */
+      /*background-size: cover;
+      background-position: center;*/
       color: black;
       margin: 5% auto;
       padding: 20px;
       border-radius: 10px;
       width: 80%;
-      max-width: 800px;
+      max-width: 1000px;
       position: relative;
       max-height: 80vh; /* limit height to viewport */
       overflow-y: auto;  /* allow vertical scroll if content exceeds height */
@@ -137,7 +141,7 @@
     }
     
     .results-btn {
-      background-color: #4CAF50; /* Green */
+      background-color: #af4c4c; /* Green */
       color: white;
     }
     .results-btn:hover {
@@ -151,6 +155,41 @@
     .code-btn:hover {
       background-color: #0b7dda;
     }
+      .code-container {
+        position: relative;
+        margin: 20px auto;
+        max-width: 900px;
+      }
+
+      .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        border: none;
+        background-color: #838383;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        opacity: 0.8;
+        transition: 0.3s;
+      }
+
+      .copy-button:hover {
+        opacity: 1;
+      }
+      pre {
+        background: #2d2d2d; /* Dark background for code */
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+      }
+      pre code {
+        font-family: Consolas, 'Courier New', monospace;
+        font-size: 14px;
+        color: #f8f8f2; /* light text on dark bg */
+      }
 
 
   </style>
@@ -182,40 +221,6 @@
   </div>
 </div>
 
-  <!-- Modal 1 
- 
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modal1')">&times;</span>
-      <h1>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
-      <p>For this project, I worked with the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
-      <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/analysis_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
-      <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
-      <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
-       Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
-      <img src="images/temp_anomals_eu.png" alt="Temperature anomaly" width="100%">
-      <p>The plot clearly shows how the effects of climate change are strongest in the Arctic region, with Helsinki showing the highest increase. In 2024, the mean temperature anomaly across Europe reached 2.56 °C, showing a very fast warming trend.</p>
-      <h2>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</h2>
-      <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
-        with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
-      <img src="images/bubbles_eu.png" alt="Monthly temperature anomaly" width="100%">
-      <p>The plot shows that colder months are most affected by climate change, which reflects the broader trend of faster warming in colder seasons and regions, as already seen in the previous section with the Arctic region.
-        The highest anomaly was 6.9°C in January 2020.</p>
-      <h2>Animation of the scatter plot</h2>
-      <p>For completeness, I added an animation of the previous scatter plot including all the years between 1940 and 2024.</p>
-      <video width="100%" controls>
-        <source src="images/bubble_ani.mp4" type="video/mp4">
-      </video>I 
-      <p>It's interesting to observe how the bubbles gradually get redder and larger as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer, and the anomalies are becoming more extreme, especially in the colder months.</p>
-      <h2>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</h2>
-      <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
-      <img src="images/temp_map_eu.png" alt="European temperature and temperature anomaly" width="100%">
-      <p>The temperature changes between 1940 and 2024 are obvious, with blue regions from 1940 being much lighter in 2024. The temperature anomaly map highlights this warming, which, again, is the strongest in northern areas like the 
-        Nordic countries, Baltic states, Iceland, and the Alps. However, significant warming can also seen in Italy, Eastern Europe, and Central Europe, showing that climate change impacts all of Europe, and is not bound to any specific region.</p>
-      </div>
-  </div> -->
 
 <!-- Modals for Project 1 -->
   <div id="modalResults1" class="modal">
@@ -259,30 +264,42 @@
     </div>
   </div>
 
-
 <div id="modalResults2" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalResults2')">&times;</span>
-      <h1>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
-      <p>For this project, I worked with the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
-      ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
-      <p>The goal of this project was to build a simple LSTM neural network, using Python and Tensorflow, good enough to predict the mean temperature anomaly in Europe. 
-        The model was trained and tested on data up to 2024, and then used to estimate future anomalies.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
-      <h2>Accuracy of the lstm neural network</h2>
+      <h1><b>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
+      <h3>For this project, I used the 2m air temperature data from the 
+        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
+        provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
+      </h3>
+      <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies. +++kommt noch+++          
+        </h3>
+      <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">
+        from Github</a> to experiment and make your own modifications.</h3>
+      <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
       <img src="images/lstm_accuracy.png" alt="Accuracy of the lstm model">
-      <p> The plot shows that both losses decrease quickly, with the validation loss eventually dropping below the training loss after a few epochs. This could be because the validation data is smoother
-      and has fewer sharp peaks, making it easier for the model to learn from. Moreover, the lstm contains a dropout layer, which is active during training but turned off during validation by default in Keras,
-      which may also contribute to the lower validation loss. Still, both losses reach low enough values after some epochs, indicating that the model is learning well.</p>
-      <h2>Results of the lstm predictions</h2>
+      <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
+        to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
+        Indeed the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
+        more steep peaks. As a result, the model probably finds it easier to learn from the validation data. Additionally, the <b>dropout layer</b> is active during training
+        but not during validation, as standard in Keras, which could also explain the difference of accuracy. The y axis of the plot is logarithmically scaled to better 
+        visualize the results.</p>
+      <p>Despite these differences, both the training and validation losses ultimately reach a <b>sufficiently small error</b>, showing that the model is <b>performing well</b>
+        on both datasets.</p>
+      <h3><b>Results of the lstm predictions</b></h3>
       <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
       <img src="images/lstm_temp_comparison.png" alt="Accuracy of the lstm model">
-      <p>The plot shows that the MC dropout mean predictions, in red and orange, are very similar to the original model predictions in green and blue, almost overlapping due to the low dropout rate of 0.2. The uncertainty
-        remains low during the training period, indicating the model's confidence with familiar data, but increases clearly in the test period, as the model deals with unknown data. 
-        Still, both predictions reproduce the observed temperature anomaly trend well, showing that even a simple LSTM model can capture the overall temperature rise in Europe.</p>
-      <h2>+++Estimation of future temperature evolution+++</h2>
+      <p>The plot shows that the <b>mean predictions from MC dropout</b>, in red and orange, <b>closely match the original model predictions</b>, in green and light blue, 
+        and are almost overlapping. This is due to the low dropout rate of 0.2, so that the variation across different runs stays small. When comparing the MC uncertainty 
+        for inputs from the training period and the validation period, the difference is clear. For inputs from the earlier years, data the model has already seen during 
+        training, the <b>uncertainty remains low</b>, showing that the <b>model is confident with known patterns</b>. But in the test period, especially from year 2018 to 2024,
+        the <b>uncertainty grows significantly</b>. This is expected, since when the model makes predictions with unknown data, it becomes less certain, a <b>common behavior 
+        in time series models</b>, where small differences can accumulate over time. Despite this, both the model’s predictions and the MC dropout mean <b>follow the overall 
+        trend</b> of the observed temperature anomalies and match the exponential trend quite well within uncertainty range. 
+        In summary, the plot shows that even a <b>simple LSTM neural network</b> can do a good job at <b>reproducing the trend of rising temperatures across Europe</b>,
+        following the exponential pattern quite clearly.</p>
+        <h2>+++Estimation of future temperature evolution+++</h2>
       <p>coming soon :)</p>    
     </div>
   </div>
@@ -290,38 +307,229 @@
   <div id="modalCode2" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalCode2')">&times;</span>
-      <h2>Code</h2>
-      <p>++coming soon++</p>
+      <h3>For information on the data and goal of this project, see the Results section.</h3>
+      <h3><b>Creating the LSTM neural network</b></h3>
+        <p>Install necessary packages and initialize data</p>
+
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        import numpy as np
+        import xarray as xr
+        import matplotlib.pyplot as plt
+        from tensorflow.keras.models import Sequential
+        from tensorflow.keras.layers import LSTM, Dense, Dropout
+
+        file = 'data_t2m_tot.nc' #2m air temperature
+        ds = xr.open_dataset(file, chunks = {'valid_time' : 50}) #chunks for faster computation
+        temp = ds.t2m
+      </code></pre>
+    </div>
+      
+    <p>Define key parameters.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        yrs = range(1940, 2025)
+        cutoff = 65 #year 2015
+        epochs = 100
+        patience = 25 #early stopping if no improvement after 25 epochs
+        baseline = 0.02, #early stopping if improvement stays below this threshold
+        start_epoch = 50 #wait 50 epochs before checking for early stopping
+        input_size = 5
+        batch_size = 4
+      </code></pre>
+    </div>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        temp_mean = temp.groupby(['valid_time.year']).mean(dim=['valid_time', 'latitude', 'longitude']) # (year)
+        anom_year = temp_mean - temp_mean.sel(year = 1940) #lazy compute yearly anomaly
+        anom_year_vals = anom_year.values[:-1] #extract values
+      </code></pre>
+    </div>
+    <p>Build the neural network. The model uses an <b>LSTM lneural network</b>, which is optimal for <b>time series data</b> like the one used in this project. 
+      It consists of three LSTM layers with <b>up to 30 neurons</b>, which showed good performance during testing. There is a <b>dropout layer</b> before the final layer 
+      to reduce the risk of overfitting. Although the dataset is relatively small, adding a low rate dropout layer gives an extra layer of caution and it also allows
+      to estimate the uncertainty using <b>Monte Carlo dropout</b>, as mentioned below.
+    </p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        def build_lstm(input_size):
+            model = Sequential()
+            model.add(Input((input_size, 1)))
+            model.add(LSTM(5, activation='relu', return_sequences=True))
+            model.add(LSTM(15, activation='relu', return_sequences=True))
+            model.add(Dropout(0.2)) #low dropout rate to prevent overfitting due to limited training data
+            model.add(LSTM(30, activation='relu'))
+            model.add(Dense(1))
+            model.compile(optimizer='adam', loss='mse')
+            model.summary() #summary fo the model
+            return model
+
+        model_lstm = build_lstm(input_size)
+      </code></pre>
+    </div>
+    <p>An <b>early stopping</b> callback is defined to stop training once the model stops improving, as this helps save computation time and prevents overfitting by avoiding unnecessary epochs.
+    </p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        early_stopping = EarlyStopping(monitor = 'val_loss', #monitor the test error
+                               patience = patience,
+                               verbose = 1, #shows when callback is used
+                               baseline = baseline,
+                               restore_best_weights = True, #restore weights from the best performing epoch
+                               start_from_epoch = start_epoch)
+      </code></pre>
+    </div>
+<p>Define a function to prepare the input data, by splitting it into <b>overlapping sequences of fixed length</b>. For example, if given the list [1, 2, 3, 4, 5, 6] 
+  and an input size of 3, the function returns the input sequences [[1, 2, 3], [2, 3, 4], [3, 4, 5]], together with their corresponding output values [4, 5, 6].</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        def prep_data(data, input_size):
+            x = np.zeros((len(data) - input_size, input_size))
+            for i in range(len(x)):
+                x[i] = data[i:i+input_size] #input darta
+            y = np.array(data[input_size:]) #output data
+            return x, y
+      </code></pre>
+    </div>
+  <p>Format the data and prepare it for training and testing.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        #split data
+        training = anom_year_vals[:cutoff] 
+        test = anom_year_vals[cutoff - input_size:]  
+
+        #format into input-output pairs
+        x_train, y_train = prep_data(training, input_size)
+        x_test, y_test = prep_data(test, input_size)
+      </code></pre>
+    </div>
+<p>Train the model.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        fit_lstm = model_lstm.fit(x_train, y_train,
+                        epochs=epochs,
+                        validation_data=(x_test, y_test), #show error
+                        callbacks=[early_stopping],
+                        shuffle = False,
+                        batch_size = batch_size)
+
+        res_test = model_lstm.predict(x_test, verbose=0).flatten()
+        res_train = model_lstm.predict(x_train, verbose=0).flatten()
+      </code></pre>
+    </div>
+    <h3><b>Plotting the accuracy and results with MC  dropout</b></h3>
+<p>Plot the training and validation (test) loss.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        plt.figure(figsize=(8, 5))
+
+        #plot training and test loss
+        plt.plot(fit_lstm.history['loss'], color='blue', linewidth=2, label="Training Loss")
+        plt.plot(fit_lstm.history['val_loss'], color='red', linewidth=2, linestyle='--', label="Validation Loss")
+        plt.yscale('log')
+
+        plt.xticks(fontsize=12)
+        plt.yticks(fontsize=12)
+        plt.xlabel('Epochs', fontsize=12,  labelpad=10)
+        plt.ylabel('Loss', fontsize=12, labelpad=10)
+        plt.title('Training and Validation Loss', fontsize=18, fontweight='bold', pad=20)
+        plt.grid(True, linestyle='--', alpha=0.6)
+
+        plt.legend(loc='best', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
+        plt.tight_layout()
+        plt.savefig('lstm_accuracy.png')
+        plt.show()
+      </code></pre>
+    </div>
+  <p>Define the <b>Monte Carlo dropout</b> function following <i><a href="https://arxiv.org/abs/1506.02142" target="_blank">Gal & Ghahramani (2015)</a></i> to estimate the uncertainty of the model. 
+    The MC dropout keeps the <b>dropout layer active during inference</b>, instead of only during training. Then, by performing multiple forward passes with the same 
+    input, the MC dropout generates a <b>distribution of outputs</b>. The mean corresponds to the final prediction, while the variance reflects the model’s confidence.
+    Also define an <b>exponential fit</b> to model the warming trend in the temperature anomaly. This is used to compare between the neural network's predictions and the
+    <b>overall trend</b>, checking if the model captures the exponential nature of the warming over time.
+    </p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        def MC_dropout(model, X, n):
+            preds = np.array([model(X, training=True) for i in range(n)])
+            mean_preds = preds.mean(axis=0)
+            var = preds.var(axis=0)
+            return mean_preds.flatten(), var.flatten()
+
+        def exp_fit(x, a, b, c):
+            return a*np.exp(b * x) + c
+      </code></pre>
+    </div>
+<p>Define more key parameters for plotting.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        x_fit = np.array(yrs) - 1940  #shift years to start from 0
+        #split the x axis in training and test
+        x_train_ax = range(input_size, len(res_train)+input_size)
+        x_test_ax = range(len(res_train)+input_size, len(res_train)+input_size+ len(res_test))
+        
+        n_MC = 100 #forward passes
+        mean_preds_train, var_train = MC_dropout(model_lstm, x_train, n_MC)
+        mean_preds_test, var_test = MC_dropout(model_lstm, x_test, n_MC)
+        std_dev_test = np.sqrt(var_test)  
+        std_dev_train = np.sqrt(var_train)
+
+        params, _ = curve_fit(exp_fit, x_fit, anom_year_vals, p0= [1, 0.001, 0])
+        fit_data = exp_fit(x_fit, *params)
+      
+      </code></pre>
+    </div>
+<p>Display the results in a <b>line plot</b>.
+  This plot shows the <b>neural network's predictions</b> together with the <b>actual temperature anomalies</b>. The black line represents the observed temperature
+  anomalies, while the blue line shows the exponential fit. The green and light blue lines represent the inference results of the model for the training resp. test data.
+  The red and orange lines show the results of the MC dropout, here taken as the mean of 100 forward passes. The uncertainty associated with the MC dropout predictions
+  is represented by the shaded regions in light red and light orange, representing the <b>regions of uncertainty</b>.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        plt.figure(figsize=(8, 6))
+
+        plt.plot(range(0, len(anom_year_vals)), anom_year_vals, linestyle='--', color='black', label='Temperature Anomaly', linewidth = 1.5)
+        plt.plot(fit_data, color='blue', linewidth=1.5, label='Exponential Fit')
+        plt.plot(x_train_ax, res_train, color='lime', linewidth=2, label='Training Predictions')
+        plt.plot(x_test_ax, res_test, color='aqua', linewidth=2, label='Test Predictions')
+        plt.plot(x_test_ax, mean_preds_test, color='orange', linewidth=2, label="Mean Prediction test (MC Dropout)")
+        plt.plot(x_train_ax, mean_preds_train, color='red', linewidth=2, label="Mean Prediction train (MC Dropout)")
+
+        #MC dropout uncertainty
+        plt.fill_between(x_test_ax, mean_preds_test+std_dev_test, mean_preds_test-std_dev_test, color='orange', alpha=0.2, label='Uncertainty test')
+        plt.fill_between(x_train_ax, mean_preds_train+std_dev_train, mean_preds_train-std_dev_train, color='red', alpha=0.2, label='Uncertainty train')
+
+        year_ticks = np.arange(1940, 2026, 5)
+        plt.xticks(year_ticks - 1940, year_ticks, fontsize=10, rotation=45)
+        plt.yticks(fontsize=10)
+        plt.xlabel('Year', fontsize=12)
+        plt.ylabel('Temperature anomaly (°C)', fontsize=12)
+        plt.title('Temperature anomalies in Europe and ML predictions (1940–2024)', fontsize=14, fontweight='bold', pad=20)
+        plt.grid(True, linestyle='--', alpha=0.6)
+
+        plt.legend(loc='upper left', fontsize=10, frameon=True, fancybox=True, shadow=True, borderpad=1)
+        plt.tight_layout()
+        plt.savefig('lstm_temp_comparison.png')
+        plt.show()
+      </code></pre>
+    </div>
+
     </div>
   </div>
-  
-  <!-- Modal 2 
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modal2')">&times;</span>
-      <h1>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
-      <p>For this project, I worked with the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">
-      ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
-      <p>The goal of this project was to build a simple LSTM neural network, using Python and Tensorflow, good enough to predict the mean temperature anomaly in Europe. 
-        The model was trained and tested on data up to 2024, and then used to estimate future anomalies.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
-      <h2>Accuracy of the lstm neural network</h2>
-      <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
-      <img src="images/lstm_accuracy.png" alt="Accuracy of the lstm model">
-      <p> The plot shows that both losses decrease quickly, with the validation loss eventually dropping below the training loss after a few epochs. This could be because the validation data is smoother
-      and has fewer sharp peaks, making it easier for the model to learn from. Moreover, the lstm contains a dropout layer, which is active during training but turned off during validation by default in Keras,
-      which may also contribute to the lower validation loss. Still, both losses reach low enough values after some epochs, indicating that the model is learning well.</p>
-      <h2>Results of the lstm predictions</h2>
-      <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
-      <img src="images/lstm_temp_comparison.png" alt="Accuracy of the lstm model">
-      <p>The plot shows that the MC dropout mean predictions, in red and orange, are very similar to the original model predictions in green and blue, almost overlapping due to the low dropout rate of 0.2. The uncertainty
-        remains low during the training period, indicating the model's confidence with familiar data, but increases clearly in the test period, as the model deals with unknown data. 
-        Still, both predictions reproduce the observed temperature anomaly trend well, showing that even a simple LSTM model can capture the overall temperature rise in Europe.</p>
-      <h2>+++Estimation of future temperature evolution+++</h2>
-      <p>coming soon :)</p>      
-    </div>
-  </div>-->
+
+
+
 
   <!-- CV Box -->  
   <div class="cv-section">
@@ -356,6 +564,20 @@
       if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
       }
+    }
+
+    function copyToClipboard(button) {
+    const pre = button.parentElement.querySelector('pre');
+    const text = pre.innerText;
+
+      navigator.clipboard.writeText(text).then(() => {
+        button.innerText = 'Copied!';
+          setTimeout(() => {
+            button.innerText = 'Copy';
+        }, 1500);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
     }
     
 
