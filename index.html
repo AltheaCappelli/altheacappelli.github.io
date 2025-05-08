@@ -237,12 +237,12 @@
       <h3><b>Line plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
        Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
-      <img src="images/temp_anomals_eu.png" alt="Temperature anomaly" width="100%">
+      <img src="images/temp_anomals_eu.svg" alt="Temperature anomaly" width="100%">
       <p>The plot clearly shows how the effects of climate change are <b>strongest in the Arctic region</b>, with Helsinki showing the highest increase. In contrast, Hannover and Siena follow the European average more closely. In 2024, the mean temperature anomaly across Europe reached <b>2.56 °C</b>, almost 1°C more than the mean temperature anomaly across the whole world.</p>
       <h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
         with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
-      <img src="images/bubbles_eu.png" alt="Monthly temperature anomaly" width="100%">
+      <img src="images/bubbles_eu.svg" alt="Monthly temperature anomaly" width="100%">
       <p>The plot shows that the colder months, December, January, February, and March, are the most affected by climate change. This reflects the broader trend where <b>colder regions or seasons tend to warm faster</b> than already warm ones, similar to how the Arctic is warming more 
         rapidly than the global average mentioned in the previous section. The highest anomaly was <b>6.9°C in January 2020</b>, followed by <b>6.8°C in February 2020</b>.</p>
       <h3><b>Animation of the scatter plot</b></h3>
@@ -254,7 +254,7 @@
         <b>bubbles gradually get redder and larger</b> as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer fast, and the anomalies are becoming more extreme, especially in the colder months.</p>
       <h3><b>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
-      <img src="images/temp_map_eu.png" alt="European temperature and temperature anomaly" width="100%">
+      <img src="images/temp_map_eu.svg" alt="European temperature and temperature anomaly" width="100%">
       <p>The <b>changes between the 1940 and 2024 maps are clearly visible</b>, as in 2024, many of the blue-shaded regions from 1940 have become much lighter. This difference is further highlighted in the temperature anomaly map, which shows which regions are being 
         affected the most. As expected, colder and more northern areas, such as <b>the Nordic countries</b>, the <b>Baltic states</b>, <b>Iceland</b>, and <b>the Alps</b>, show some of the strongest warming effects, consistent with broader climate change patterns 
         mentioned previously. However, it's not just the North: Other regions like <b>Italy, Eastern Europe</b> and parts of <b>Central Europe</b> also show considerable warming, highlighting that the <b>impacts of climate change</b> are widespread and <b>not confined to any specific region</b>.</p>
@@ -339,7 +339,7 @@
 
           plt.legend(loc='upper left', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
           plt.tight_layout()
-          plt.savefig('bubbles_eu.png')
+          plt.savefig('bubbles_eu.svg')
           plt.show()
         </code></pre>
       </div>  
@@ -415,7 +415,7 @@
           plt.margins(x=0.04, y=0.06)
           
           plt.tight_layout()
-          plt.savefig('bubbles_eu.png')
+          plt.savefig('bubbles_eu.svg')
           plt.show()
         </code></pre>
       </div> 
@@ -459,9 +459,14 @@
               edgecolors='black',
               linewidth=0.6)
               
+
+          #add aesthetics
+          ax.grid(True, linestyle='--', alpha=0.5)
+          ax.margins(x=0.07, y=0.1)
+              
+          #axes & title
           cbar = fig.colorbar(sc, ax = ax, aspect=50, pad=0.02)
           cbar.set_label("Temperature anomaly (°C)", fontsize=14)
-          
           ax.set_xticks(years_dyn)
           ax.set_xticklabels(years_dyn, fontsize=12, rotation=45)
           ax.set_yticks(range(len(months)))
@@ -469,8 +474,7 @@
           ax.set_xlabel("Year", fontsize=14, labelpad=10)
           ax.set_ylabel("Months", fontsize=14, labelpad=10)
           ax.set_title("Monthly temperature anomalies in Europe relative to 1940 (1944–2024)", fontsize=18, fontweight='bold', pad=20)
-          ax.grid(True, linestyle='--', alpha=0.5)
-          ax.margins(x=0.07, y=0.1)
+              
           
           #define the update function
           def update(frame):
@@ -497,7 +501,7 @@
                   edgecolors='black',
                   linewidth=0.6)
           
-              #update the axis and the title
+              #axis & title
               ax.set_xticks(years_dyn)
               ax.set_xticklabels(years_dyn, fontsize=12, rotation=45)
               ax.set_yticks(range(len(months))) 
@@ -505,9 +509,8 @@
               ax.set_xlabel("Year", fontsize=14, labelpad=10)
               ax.set_ylabel("Months", fontsize=14, labelpad=10)
               ax.set_title(f"Monthly temperature anomalies in Europe ({yrs[start_idx]}–{yrs[end_idx-1]})", fontsize = 18, fontweight = 'bold', pad = 20)
-              ax.grid(True, linestyle='--', alpha=0.5)
-              ax.margins(x=0.07, y=0.1)
           
+              #aesthetics
               #update the displayed values of the anomalies
               for i in range(len(months)):
                   for j in range(len(years_dyn)):
@@ -516,6 +519,8 @@
                           color = "white" if abs(val) > 3.3 else "black"
                           size = 6 if abs(val) < 2.5 else 10
                           ax.text(X[i, j], Y[i, j], f"{val:.1f}", fontsize=size, ha='center', va='center', color=color, fontweight='bold')
+              ax.grid(True, linestyle='--', alpha=0.5)
+              ax.margins(x=0.07, y=0.1)
               return sc
           
           ani_frames = len(yrs) - (yrs_frame - 1) # Number of years from 1941 to 2024
@@ -569,10 +574,12 @@
               plot_temp(mean_temp(2024), ax_2024),
               plot_temp(anom_temp(2024), ax_anom, vmin=-5, vmax=5)]
 
+      #aesthetics
       for ax in [ax_1940, ax_2024, ax_anom]:
           ax.coastlines(linewidth=0.5, color='black')
           ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
 
+      #axes & title
       for ax in [ax_1940, ax_2024]:
           cbar = fig.colorbar(plots[0], ax=ax, orientation='horizontal', pad=0.05, aspect=50)
           cbar.set_label('Temperature (°C)', fontsize=12, labelpad=5)
@@ -586,7 +593,7 @@
       ax_anom.set_title("Mean temperature anomaly (°C) \n in Europe (2024)", fontsize=14, fontweight='bold', x = 0.5, y = 1.12)
 
       plt.tight_layout(pad=2)
-      plt.savefig('temp_map_eu.png')
+      plt.savefig('temp_map_eu.svg')
       plt.show()
     </code></pre>
   </div> 
@@ -609,7 +616,7 @@
         from Github</a> to experiment and make your own modifications.</h3>
       <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
-      <img src="images/lstm_accuracy.png" width = '100%' alt="Accuracy of the lstm model">
+      <img src="images/lstm_accuracy.svg" width = '100%' alt="Accuracy of the lstm model">
       <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
         to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
         Indeed the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
@@ -620,7 +627,7 @@
         on both datasets.</p>
       <h3><b>Results of the lstm predictions</b></h3>
       <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
-      <img src="images/lstm_temp_comparison.png" width = '100%' alt="Accuracy of the lstm model">
+      <img src="images/lstm_temp_comparison.svg" width = '100%' alt="Accuracy of the lstm model">
       <p>The plot shows that the <b>mean predictions from MC dropout</b>, in red and orange, <b>closely match the original model predictions</b>, in green and light blue, 
         and are almost overlapping. This is due to the low dropout rate of 0.2, so that the variation across different runs stays small. When comparing the MC uncertainty 
         for inputs from the training period and the validation period, the difference is clear. For inputs from the earlier years, data the model has already seen during 
@@ -630,9 +637,9 @@
         trend</b> of the observed temperature anomalies and match the exponential trend quite well within uncertainty range. 
         In summary, the plot shows that even a <b>simple LSTM neural network</b> can do a good job at <b>reproducing the trend of rising temperatures across Europe</b>,
         following the exponential pattern quite clearly.</p>
-        <h2>+++Estimation of future temperature evolution+++</h2>
+        <h2>Estimation of future temperature evolution</h2>
       <p>Finally, the trained model is used to forecast the temperature anomalies for the next 10 years.</p>
-      <img scr="images/forecast.svg" width = '80%' alt="'Result of the future predictions"    
+      <img src="images/forecast.svg" width = '80%' alt="Result of the future predictions">  
       <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model,         while
         the second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024.  
         Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. By 2034, the LSTM forecasts anomalies approaching 55°C, while the MC Dropout model around 49°C. 
@@ -669,8 +676,9 @@
     <div class="code-container">
       <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
       <pre><code class="language-python">
-        yrs = range(1940, 2025)
-        cutoff = 65 #year 2015
+        yrs = range(1940, 2035)
+        cutoff = 66 #year 2005
+        forecast = 10 #years to forecast
         epochs = 100
         patience = 25 #early stopping if no improvement after 25 epochs
         baseline = 0.02, #early stopping if improvement stays below this threshold
@@ -679,6 +687,7 @@
         batch_size = 4
       </code></pre>
     </div>
+    <p>Compute the temperature anomalies as the <b> between the mean temperature for each year and month, relative to the value for the year 1940</b>.</p>
     <div class="code-container">
       <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
       <pre><code class="language-python">
@@ -704,7 +713,7 @@
             model.add(LSTM(30, activation='relu'))
             model.add(Dense(1))
             model.compile(optimizer='adam', loss='mse')
-            model.summary() #summary fo the model
+            model.summary() #summary of the model
             return model
 
         model_lstm = build_lstm(input_size)
@@ -742,7 +751,7 @@
       <pre><code class="language-python">
         #split data
         training = anom_year_vals[:cutoff] 
-        test = anom_year_vals[cutoff - input_size:]  
+        test = anom_year_vals[cutoff - input_size -1:]  #-1 to let it begin with the last year of training
 
         #format into input-output pairs
         x_train, y_train = prep_data(training, input_size)
@@ -771,11 +780,11 @@
       <pre><code class="language-python">
         plt.figure(figsize=(8, 5))
 
-        #plot training and test loss
         plt.plot(fit_lstm.history['loss'], color='blue', linewidth=2, label="Training Loss")
         plt.plot(fit_lstm.history['val_loss'], color='red', linewidth=2, linestyle='--', label="Validation Loss")
-        plt.yscale('log')
 
+        #axes & title
+        plt.yscale('log')
         plt.xticks(fontsize=12)
         plt.yticks(fontsize=12)
         plt.xlabel('Epochs', fontsize=12,  labelpad=10)
@@ -785,7 +794,7 @@
 
         plt.legend(loc='best', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
         plt.tight_layout()
-        plt.savefig('lstm_accuracy.png')
+        plt.savefig('lstm_accuracy.svg')
         plt.show()
       </code></pre>
     </div>
@@ -808,64 +817,174 @@
             return a*np.exp(b * x) + c
       </code></pre>
     </div>
-<p>Define more key parameters for plotting.</p>
+<p>Compute MC Dropout predictions and fit curve.</p>
     <div class="code-container">
       <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
       <pre><code class="language-python">
-        x_fit = np.array(yrs) - 1940  #shift years to start from 0
-        #split the x axis in training and test
-        x_train_ax = range(input_size, len(res_train)+input_size)
-        x_test_ax = range(len(res_train)+input_size, len(res_train)+input_size+ len(res_test))
-        
         n_MC = 100 #forward passes
         mean_preds_train, var_train = MC_dropout(model_lstm, x_train, n_MC)
         mean_preds_test, var_test = MC_dropout(model_lstm, x_test, n_MC)
         std_dev_test = np.sqrt(var_test)  
         std_dev_train = np.sqrt(var_train)
-
+        
+        x_fit = np.array(yrs[:-forecast])-1940
         params, _ = curve_fit(exp_fit, x_fit, anom_year_vals, p0= [1, 0.001, 0])
-        fit_data = exp_fit(x_fit, *params)
-      
+        fit_data = exp_fit(x_fit, *params)      
       </code></pre>
     </div>
-<p>Display the results in a <b>line plot</b>.
-  This plot shows the <b>neural network's predictions</b> together with the <b>actual temperature anomalies</b>. The black line represents the observed temperature
-  anomalies, while the blue line shows the exponential fit. The green and light blue lines represent the inference results of the model for the training resp. test data.
-  The red and orange lines show the results of the MC dropout, here taken as the mean of 100 forward passes. The uncertainty associated with the MC dropout predictions
-  is represented by the shaded regions in light red and light orange, representing the <b>regions of uncertainty</b>.</p>
+    <p>Define key function for plotting.</p>
     <div class="code-container">
       <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
       <pre><code class="language-python">
-        plt.figure(figsize=(8, 6))
+        def Uncertainty_plt(ax, x, y, mean, std, label_y, label_m, color_y, color_m, linewidth):
+        ax.plot(x, y,  label=label_y, color=color_y, linewidth= linewidth) #lstm prediction
+        ax.plot(x, mean, label=label_m, color=color_m, linewidth= linewidth) #mc dropout prediction
+        ax.fill_between(x, mean + std, mean - std, color=color_m, alpha=0.2, linewidth= linewidth) #range of uncertainty      </code></pre>
+    </div>
+<p>Display the results in a <b>line plot</b>.
+  This plot shows the <b>neural network's predictions</b> together with the <b>actual temperature anomalies</b>. The black line represents the observed temperature
+  anomalies, while the blue line shows the exponential fit. The orange line represents the inference results of the model for the training and test data.
+  The purple line show the results of the MC dropout, here taken as the mean of 100 forward passes. The uncertainty from MC dropout predictions
+  is represented by the shaded regions in purple. The background colors indicate the training and test regions.</b>.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        plt.figure(figsize = (10,6))
 
-        plt.plot(range(0, len(anom_year_vals)), anom_year_vals, linestyle='--', color='black', label='Temperature Anomaly', linewidth = 1.5)
-        plt.plot(fit_data, color='blue', linewidth=1.5, label='Exponential Fit')
-        plt.plot(x_train_ax, res_train, color='lime', linewidth=2, label='Training Predictions')
-        plt.plot(x_test_ax, res_test, color='aqua', linewidth=2, label='Test Predictions')
-        plt.plot(x_test_ax, mean_preds_test, color='orange', linewidth=2, label="Mean Prediction test (MC Dropout)")
-        plt.plot(x_train_ax, mean_preds_train, color='red', linewidth=2, label="Mean Prediction train (MC Dropout)")
-
-        #MC dropout uncertainty
-        plt.fill_between(x_test_ax, mean_preds_test+std_dev_test, mean_preds_test-std_dev_test, color='orange', alpha=0.2, label='Uncertainty test')
-        plt.fill_between(x_train_ax, mean_preds_train+std_dev_train, mean_preds_train-std_dev_train, color='red', alpha=0.2, label='Uncertainty train')
-
+        yrs_train = yrs[input_size:cutoff]
+        yrs_test = yrs[cutoff -1 :-forecast]
+        
+        plt.plot(yrs[:-forecast], anom_year_vals, linestyle='--', color='black', label='CDS Temperature anomaly', linewidth = 1.5)
+        plt.plot(yrs[:-forecast], fit_data, color='dodgerblue', linewidth=1.5, label='Exponential fit')
+        Uncertainty_plt(plt, yrs_train, res_train, mean_preds_train, std_dev_train, 'LSTM predictions', 'MC Dropout predictions',
+                    'darkorange', 'darkviolet', 2)
+        Uncertainty_plt(plt, yrs_test, res_test, mean_preds_test, std_dev_test, '', '',
+                    'darkorange', 'darkviolet', 2)
+        
+        #add aesthetics
+        plt.vlines(2005, -2, 5, color = 'black', linestyle = '--', alpha = 0.3)
+        plt.axvspan(yrs[0], yrs[cutoff - 1], color='lime', alpha=0.1)
+        plt.axvspan(yrs[cutoff - 1], yrs[-forecast -1], color='pink', alpha=0.2)
+        plt.text(x=1980, y=3.1, s='Training', fontsize = 15, fontweight = 'bold', 
+                color='darkgreen', bbox=dict(facecolor='white', edgecolor='darkgreen', boxstyle='round'))
+        plt.text(x=2012, y=3.1, s='Test', fontsize = 15, fontweight = 'bold', 
+                color='mediumvioletred', bbox=dict(facecolor='white', edgecolor='mediumvioletred', boxstyle='round'))
+        plt.grid(True, linestyle='--', alpha=0.6)
+        
+        #axes & title
         year_ticks = np.arange(1940, 2026, 5)
-        plt.xticks(year_ticks - 1940, year_ticks, fontsize=10, rotation=45)
+        plt.xticks(year_ticks, year_ticks, fontsize=10, rotation=45)
         plt.yticks(fontsize=10)
         plt.xlabel('Year', fontsize=12)
         plt.ylabel('Temperature anomaly (°C)', fontsize=12)
-        plt.title('Temperature anomalies in Europe and ML predictions (1940–2024)', fontsize=14, fontweight='bold', pad=20)
-        plt.grid(True, linestyle='--', alpha=0.6)
-
+        plt.ylim(-0.25, 3.5)
+        plt.xlim(yrs[0], yrs[-forecast -1])
+        plt.title('Temperature anomalies in Europe and LSTM predictions (1940–2024)', fontsize=14, fontweight='bold', pad=20)
+        
         plt.legend(loc='upper left', fontsize=10, frameon=True, fancybox=True, shadow=True, borderpad=1)
         plt.tight_layout()
-        plt.savefig('lstm_temp_comparison.png')
+        plt.savefig('lstm_temp_comparison.svg')
         plt.show()
       </code></pre>
     </div>
-
+    <h3><b>Making future predictions</b></h3>
+    <p>With the trained model, it is now possible to make <b>predictions for future years</b> to estimate how the mean temperature anomaly in Europe might change.</p>
+    <p>Reshape the input data, so that the model <b>predicts one year at a time</b>. Each new prediction is <b>added to the input sequence</b> to predict the next year.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        last = anom_year_vals[-5:].reshape(1,5) #2024, adjust to match the wanted shape
+        preds_future = []
+        preds_yrs = 11
+        
+        for i in range(preds_yrs):
+            pred = model_lstm.predict(last, verbose=0).flatten()
+            preds_future.append(pred)
+            last = np.append(last, pred)[-5:].reshape(1,5)  #new input
+        
+        preds_future = np.reshape(preds_future, preds_yrs)
+      </code></pre>
     </div>
+<p>Compute the mean MC Dropout forecast in a similar way, but this time using the <b>MC Dropout prediction</b> function instead of the standard LSTM model.</p>
+<div class="code-container">
+  <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+  <pre><code class="language-python">
+    last = anom_year_vals[-5:].reshape(1,5) #2024, adjust to match the wanted shape
+    preds_future = []
+    preds_yrs = 11
+    
+    for i in range(preds_yrs):
+        pred = model_lstm.predict(last, verbose=0).flatten()
+        preds_future.append(pred)
+        last = np.append(last, pred)[-5:].reshape(1,5)  #new input
+    
+    preds_future = np.reshape(preds_future, preds_yrs)
+  </code></pre>
+</div>
+<p>Plot the results in a <b>line plot</b>.
+  The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model. 
+  The LSTM predictions are shown in orange, while the MC Dropout results are shown in purple, together with shaded uncertainty regions representing the prediction accuracy. 
+  The second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024. It highlights the predicted anomalies from both models and their uncertainty regions, 
+  for a more detailed examination of the extrapolated trends. Both plots include the training, test, and forecast phases.</p>
+  <div class="code-container">
+    <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+    <pre><code class="language-python">
+      fig, (ax_tot, ax_fut) = plt.subplots(1, 2, figsize=(14, 6), sharey= True)
+
+      yrs_forec = yrs[-forecast -1:]
+      
+      #all the years
+      ax_tot.plot(yrs[:-forecast], anom_year_vals, linestyle='--', color='black', label='CDS Temperature anomaly', linewidth = 1.5)
+      Uncertainty_plt(ax_tot, yrs_train, res_train, mean_preds_train, std_dev_train, 'LSTM predictions', 'MC Dropout predictions', 'darkorange', 'darkviolet', 2)
+      Uncertainty_plt(ax_tot, yrs_test, res_test, mean_preds_test, std_dev_test, '', '', 'darkorange', 'darkviolet', 2)
+      Uncertainty_plt(ax_tot, yrs_forec, preds_future, preds_future_MC, std_dev_MC, '', '', 'darkorange', 'darkviolet', 2)
+      
+      #zoom on forecast
+      Uncertainty_plt(ax_fut, yrs_forec, preds_future, preds_future_MC, std_dev_MC, '', '', 'darkorange', 'darkviolet', 2)
+      
+      #add aesthetics
+      ax_tot.vlines(2005, -5, 65, color = 'black', linestyle = '--', alpha = 0.3)
+      ax_tot.vlines(2024, -5, 65, color = 'black', linestyle = '--', alpha = 0.3)
+      ax_tot.axvspan(yrs_train[0]-input_size, yrs_train[-1], color='lime', alpha=0.1)
+      ax_tot.axvspan(yrs_test[0], yrs_test[-1], color='pink', alpha=0.2)
+      ax_tot.axvspan(yrs_forec[0], yrs_forec[-1], color='gold', alpha=0.2)
+      ax_fut.axvspan(yrs_forec[0], yrs_forec[-1], color='gold', alpha=0.2)
+      ax_tot.text(x=1980, y=57, s='Training', fontsize = 15, fontweight = 'bold', 
+              color='darkgreen', bbox=dict(facecolor='white', edgecolor='darkgreen', boxstyle='round'))
+      ax_tot.text(x=2011, y=57, s='Test', fontsize = 15, fontweight = 'bold', 
+              color='mediumvioletred', bbox=dict(facecolor='white', edgecolor='mediumvioletred', boxstyle='round'))
+      ax_tot.text(x=2015, y=45, s='Forecast', fontsize = 15, fontweight = 'bold', 
+              color='goldenrod', bbox=dict(facecolor='white', edgecolor='goldenrod', boxstyle='round'))
+      ax_fut.text(2032.5, preds_future_MC[-1]-1, f"{preds_future_MC[-1]:.2f}°C", fontsize=12, color = 'indigo', fontweight = 'bold')
+      ax_fut.plot(yrs[-1], preds_future_MC[-1], color = 'darkviolet', marker = 'o')
+      ax_fut.text(2032.5, preds_future[-1]-1, f"{preds_future[-1]:.2f}°C", fontsize=12, color = 'orangered', fontweight = 'bold')
+      ax_fut.plot(yrs[-1], preds_future[-1], color = 'darkorange', marker = 'o')
+      ax_tot.grid(True, linestyle='--', alpha=0.6)
+      ax_fut.grid(True, linestyle='--', alpha=0.6)
+      
+      #axes & title
+      ax_fut.set_yticks(np.arange(0,61,5), np.arange(0,61,5))
+      ax_fut.set_xticks(yrs_forec, yrs_forec, rotation = 45)
+      ax_tot.set_xticks(yrs[::5], yrs[::5], rotation = 45)
+      ax_tot.set_xlim(1940,2035.5)
+      ax_fut.set_xlim(2024,2034.2)
+      ax_tot.set_ylim(-1,65)
+      ax_tot.set_ylabel('Temperature anomaly (°C)')
+      ax_tot.legend(fontsize=9, frameon=True, fancybox=True)
+      ax_tot.set_xlabel('Year')
+      ax_fut.set_title('Zoom 2024 - 2034', fontweight = 'bold')
+      ax_tot.set_title('1940 – 2034', fontweight = 'bold')
+      fig.suptitle('Temperature anomalies in Europe (1940-2024) and LSTM forecast (2024-2034)', fontsize=15, fontweight='bold', y=1.05)
+      
+      plt.tight_layout()
+      plt.subplots_adjust(top=0.93)
+      plt.savefig('forecast.svg')
+      plt.show()      
+    </code></pre>
+  </div>    
+
   </div>
+</div>
 
 
 
