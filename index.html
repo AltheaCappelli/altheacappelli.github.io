@@ -204,7 +204,7 @@
 
 <div class="project">
   <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-  <h3>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</h3>
+  <h3>Different plots representing the temperature anomalies in Europe, using Matplotlib and Xarray in Python.</h3>
   <div class="project-buttons">
     <button class="btn results-btn" onclick="openModal('modalResults1')">Results</button>
     <button class="btn code-btn" onclick="openModal('modalCode1')">Code</button>
@@ -214,7 +214,7 @@
   
   <div class="project" onclick="openModal('modal2')">
     <h2>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-    <h3>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow.</h3>
+    <h3>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow and Xarray in Python.</h3>
     <div class="project-buttons">
       <button class="btn results-btn" onclick="openModal('modalResults2')">Results</button>
       <button class="btn code-btn" onclick="openModal('modalCode2')">Code</button>
@@ -227,40 +227,369 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalResults1')">&times;</span>
       <h1>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
-      <p>For this project, I worked with the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a>, provided by the Copernicus Climate Data Store (CDS).</p>
-      <p>The goal was to analyze and visualize temperature trends across Europe using Python and Matplotlib. By using different kinds of plots, the goal of the project is to highlight key patterns and changes in the air temperature in Europe over the years.</p>
-      <h3>The following plots sum up the main insights of the project. For the code, more information and the complete analysis, <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/analysis_t2m_anomalies.ipynb" target="_blank">see the complete project on Github</a>. </h3>
-      <h2>Line plot of the temperature anomalies in Europe between 1940 and 2024</h2>
+      <h3>For this project, I used the 2m air temperature data from the 
+        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
+        provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
+      </h3>
+      <h3>The goal of this project is to analyse the 2m air temperature data and visualize it in different ways, to highlight patterns and trends. Various types of plots are used, making it easier to understand temperature changes over time and across different areas.</h3>
+    <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">
+      from Github</a> to experiment and make your own modifications.</h3>
+      <h3><b>Line plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
        Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
       <img src="images/temp_anomals_eu.png" alt="Temperature anomaly" width="100%">
-      <p>The plot clearly shows how the effects of climate change are strongest in the Arctic region, with Helsinki showing the highest increase. In 2024, the mean temperature anomaly across Europe reached 2.56 °C, showing a very fast warming trend.</p>
-      <h2>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</h2>
+      <p>The plot clearly shows how the effects of climate change are <b>strongest in the Arctic region</b>, with Helsinki showing the highest increase. In contrast, Hannover and Siena follow the European average more closely. In 2024, the mean temperature anomaly across Europe reached <b>2.56 °C</b>, almost 1°C more than the mean temperature anomaly across the whole world.</p>
+      <h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
         with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
       <img src="images/bubbles_eu.png" alt="Monthly temperature anomaly" width="100%">
-      <p>The plot shows that colder months are most affected by climate change, which reflects the broader trend of faster warming in colder seasons and regions, as already seen in the previous section with the Arctic region.
-        The highest anomaly was 6.9°C in January 2020.</p>
-      <h2>Animation of the scatter plot</h2>
+      <p>The plot shows that the colder months, December, January, February, and March, are the most affected by climate change. This reflects the broader trend where <b>colder regions or seasons tend to warm faster</b> than already warm ones, similar to how the Arctic is warming more 
+        rapidly than the global average mentioned in the previous section. The highest anomaly was <b>6.9°C in January 2020</b>, followed by <b>6.8°C in February 2020</b>.</p>
+      <h3><b>Animation of the scatter plot</b></h3>
       <p>For completeness, I added an animation of the previous scatter plot including all the years between 1940 and 2024.</p>
       <video width="100%" controls>
         <source src="images/bubble_ani.mp4" type="video/mp4">
-      </video>I 
-      <p>It's interesting to observe how the bubbles gradually get redder and larger as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer, and the anomalies are becoming more extreme, especially in the colder months.</p>
-      <h2>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</h2>
+      </video> 
+      <p>This animation gives a more complete picture of how the monthly temperature anomalies evolved over time. The animation shows the data in <b>10-year intervals</b>, with each frame displaying a decade of temperature anomalies. It's interesting to see how the 
+        <b>bubbles gradually get redder and larger</b> as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer fast, and the anomalies are becoming more extreme, especially in the colder months.</p>
+      <h3><b>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
       <img src="images/temp_map_eu.png" alt="European temperature and temperature anomaly" width="100%">
-      <p>The temperature changes between 1940 and 2024 are obvious, with blue regions from 1940 being much lighter in 2024. The temperature anomaly map highlights this warming, which, again, is the strongest in northern areas like the 
-        Nordic countries, Baltic states, Iceland, and the Alps. However, significant warming can also seen in Italy, Eastern Europe, and Central Europe, showing that climate change impacts all of Europe, and is not bound to any specific region.</p>     
+      <p>The <b>changes between the 1940 and 2024 maps are clearly visible</b>, as in 2024, many of the blue-shaded regions from 1940 have become much lighter. This difference is further highlighted in the temperature anomaly map, which shows which regions are being 
+        affected the most. As expected, colder and more northern areas, such as <b>the Nordic countries</b>, the <b>Baltic states</b>, <b>Iceland</b>, and <b>the Alps</b>, show some of the strongest warming effects, consistent with broader climate change patterns 
+        mentioned previously. However, it's not just the North: Other regions like <b>Italy, Eastern Europe</b> and parts of <b>Central Europe</b> also show considerable warming, highlighting that the <b>impacts of climate change</b> are widespread and <b>not confined to any specific region</b>.</p>
+        
     </div>
   </div>
   
   <div id="modalCode1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalCode1')">&times;</span>
-      <h2>Code</h2>
-      <p>+++coming soon+++</p>
+      
+      <h3>For information on the data and goal of this project, see the Results section.</h3>
+      <h3><b>Line plot of the temperature anomalies in Europe from 1940 to 2024</b></h3>
+        <p>Install necessary packages and initialize data</p>
+
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        import xarray as xr
+        import matplotlib.pyplot as plt
+
+        file = 'data_t2m_tot.nc' #2m air temperature
+        ds = xr.open_dataset(file, chunks = {'valid_time' : 50}) #chunks for faster computation
+        temp = ds.t2m
+      </code></pre>
+    </div>
+      
+    <p>Define key parameters.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        yrs = range(1940, 2025)
+        months = range(0,12)
+        locations = {"Hannover": (52.5, 9.75),
+                     "Helsinki": (60.25, 25),
+                     "Siena": (43.25, 11.25)}
+      </code></pre>
+    </div>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        temp_grp = temp.groupby(['valid_time.month', 'valid_time.year']).mean(dim=['valid_time']) #xarray with shape (:, month, year)
+        temp_eu_month = temp_grp.mean(dim=['longitude', 'latitude']) #xarray shape: (month, year)
+        temp_eu_year = temp_eu_month.mean(dim='month') #xarray shape: (year)
+      </code></pre>
+    </div>
+<p>Compute the temperature anomalies as the <b>difference between the mean temperature for each year and month, relative to the value for the year 1940</b>.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+      <pre><code class="language-python">
+        anom_year = temp_eu_year - temp_eu_year.sel(year = 1940) #lazy compute yearly anomaly
+        anom_year_vals = anom_year.values[:-1] #extract values
+        loc_anoms = {} #dictionary for better structure
+        for loc, (lat, lon) in locations.items():
+            temp_loc = temp_grp.sel(latitude=lat, longitude=lon).mean(dim='month')
+            anom = temp_loc - temp_loc.sel(year = 1940) #lazy compute anomaly for each location
+            loc_anoms[loc] = anom.sel(year=yrs).values #extract values
+      </code></pre>
+    </div>    
+    <p>Display the data in a <b>line plot</b>. This plot shows the <b>mean yearly temperature anomalies in Europe</b>. Moreover, I chose to include the temperature anomalies of three different cities, <b>Hannover, Helsinki, and Siena</b>, represented by the colored lines. 
+      Mostly out of curiosity, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          plt.figure(figsize=(10, 6))
+
+          colrs = {"Hannover": "green", "Helsinki": "blue", "Siena": "red"}
+
+          for loc, anom in loc_anoms.items():
+              plt.plot(yrs, anom, label=loc, color = colrs[loc], linewidth=1.2, linestyle='--')
+
+          plt.plot(yrs, anom_year_vals, label='Mean', color='black', linewidth=2.5, linestyle='solid')
+          plt.plot(2024, anom_year_vals[-1], 'ko')
+          plt.text(2024 - 1.2, anom_year_vals[-1] - 0.6, f"{anom_year_vals[-1]:.2f}°C", fontsize=12, fontweight = 'bold')
+
+          plt.xticks(range(1940, 2026, 5), fontsize=12, rotation=45)
+          plt.yticks(fontsize=12)
+          plt.xlabel("Year", fontsize=14)
+          plt.ylabel("Temperature anomaly (°C)", fontsize=14)
+          plt.title("Temperature anomalies in Europe (1940-2024)", fontsize=16, fontweight='bold')
+          plt.grid(True, linestyle='--', alpha=0.6)
+
+          plt.legend(loc='upper left', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
+          plt.tight_layout()
+          plt.savefig('bubbles_eu.png')
+          plt.show()
+        </code></pre>
+      </div>  
+<h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
+      <p>Install needed packages and define key parameters.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          from matplotlib import colors
+          import numpy as np
+        </code></pre>
+      </div> 
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          step = 4  #interval for selecting years (every 4th year)
+          start_idx = 4 #start of year to display
+          sample_years = yrs[start_idx::step]
+        </code></pre>
+      </div> 
+      <p>Compute the monthly temperature anomalies.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          anom_month = temp_eu_month - temp_eu_month.sel(year = 1940) #lazy compute monthly anomaly
+          anom_month_vals = anom_month.values #extract values
+          anom_month_plt = anom_month_vals[:, start_idx::step] #select years to display
+        </code></pre>
+      </div> 
+      <p>Display the data in a <b>scatter plot</b>.
+        This scatter (bubble) plot shows the <b>mean monthly temperature anomalies in Europe</b>, relative to the baseline 1940, with both the <b>color</b> and <b>size</b> of the bubbles indicating the magnitude of the anomaly. As is common in climate data visualization, 
+        <b>warmer temperatures</b> compared to the 1940 baseline appear in shades of red, while colder ones are shown in blue shades. The size of each bubble also shows the strength of this deviation, making it easy to spot extreme anomalies.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          plt.figure(figsize=(12, 8))
+
+          X, Y = np.meshgrid(sample_years, months) 
+          
+          vmax_plt = np.max(np.abs(anom_month_plt))
+          norm = colors.TwoSlopeNorm(vmin=-vmax_plt, vcenter=0, vmax=vmax_plt)
+          bubble_size = np.abs(anom_month_plt) * 160 #to enhance the bubble size, otherwise too small
+          
+          sc = plt.scatter(
+              X.flatten(), Y.flatten(),
+              s=bubble_size.flatten(),
+              c=anom_month_plt.flatten(),
+              norm=norm,
+              cmap='coolwarm',
+              alpha=0.85,
+              edgecolors='black',
+              linewidth=0.6)
+          
+          for i in range(len(months)):
+              for j in range(len(sample_years)):
+                  val = anom_month_plt[i, j]
+                  if bubble_size[i, j] > 210:
+                      color = "white" if abs(val) > 3.3 else "black"
+                      size = 6 if abs(val) < 2.5 else 10
+                      plt.text(X[i, j], Y[i, j], f"{val:.1f}", fontsize=size, ha='center', va='center', color=color, fontweight='bold')
+                      #add the respective anomaly values to the bubbles
+          
+          cbar = plt.colorbar(sc, aspect=50, pad=0.02)
+          cbar.set_label("Temperature anomaly (°C)", fontsize=14)
+          
+          plt.xticks(sample_years, sample_years, fontsize=12, rotation=45)
+          plt.yticks(range(len(months)), ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=12)
+          plt.xlabel("Year", fontsize=14, labelpad=10)
+          plt.ylabel("Months", fontsize=14, labelpad=10)
+          plt.title("Monthly temperature anomalies in Europe (1944–2024)", fontsize=18, fontweight='bold', pad=20)
+          plt.grid(True, linestyle='--', alpha=0.5)
+          plt.margins(x=0.04, y=0.06)
+          
+          plt.tight_layout()
+          plt.savefig('bubbles_eu.png')
+          plt.show()
+        </code></pre>
+      </div> 
+    <h3><b>Scatter animation of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
+    <p>Install needed packages and define key parameters.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          import matplotlib.animation as animation
+        </code></pre>
+      </div> 
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          ini = 0
+          yrs_frame = 10
+          fin = ini + yrs_frame
+          years_dyn = yrs[ini:fin]
+          anom_month_dyn = anom_month_vals[:, ini:fin]
+        </code></pre>
+      </div> 
+<p>Animate the scatter plot.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          fig, ax = plt.subplots(figsize = (10,6))
+
+          X, Y = np.meshgrid(years_dyn, months)
+          
+          vmax = np.max(np.abs(anom_month_dyn))
+          norm = colors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)
+          bubble_size = np.abs(anom_month_dyn) * 160 
+          
+          sc = ax.scatter(
+              X.flatten(), Y.flatten(),
+              s=bubble_size.flatten(),
+              c=anom_month_dyn.flatten(),
+              norm=norm,
+              cmap='coolwarm',
+              alpha=0.85,
+              edgecolors='black',
+              linewidth=0.6)
+              
+          cbar = fig.colorbar(sc, ax = ax, aspect=50, pad=0.02)
+          cbar.set_label("Temperature anomaly (°C)", fontsize=14)
+          
+          ax.set_xticks(years_dyn)
+          ax.set_xticklabels(years_dyn, fontsize=12, rotation=45)
+          ax.set_yticks(range(len(months)))
+          ax.set_yticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=12)
+          ax.set_xlabel("Year", fontsize=14, labelpad=10)
+          ax.set_ylabel("Months", fontsize=14, labelpad=10)
+          ax.set_title("Monthly temperature anomalies in Europe relative to 1940 (1944–2024)", fontsize=18, fontweight='bold', pad=20)
+          ax.grid(True, linestyle='--', alpha=0.5)
+          ax.margins(x=0.07, y=0.1)
+          
+          #define the update function
+          def update(frame):
+              ax.clear() #clear the plot after each frame to avoid overlapping drawing
+              start_idx = frame
+              end_idx = frame + yrs_frame
+          
+              #update the years and displayed values
+              years_dyn = yrs[start_idx:end_idx]
+              anom_month_dyn = anom_month_vals[:, start_idx:end_idx]
+          
+              #update the mesh and the bubble size to avoid any errors
+              X, Y = np.meshgrid(years_dyn, months) 
+              bubble_size = np.abs(anom_month_dyn) * 160 
+          
+              #update the scatter plot
+              sc = ax.scatter(
+                  X.flatten(), Y.flatten(),
+                  s=bubble_size.flatten(),
+                  c=anom_month_dyn.flatten(),
+                  norm=norm,
+                  cmap='coolwarm',
+                  alpha=0.85,
+                  edgecolors='black',
+                  linewidth=0.6)
+          
+              #update the axis and the title
+              ax.set_xticks(years_dyn)
+              ax.set_xticklabels(years_dyn, fontsize=12, rotation=45)
+              ax.set_yticks(range(len(months))) 
+              ax.set_yticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=12)
+              ax.set_xlabel("Year", fontsize=14, labelpad=10)
+              ax.set_ylabel("Months", fontsize=14, labelpad=10)
+              ax.set_title(f"Monthly temperature anomalies in Europe ({yrs[start_idx]}–{yrs[end_idx-1]})", fontsize = 18, fontweight = 'bold', pad = 20)
+              ax.grid(True, linestyle='--', alpha=0.5)
+              ax.margins(x=0.07, y=0.1)
+          
+              #update the displayed values of the anomalies
+              for i in range(len(months)):
+                  for j in range(len(years_dyn)):
+                      val = anom_month_dyn[i, j]
+                      if bubble_size[i, j] > 210:
+                          color = "white" if abs(val) > 3.3 else "black"
+                          size = 6 if abs(val) < 2.5 else 10
+                          ax.text(X[i, j], Y[i, j], f"{val:.1f}", fontsize=size, ha='center', va='center', color=color, fontweight='bold')
+              return sc
+          
+          ani_frames = len(yrs) - (yrs_frame - 1) # Number of years from 1941 to 2024
+          ani = animation.FuncAnimation(fig, update, frames=ani_frames, interval=140, blit=False)
+          ani.save('bubble_ani.mp4')
+          
+          plt.tight_layout()
+          plt.show()
+        </code></pre>
+      </div> 
+      <h3><b>Temperature plot of the yearly temperature anomalies in Europe between 1940 and 2024</b></h3>
+      <p>Install needed packages and define key parameters and functions.</p>
+        <div class="code-container">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          <pre><code class="language-python">
+            import cartopy.crs as ccrs
+          </code></pre>
+        </div> 
+        <div class="code-container">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          <pre><code class="language-python">
+            europe_projection = ccrs.EuroPP()
+
+            #compute the mean temperature for a given year in Celsius
+            def mean_temp(year):
+                return temp.sel(valid_time=str(year)).mean('valid_time') - 273.15 #compute in Celsius
+
+            #define the 1940 baseline
+            ref_1940 = mean_temp(1940)
+
+            #compute the temperature anomaly for a given year
+            def anom_temp(year):
+                return mean_temp(year) - ref_1940 
+
+            #define the plot function for compactness and to easily adjusting parameters
+            def plot_temp(data, ax=None, vmin=-10, vmax=20):
+                return data.plot.imshow(ax=ax, transform=ccrs.PlateCarree(), cmap='coolwarm', vmin=vmin, vmax=vmax, add_colorbar=False)
+          </code></pre>
+        </div> 
+<p>Display the data in a <b>temperature plot</b>. These temperature maps show the <b>mean yearly temperatures and temperature anomalies across Europe</b>, 
+  with each point representing the temperature or anomaly relative to 1940 at a specific location. The first two plots display the actual <b>temperatures for the years 1940 and 2024</b>,
+  where, as usual, red indicates warmer temperatures and blue indicates colder ones. The third plot shows the <b>temperature anomaly in 2024 relative to 1940</b>, with red areas highlighting 
+  regions that with a higher anomaly. For example, when a region transitions from dark blue in 1940 to light blue or neutral in 2024, it appears as a deep red in the anomaly map, making the 
+  warming easy to spot.</p>
+  <div class="code-container">
+    <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+    <pre><code class="language-python">
+      fig, (ax_1940, ax_2024, ax_anom) = plt.subplots(1, 3, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(15, 7))
+
+      plots = [plot_temp(mean_temp(1940), ax_1940),
+              plot_temp(mean_temp(2024), ax_2024),
+              plot_temp(anom_temp(2024), ax_anom, vmin=-5, vmax=5)]
+
+      for ax in [ax_1940, ax_2024, ax_anom]:
+          ax.coastlines(linewidth=0.5, color='black')
+          ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+
+      for ax in [ax_1940, ax_2024]:
+          cbar = fig.colorbar(plots[0], ax=ax, orientation='horizontal', pad=0.05, aspect=50)
+          cbar.set_label('Temperature (°C)', fontsize=12, labelpad=5)
+      cbar_anom = fig.colorbar(plots[2], ax=ax_anom, orientation='horizontal', pad=0.05, aspect=50)
+      cbar_anom.set_label('Temperature anomaly (°C)', fontsize=12, labelpad=5)
+
+      ax_1940.set_title("Mean temperature in Europe (°C)", fontsize=14, fontweight = 'bold', x = 1.25, y = 1.18)
+      ax_2024.set_title('')
+      fig.text(0.15, 0.85, "1940", fontsize=12, fontweight='bold')
+      fig.text(0.48, 0.85, "2024", fontsize=12, fontweight='bold')
+      ax_anom.set_title("Mean temperature anomaly (°C) \n in Europe (2024)", fontsize=14, fontweight='bold', x = 0.5, y = 1.12)
+
+      plt.tight_layout(pad=2)
+      plt.savefig('temp_map_eu.png')
+      plt.show()
+    </code></pre>
+  </div> 
     </div>
   </div>
 
@@ -272,13 +601,15 @@
         <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
         provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
       </h3>
-      <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies. +++kommt noch+++          
+      <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
+        evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
+        the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies.   
         </h3>
       <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">
         from Github</a> to experiment and make your own modifications.</h3>
       <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
-      <img src="images/lstm_accuracy.png" alt="Accuracy of the lstm model">
+      <img src="images/lstm_accuracy.png" width = '100%' alt="Accuracy of the lstm model">
       <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
         to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
         Indeed the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
@@ -289,7 +620,7 @@
         on both datasets.</p>
       <h3><b>Results of the lstm predictions</b></h3>
       <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
-      <img src="images/lstm_temp_comparison.png" alt="Accuracy of the lstm model">
+      <img src="images/lstm_temp_comparison.png" width = '100%' alt="Accuracy of the lstm model">
       <p>The plot shows that the <b>mean predictions from MC dropout</b>, in red and orange, <b>closely match the original model predictions</b>, in green and light blue, 
         and are almost overlapping. This is due to the low dropout rate of 0.2, so that the variation across different runs stays small. When comparing the MC uncertainty 
         for inputs from the training period and the validation period, the difference is clear. For inputs from the earlier years, data the model has already seen during 
@@ -300,7 +631,15 @@
         In summary, the plot shows that even a <b>simple LSTM neural network</b> can do a good job at <b>reproducing the trend of rising temperatures across Europe</b>,
         following the exponential pattern quite clearly.</p>
         <h2>+++Estimation of future temperature evolution+++</h2>
-      <p>coming soon :)</p>    
+      <p>Finally, the trained model is used to forecast the temperature anomalies for the next 10 years.</p>
+      <img scr="images/forecast.svg" width = '80%' alt="'Result of the future predictions"    
+      <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model,         while
+        the second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024.  
+        Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. By 2034, the LSTM forecasts anomalies approaching 55°C, while the MC Dropout model around 49°C. 
+        These values are, of course, not realistic and come from the <b>model's simplistic extrapolation of historical trend</b>, without taking into account real-world climate and feedback 
+        mechanisms. However, these results should not be interpreted as "literal" future temperatures, as they just show the model’s learned trend, namely a <b>rapid and accelerating increase in 
+        temperature anomalies</b>. This also highlights the main point, that even a basic time series model shows how fast temperature are risings in Europe.
+      </p>
     </div>
   </div>
 
@@ -547,6 +886,12 @@
     <iframe id="cvFrame" src="" style="width: 100%; height: 80vh; border: none;"></iframe>
   </div>
 </div>
+
+<div class="linkedin">
+  <h1 align="center" style="font-size:44px;"> <a href="https://www.linkedin.com/in/althea-cappelli-078761345/" target="_blank"> <b>Linkedin</b> </a></h1>.
+   <div class="cv-options">
+   </div>
+ </div>
 
 
   <script>
