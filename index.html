@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Prism.js for code highlighting -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
@@ -26,7 +25,7 @@
     }
     .project:hover {
       transform: scale(1.02);
-      background-image: url('images/temp_hint.png'); /* Adjust the path as needed */
+      background-image: url('images/temp_hint.png'); 
       background-size: cover;
       background-position: center;
       color: white;
@@ -43,9 +42,6 @@
     }
     .modal-content {
       background-color: #ffffff;
-      /*background-image: url('images/hintt.png'); /* Adjust the path as needed */
-      /*background-size: cover;
-      background-position: center;*/
       color: black;
       margin: 5% auto;
       padding: 20px;
@@ -53,8 +49,8 @@
       width: 80%;
       max-width: 1000px;
       position: relative;
-      max-height: 80vh; /* limit height to viewport */
-      overflow-y: auto;  /* allow vertical scroll if content exceeds height */
+      max-height: 80vh; 
+      overflow-y: auto; 
     }
     .close {
       position: absolute;
@@ -94,31 +90,39 @@
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
       border: none;
     }
-    
-    /* English CV - blue */
+ 
     .cv-box.eng {
-      background-image: url('images/eng.png'); /* Adjust the path as needed */
+      /* background-image: url('images/eng.png');*/
+      background:
+        linear-gradient(220deg, white, rgba(255, 0, 0, 0) 80.71%),
+        linear-gradient(123deg, red, rgba(0, 255, 0, 0) 60.71%),
+        linear-gradient(30deg, blue, blue 50%);
       background-size: cover;
       background-position: center;
       color: black;
     }
     .cv-box.eng:hover {
-      background-image: url('images/eng_click.png'); /* Adjust the path as needed */
+      /*background-image: url('images/eng_click.png');*/
+      background:
+        linear-gradient(220deg, #838383, rgba(255, 0, 0, 0) 80.71%),
+        linear-gradient(123deg, #871d0d, rgba(0, 255, 0, 0) 60.71%),
+        linear-gradient(30deg, #101575);
       background-size: cover;
       background-position: center;
       color: white;
       transform: scale(1.05);
     }
     
-    /* German CV - dark red */
     .cv-box.deu {
-      background-image: url('images/deu.png'); /* Adjust the path as needed */
+      /*background-image: url('images/deu.png');*/
+      background: radial-gradient(closest-side, yellow ,yellow, red, black);
       background-size: cover;
       background-position: center;
       color: black;
     }
     .cv-box.deu:hover {
-      background-image: url('images/deu_click.png'); /* Adjust the path as needed */
+      /*background-image: url('images/deu_click.png'); */
+      background: radial-gradient(closest-side, #9c8d00, #9c8d00, #871d0d, #f000);
       background-size: cover;
       background-position: center;
       color: white;
@@ -141,19 +145,31 @@
     }
     
     .results-btn {
-      background-color: #af4c4c; /* Green */
+      background-image: url('images/crep.png'); 
+      background-size: cover;
+      background-position: center;
       color: white;
     }
     .results-btn:hover {
-      background-color: #45a049;
+      transform: scale(1.02);
+      background-image: url('images/sonn.png'); 
+      background-size: cover;
+      background-position: center;
+      color: black;
     }
     
     .code-btn {
-      background-color: #2196F3; /* Blue */
+      background-image: url('images/code.png'); 
+      background-size: cover;
+      background-position: center;
       color: white;
     }
     .code-btn:hover {
-      background-color: #0b7dda;
+      transform: scale(1.02);
+      background-image: url('images/codeclick.png'); 
+      background-size: cover;
+      background-position: center;
+      color: white;
     }
       .code-container {
         position: relative;
@@ -180,7 +196,7 @@
         opacity: 1;
       }
       pre {
-        background: #2d2d2d; /* Dark background for code */
+        background: #2d2d2d; 
         padding: 20px;
         border-radius: 10px;
         overflow-x: auto;
@@ -188,7 +204,7 @@
       pre code {
         font-family: Consolas, 'Courier New', monospace;
         font-size: 14px;
-        color: #f8f8f2; /* light text on dark bg */
+        color: #f8f8f2; 
       }
 
 
@@ -197,12 +213,12 @@
 <body>
   <h1 align="center" style="font-size:44px;"> <b>My projects</b></h1>.
 <!--
-  <div class="project" onclick="openModal('modal1')">
+  <div class="project">
     <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
     <h3>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</h3>
   </div> -->
 
-<div class="project">
+<div class="project" onclick = "openModal('modal1')">
   <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
   <h3>Different plots representing the temperature anomalies in Europe, using Matplotlib and Xarray in Python.</h3>
   <div class="project-buttons">
@@ -222,7 +238,6 @@
 </div>
 
 
-<!-- Modals for Project 1 -->
   <div id="modalResults1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('modalResults1')">&times;</span>
@@ -232,11 +247,11 @@
         provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
       </h3>
       <h3>The goal of this project is to analyse the 2m air temperature data and visualize it in different ways, to highlight patterns and trends. Various types of plots are used, making it easier to understand temperature changes over time and across different areas.</h3>
-    <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">
-      from Github</a> to experiment and make your own modifications.</h3>
+    <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
+      from Github</a> to experiment and make your modifications.</h3>
       <h3><b>Line plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
-       Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
+       Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki, and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
       <img src="images/temp_anomals_eu.svg" alt="Temperature anomaly" width="100%">
       <p>The plot clearly shows how the effects of climate change are <b>strongest in the Arctic region</b>, with Helsinki showing the highest increase. In contrast, Hannover and Siena follow the European average more closely. In 2024, the mean temperature anomaly across Europe reached <b>2.56 °C</b>, almost 1°C more than the mean temperature anomaly across the whole world.</p>
       <h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
@@ -246,7 +261,7 @@
       <p>The plot shows that the colder months, December, January, February, and March, are the most affected by climate change. This reflects the broader trend where <b>colder regions or seasons tend to warm faster</b> than already warm ones, similar to how the Arctic is warming more 
         rapidly than the global average mentioned in the previous section. The highest anomaly was <b>6.9°C in January 2020</b>, followed by <b>6.8°C in February 2020</b>.</p>
       <h3><b>Animation of the scatter plot</b></h3>
-      <p>For completeness, I added an animation of the previous scatter plot including all the years between 1940 and 2024.</p>
+      <p>For completeness, I added an animation of the previous scatter plot, including all the years between 1940 and 2024.</p>
       <video width="100%" controls>
         <source src="images/bubble_ani.mp4" type="video/mp4">
       </video> 
@@ -563,7 +578,7 @@
 <p>Display the data in a <b>temperature plot</b>. These temperature maps show the <b>mean yearly temperatures and temperature anomalies across Europe</b>, 
   with each point representing the temperature or anomaly relative to 1940 at a specific location. The first two plots display the actual <b>temperatures for the years 1940 and 2024</b>,
   where, as usual, red indicates warmer temperatures and blue indicates colder ones. The third plot shows the <b>temperature anomaly in 2024 relative to 1940</b>, with red areas highlighting 
-  regions that with a higher anomaly. For example, when a region transitions from dark blue in 1940 to light blue or neutral in 2024, it appears as a deep red in the anomaly map, making the 
+  regions with a higher anomaly. For example, when a region transitions from dark blue in 1940 to light blue or neutral in 2024, it appears as a deep red in the anomaly map, making the 
   warming easy to spot.</p>
   <div class="code-container">
     <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
@@ -612,16 +627,16 @@
         evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
         the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies.   
         </h3>
-      <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/blob/main/lstm_t2m_anomalies.ipynb" target="_blank">
-        from Github</a> to experiment and make your own modifications.</h3>
+      <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
+        from Github</a> to experiment and make your modifications.</h3>
       <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
       <img src="images/lstm_accuracy.svg" width = '100%' alt="Accuracy of the lstm model">
       <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
         to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
-        Indeed the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
-        more steep peaks. As a result, the model probably finds it easier to learn from the validation data. Additionally, the <b>dropout layer</b> is active during training
-        but not during validation, as standard in Keras, which could also explain the difference of accuracy. The y axis of the plot is logarithmically scaled to better 
+        Indeed, the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
+        steeper peaks. As a result, the model probably finds it easier to learn from the validation data. Additionally, the <b>dropout layer</b> is active during training
+        but not during validation, as standard in Keras, which could also explain the difference of accuracy. The y-axis of the plot is logarithmically scaled to better 
         visualize the results.</p>
       <p>Despite these differences, both the training and validation losses ultimately reach a <b>sufficiently small error</b>, showing that the model is <b>performing well</b>
         on both datasets.</p>
@@ -634,18 +649,18 @@
         training, the <b>uncertainty remains low</b>, showing that the <b>model is confident with known patterns</b>. But in the test period, especially from year 2018 to 2024,
         the <b>uncertainty grows significantly</b>. This is expected, since when the model makes predictions with unknown data, it becomes less certain, a <b>common behavior 
         in time series models</b>, where small differences can accumulate over time. Despite this, both the model’s predictions and the MC dropout mean <b>follow the overall 
-        trend</b> of the observed temperature anomalies and match the exponential trend quite well within uncertainty range. 
+        trend</b> of the observed temperature anomalies and match the exponential trend quite well within the uncertainty range. 
         In summary, the plot shows that even a <b>simple LSTM neural network</b> can do a good job at <b>reproducing the trend of rising temperatures across Europe</b>,
         following the exponential pattern quite clearly.</p>
         <h2>Estimation of future temperature evolution</h2>
       <p>Finally, the trained model is used to forecast the temperature anomalies for the next 10 years.</p>
       <img src="images/forecast.svg" width = '120%' alt="Result of the future predictions">  
-      <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model,         while
+      <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model, while
         the second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024.  
-        Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. By 2034, the LSTM forecasts anomalies approaching 55°C, while the MC Dropout model around 49°C. 
+        Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. By 2034, the LSTM forecasts anomalies approaching 55°C, while the MC Dropout model forecasts around 49°C. 
         These values are, of course, not realistic and come from the <b>model's simplistic extrapolation of historical trend</b>, without taking into account real-world climate and feedback 
         mechanisms. However, these results should not be interpreted as "literal" future temperatures, as they just show the model’s learned trend, namely a <b>rapid and accelerating increase in 
-        temperature anomalies</b>. This also highlights the main point, that even a basic time series model shows how fast temperature are risings in Europe.
+        temperature anomalies</b>. This also highlights the main point, that even a basic time series model shows how fast temperatures are rising in Europe.
       </p>
     </div>
   </div>
@@ -732,7 +747,7 @@
                                start_from_epoch = start_epoch)
       </code></pre>
     </div>
-<p>Define a function to prepare the input data, by splitting it into <b>overlapping sequences of fixed length</b>. For example, if given the list [1, 2, 3, 4, 5, 6] 
+<p>Define a function to prepare the input data by splitting it into <b>overlapping sequences of fixed length</b>. For example, if given the list [1, 2, 3, 4, 5, 6] 
   and an input size of 3, the function returns the input sequences [[1, 2, 3], [2, 3, 4], [3, 4, 5]], together with their corresponding output values [4, 5, 6].</p>
     <div class="code-container">
       <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
@@ -905,7 +920,7 @@
         preds_future = np.reshape(preds_future, preds_yrs)
       </code></pre>
     </div>
-<p>Compute the mean MC Dropout forecast in a similar way, but this time using the <b>MC Dropout prediction</b> function instead of the standard LSTM model.</p>
+<p>Compute the mean MC Dropout forecast similarly, but this time using the <b>MC Dropout prediction</b> function instead of the standard LSTM model.</p>
 <div class="code-container">
   <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
   <pre><code class="language-python">
@@ -989,7 +1004,6 @@
 
 
 
-  <!-- CV Box -->  
   <div class="cv-section">
    <h1 align="center" style="font-size:44px;"> <b>Curriculum Vitae</b></h1>.
     <div class="cv-options">
