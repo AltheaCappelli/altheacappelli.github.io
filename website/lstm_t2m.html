@@ -5,7 +5,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   <meta charset="UTF-8">
-  <title>Althea Cappelli Website</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,7 +15,7 @@
     }  
 
     .code-container {
-        position: relative; /* Makes it the reference box */}
+        position: relative;}
     .copy-button {
         position: absolute;
         top: 5px;
@@ -149,20 +148,11 @@
         }
       }
 
-      .button {
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
+      .Results {
+        border-color: rgb(238, 255, 0);}
 
-      .Results {background-image: url('images/crep.png');} /* Green */
-      .Code {background-image: url('images/code.png');} /* Blue */
+      .Code {
+        border-color: rgb(238, 255, 0);}
       
       .Results:hover {
         transform: scale(1.02);
@@ -171,25 +161,32 @@
       }
 
       .Code:hover {
-        background-image: url('images/code_hover.png');
-        color: white;
+        transform: scale(1.02);	
+        background-image: url('images/crep_hover.png');
+        color: black;
       }
+
+      .button.active {
+      outline: 2px solid #ff00aa;
+      background-image: url('images/crep.png'); 
+      color: white;}
 
     </style>
 </head>
 <body>
 
 <div class="topnav">
-  <a href="index.html">Home</a>
-  <a class="active" href="#projects">Projects</a>
+  <a href="https://altheacappelli.github.io/">Home</a>
+  <a class="active" href="https://altheacappelli.github.io/website/projects">Projects</a>
 </div>
 
 <div class="sidebar">
-  <a href="https://github.com/AltheaCappelli/altheacappelli.github.io/website/analysis_t2m.html">Analysis of temperature anomaly in Europe</a>
-  <a class="active" href="https://github.com/AltheaCappelli/altheacappelli.github.io/website/lstm_t2m.html">LSTM predictions of temperature anomaly in Europe</a>
+  <a href="https://altheacappelli.github.io/website/analysis_t2m.html">Analysis of temperature anomaly in Europe</a>
+  <a class="active" href="https://altheacappelli.github.io/website/lstm_t2m.html">LSTM predictions of temperature anomaly in Europe</a>
 </div>
 
 <div class="content">
+<div id="Projects" class="tabcontent" style="display:block;">
 <h1 style="color:rgb(182, 3, 119);"><b>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
     <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
     evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
@@ -206,9 +203,9 @@
 <div class="tab">
 <button class="button Results" onclick="openCity(event, 'Results')">Results</button>
 <button class="button Code" onclick="openCity(event, 'Code')">Code</button>
-
 </div>
-<div id="Results" class="button Results">
+
+<div id="Results" class="tabcontent" style="display: block;">
     <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
       <img src="images/lstm_accuracy.svg" width = '100%' alt="Accuracy of the lstm model">
@@ -243,7 +240,8 @@
         temperature anomalies</b>. This also highlights the main point, that even a basic time series model shows how fast temperatures are rising in Europe.
       </p>
 </div>
-<div id="Code" class="button Code">
+
+<div id="Code" class="tabcontent" style="display: none;">
 <h3><b>Creating the LSTM neural network</b></h3>
         <p>Install necessary packages and initialize data</p>
 
@@ -577,31 +575,27 @@
 
 <script>
 function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
+  let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("tablinks");
+  tablinks = document.getElementsByClassName("button");
   for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    tablinks[i].classList.remove("active");
   }
   document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+  evt.currentTarget.classList.add("active");
 }
 
- function copyToClipboard(button) {
-    const pre = button.parentElement.querySelector('pre');
-    const text = pre.innerText;
-
-      navigator.clipboard.writeText(text).then(() => {
-        button.innerText = 'Copied!';
-          setTimeout(() => {
-            button.innerText = 'Copy';
-        }, 1500);
-      }).catch(err => {
-        console.error('Failed to copy text: ', err);
-      });
+function copyToClipboard(button) {
+  const codeBlock = button.nextElementSibling.innerText;
+  navigator.clipboard.writeText(codeBlock).then(() => {
+    button.innerText = "Copied!";
+    setTimeout(() => {
+      button.innerText = "Copy";
+    }, 2000);
+  });
 }
 
 </script>
