@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .modal {
+      display: block;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      position: relative;
+      margin: 50px auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+      background: white;
+      overflow: auto;
+      max-height: 90vh;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="cvModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">Close</button>
+    <img id="modalImage" src="images/CV_Deu.png" alt="CV Image" usemap="#cvmap" />
+    <map name="cvmap">
+      <area target="_blank" href="https://altheacappelli.github.io/" coords="1160,166,1436,127" shape="rect">
+      <area target="_blank" href="https://www.linkedin.com/in/althea-cappelli-078761345" coords="1078,226,765,181" shape="rect">
+    </map>
+  </div>
+</div>
+
+<script>
+// Function to open the modal and load the image
+function openModal(imageSrc) {
+  const modal = document.getElementById('cvModal');
+  const modalImage = document.getElementById('modalImage');
+
+  // Set the image source
+  modalImage.src = imageSrc;
+
+  // Wait for the image to load before displaying the modal
+  modalImage.onload = function() {
+    modal.style.display = 'block';
+  };
+}
+
+// Function to close the modal
+function closeModal() {
+  const modal = document.getElementById('cvModal');
+  const modalImage = document.getElementById('modalImage');
+
+  modal.style.display = 'none';
+  modalImage.src = ''; // Clear the image source
+}
+</script>
+
+</body>
+</html>

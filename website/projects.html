@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('images/hintt.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .project {
+      background-color: rgba(255, 255, 255, 0.6);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: scale(1.02);
+      background-image: url('images/temp_hint.png');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+.topnav {
+  overflow: hidden;
+  background-color: #ffffff00;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+
+.topnav a:hover {
+    transform: scale(1.05);
+    background-image: conic-gradient(
+    #af7b7d 0deg 26deg,
+    #9f8976 26deg 51deg,
+    #7f8b6a 51deg 77deg,
+    #6b946e 77deg 102deg,
+    #5da47c 102deg 128deg,
+    #50ab89 128deg 154deg,
+    #42a492 154deg 180deg,
+    #3d9b9d 180deg 205deg,
+    #3f91a8 205deg 231deg,
+    #4782ac 231deg 257deg,
+    #5472ae 257deg 282deg,
+    #6863a9 282deg 308deg,
+    #78559b 308deg 334deg,
+    #a66892 334deg 360deg
+    );
+    color: white;
+}
+
+.topnav a.active {
+    background-image: conic-gradient(
+    #eca4a8 0deg 26deg,
+    #d9bba1 26deg 51deg,
+    #bfd1a0 51deg 77deg,
+    #a3e3a7 77deg 102deg,
+    #87eeb3 102deg 128deg,
+    #6ff2c3 128deg 154deg,
+    #5fedd4 154deg 180deg,
+    #57e1e4 180deg 205deg,
+    #59cff0 205deg 231deg,
+    #65b9f7 231deg 257deg,
+    #79a2f7 257deg 282deg,
+    #928cef 282deg 308deg,
+    #b07ce4 308deg 334deg,
+    #e892cc 334deg 360deg
+    );
+    color: rgb(109, 0, 145);
+}
+
+  </style>
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <a class="active" href="#projects">Projects</a>
+</div>
+
+  <!-- Projects Section -->
+  <div id="projects" style="padding: 20px;">
+    <h1 align="center" style="font-size:44px;color:rgb(182, 3, 119)"> <b>My projects</b></h1>
+
+    <div class="project" onclick="window.open('https://github.com/AltheaCappelli/altheacappelli.github.io/website/analysis_t2m.html', '_blank')">
+      <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
+      <h3>Different plots representing the temperature anomalies in Europe, using Matplotlib and Xarray in Python.</h3>
+    </div>
+
+    <div class="project" onclick="window.open('https://github.com/AltheaCappelli/altheacappelli.github.io/website/lstm_t2m.html', '_blank')">
+      <h2>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
+      <h3>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow and Xarray in Python.</h3>
+    </div>
+  </div>
+
+
+</body>
+</html>
+
+
+</body>
+</html>

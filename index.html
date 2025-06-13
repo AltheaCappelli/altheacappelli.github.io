@@ -23,64 +23,21 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .project:hover {
       transform: scale(1.02);
       background-image: url('images/temp_hint.png'); 
       background-size: cover;
       background-position: center;
       color: white;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6); 
-    }
-    .modal-content {
-      background-color: #ffffff;
-      color: black;
-      margin: 5% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 1000px;
-      position: relative;
-      max-height: 80vh; 
-      overflow-y: auto; 
-    }
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 28px;
-      cursor: pointer;
-    }
-    img {src:
-      max-width: 100%;
-      height: auto;
-      margin: 10px 0;
-    }
-    .cv-section {
-      text-align: center;
-      margin: 80px 0;
-    }
-    
-    .cv-title {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: white;
-    }
-    
+    }   
+
+    /*------CV buttons*/ 
     .cv-options {
       display: flex;
       justify-content: center;
       gap: 40px;
     }
-    
     .cv-box {
       padding: 16px 32px;
       border-radius: 10px;
@@ -90,6 +47,17 @@
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
       border: none;
     }
+     .cv-box.active {
+    font-weight: bold;
+    background-color: #ddd;
+    border: 2px solid #333;
+    }
+    .cv-box.close {
+    background-color: #ffdddd;
+    border: 1px solid red;
+    font-weight: bold;
+    }
+
  
     .cv-box.eng {
       /* background-image: url('images/eng.png');*/
@@ -128,6 +96,60 @@
       color: white;
       transform: scale(1.05);
     }
+
+     /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(255, 255, 0, 0.293);
+  }
+
+  .modal-content {
+    position: relative;
+    margin: 5% auto;
+    padding: 20px;
+    max-width: 900px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    overflow: auto;
+    box-sizing: border-box;
+
+  }
+
+
+  .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 16px;
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #fff0f0;
+    color: #ff5c5c;
+    transition: background-color 0.2s, color 0.2s;
+
+  }
+
+  .close-btn:hover {
+  background-color: #d90000;
+  color: white;
+    }
+
+  /* Optional: make image responsive */
+  #modalImage {
+    width: 900px;
+    height: auto;
+    display: block;
+    max-width: 100%;
+    border: 2px solid red;
+  }
+
+
     .project-buttons {
       margin-top: 15px;
       display: flex;
@@ -143,922 +165,150 @@
       font-weight: bold;
       transition: 0.3s ease;
     }
-    
-    .results-btn {
-      background-image: url('images/crep.png'); 
-      background-size: cover;
-      background-position: center;
-      color: white;
-    }
-    .results-btn:hover {
-      transform: scale(1.02);
-      background-image: url('images/sonn.png'); 
-      background-size: cover;
-      background-position: center;
-      color: black;
-    }
-    
-    .code-btn {
-      background-image: url('images/code.png'); 
-      background-size: cover;
-      background-position: center;
-      color: white;
-    }
-    .code-btn:hover {
-      transform: scale(1.02);
-      background-image: url('images/codeclick.png'); 
-      background-size: cover;
-      background-position: center;
-      color: white;
-    }
-      .code-container {
-        position: relative;
-        margin: 20px auto;
-        max-width: 900px;
-      }
 
-      .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 6px 12px;
-        border: none;
-        background-color: #838383;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-        opacity: 0.8;
-        transition: 0.3s;
-      }
+.topnav {
+  overflow: hidden;
+  background-color: #ffffff00;
+}
 
-      .copy-button:hover {
-        opacity: 1;
-      }
-      pre {
-        background: #2d2d2d; 
-        padding: 20px;
-        border-radius: 10px;
-        overflow-x: auto;
-      }
-      pre code {
-        font-family: Consolas, 'Courier New', monospace;
-        font-size: 14px;
-        color: #f8f8f2; 
-      }
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
 
+.topnav a:hover {
+    transform: scale(1.05);
+    background-image: conic-gradient(
+    #af7b7d 0deg 26deg,
+    #9f8976 26deg 51deg,
+    #7f8b6a 51deg 77deg,
+    #6b946e 77deg 102deg,
+    #5da47c 102deg 128deg,
+    #50ab89 128deg 154deg,
+    #42a492 154deg 180deg,
+    #3d9b9d 180deg 205deg,
+    #3f91a8 205deg 231deg,
+    #4782ac 231deg 257deg,
+    #5472ae 257deg 282deg,
+    #6863a9 282deg 308deg,
+    #78559b 308deg 334deg,
+    #a66892 334deg 360deg
+    );
+    color: white;
+}
+
+.topnav a.active {
+    background-image: conic-gradient(
+    #eca4a8 0deg 26deg,
+    #d9bba1 26deg 51deg,
+    #bfd1a0 51deg 77deg,
+    #a3e3a7 77deg 102deg,
+    #87eeb3 102deg 128deg,
+    #6ff2c3 128deg 154deg,
+    #5fedd4 154deg 180deg,
+    #57e1e4 180deg 205deg,
+    #59cff0 205deg 231deg,
+    #65b9f7 231deg 257deg,
+    #79a2f7 257deg 282deg,
+    #928cef 282deg 308deg,
+    #b07ce4 308deg 334deg,
+    #e892cc 334deg 360deg
+    );
+    color: rgb(109, 0, 145);
+}
 
   </style>
 </head>
+
 <body>
-  <h1 align="center" style="font-size:44px;"> <b>My projects</b></h1>.
-<!--
-  <div class="project">
-    <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-    <h3>Different plots representing the temperature anomalies in Europe, using Python, Matplotlib and Xarray.</h3>
-  </div> -->
 
-<div class="project" onclick = "openModal('modal1')">
-  <h2>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-  <h3>Different plots representing the temperature anomalies in Europe, using Matplotlib and Xarray in Python.</h3>
-  <div class="project-buttons">
-    <button class="btn results-btn" onclick="openModal('modalResults1')">Results</button>
-    <button class="btn code-btn" onclick="openModal('modalCode1')">Code</button>
-  </div>
+
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="projects.html">Projects</a>
 </div>
 
-  
-  <div class="project" onclick="openModal('modal2')">
-    <h2>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h2>
-    <h3>Testing if a simple LSTM neural network can predict temperature anomalies in Europe using TensorFlow and Xarray in Python.</h3>
-    <div class="project-buttons">
-      <button class="btn results-btn" onclick="openModal('modalResults2')">Results</button>
-      <button class="btn code-btn" onclick="openModal('modalCode2')">Code</button>
-  </div>
-</div>
-
-
-  <div id="modalResults1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modalResults1')">&times;</span>
-      <h1>Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i></h1>
-      <h3>For this project, I used the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
-        provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
-      </h3>
-      <h3>The goal of this project is to analyse the 2m air temperature data and visualize it in different ways, to highlight patterns and trends. Various types of plots are used, making it easier to understand temperature changes over time and across different areas.</h3>
-    <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
-      from Github</a> to experiment and make your modifications.</h3>
-      <h3><b>Line plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
-      <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
-       Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki, and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
-      <img src="images/temp_anomals_eu.svg" alt="Temperature anomaly" width="100%">
-      <p>The plot clearly shows how the effects of climate change are <b>strongest in the Arctic region</b>, with Helsinki showing the highest increase. In contrast, Hannover and Siena follow the European average more closely. In 2024, the mean temperature anomaly across Europe reached <b>2.56 °C</b>, almost 1°C more than the mean temperature anomaly across the whole world.</p>
-      <h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
-      <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
-        with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
-      <img src="images/bubbles_eu.svg" alt="Monthly temperature anomaly" width="100%">
-      <p>The plot shows that the colder months, December, January, February, and March, are the most affected by climate change. This reflects the broader trend where <b>colder regions or seasons tend to warm faster</b> than already warm ones, similar to how the Arctic is warming more 
-        rapidly than the global average mentioned in the previous section. The highest anomaly was <b>6.9°C in January 2020</b>, followed by <b>6.8°C in February 2020</b>.</p>
-      <h3><b>Animation of the scatter plot</b></h3>
-      <p>For completeness, I added an animation of the previous scatter plot, including all the years between 1940 and 2024.</p>
-      <video width="100%" controls>
-        <source src="images/bubble_ani.mp4" type="video/mp4">
-      </video> 
-      <p>This animation gives a more complete picture of how the monthly temperature anomalies evolved over time. The animation shows the data in <b>10-year intervals</b>, with each frame displaying a decade of temperature anomalies. It's interesting to see how the 
-        <b>bubbles gradually get redder and larger</b> as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer fast, and the anomalies are becoming more extreme, especially in the colder months.</p>
-      <h3><b>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
-      <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
-      <img src="images/temp_map_eu.svg" alt="European temperature and temperature anomaly" width="100%">
-      <p>The <b>changes between the 1940 and 2024 maps are clearly visible</b>, as in 2024, many of the blue-shaded regions from 1940 have become much lighter. This difference is further highlighted in the temperature anomaly map, which shows which regions are being 
-        affected the most. As expected, colder and more northern areas, such as <b>the Nordic countries</b>, the <b>Baltic states</b>, <b>Iceland</b>, and <b>the Alps</b>, show some of the strongest warming effects, consistent with broader climate change patterns 
-        mentioned previously. However, it's not just the North: Other regions like <b>Italy, Eastern Europe</b> and parts of <b>Central Europe</b> also show considerable warming, highlighting that the <b>impacts of climate change</b> are widespread and <b>not confined to any specific region</b>.</p>
-        
-    </div>
-  </div>
-  
-  <div id="modalCode1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modalCode1')">&times;</span>
-      
-      <h3>For information on the data and goal of this project, see the Results section.</h3>
-      <h3><b>Line plot of the temperature anomalies in Europe from 1940 to 2024</b></h3>
-        <p>Install necessary packages and initialize data</p>
-
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        import xarray as xr
-        import matplotlib.pyplot as plt
-
-        file = 'data_t2m_tot.nc' #2m air temperature
-        ds = xr.open_dataset(file, chunks = {'valid_time' : 50}) #chunks for faster computation
-        temp = ds.t2m
-      </code></pre>
-    </div>
-      
-    <p>Define key parameters.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        yrs = range(1940, 2025)
-        months = range(0,12)
-        locations = {"Hannover": (52.5, 9.75),
-                     "Helsinki": (60.25, 25),
-                     "Siena": (43.25, 11.25)}
-      </code></pre>
-    </div>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        temp_grp = temp.groupby(['valid_time.month', 'valid_time.year']).mean(dim=['valid_time']) #xarray with shape (:, month, year)
-        temp_eu_month = temp_grp.mean(dim=['longitude', 'latitude']) #xarray shape: (month, year)
-        temp_eu_year = temp_eu_month.mean(dim='month') #xarray shape: (year)
-      </code></pre>
-    </div>
-<p>Compute the temperature anomalies as the <b>difference between the mean temperature for each year and month, relative to the value for the year 1940</b>.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        anom_year = temp_eu_year - temp_eu_year.sel(year = 1940) #lazy compute yearly anomaly
-        anom_year_vals = anom_year.values[:-1] #extract values
-        loc_anoms = {} #dictionary for better structure
-        for loc, (lat, lon) in locations.items():
-            temp_loc = temp_grp.sel(latitude=lat, longitude=lon).mean(dim='month')
-            anom = temp_loc - temp_loc.sel(year = 1940) #lazy compute anomaly for each location
-            loc_anoms[loc] = anom.sel(year=yrs).values #extract values
-      </code></pre>
-    </div>    
-    <p>Display the data in a <b>line plot</b>. This plot shows the <b>mean yearly temperature anomalies in Europe</b>. Moreover, I chose to include the temperature anomalies of three different cities, <b>Hannover, Helsinki, and Siena</b>, represented by the colored lines. 
-      Mostly out of curiosity, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          plt.figure(figsize=(10, 6))
-
-          colrs = {"Hannover": "green", "Helsinki": "blue", "Siena": "red"}
-
-          for loc, anom in loc_anoms.items():
-              plt.plot(yrs, anom, label=loc, color = colrs[loc], linewidth=1.2, linestyle='--')
-
-          plt.plot(yrs, anom_year_vals, label='Mean', color='black', linewidth=2.5, linestyle='solid')
-          plt.plot(2024, anom_year_vals[-1], 'ko')
-          plt.text(2024 - 1.2, anom_year_vals[-1] - 0.6, f"{anom_year_vals[-1]:.2f}°C", fontsize=12, fontweight = 'bold')
-
-          plt.xticks(range(1940, 2026, 5), fontsize=12, rotation=45)
-          plt.yticks(fontsize=12)
-          plt.xlabel("Year", fontsize=14)
-          plt.ylabel("Temperature anomaly (°C)", fontsize=14)
-          plt.title("Temperature anomalies in Europe (1940-2024)", fontsize=16, fontweight='bold')
-          plt.grid(True, linestyle='--', alpha=0.6)
-
-          plt.legend(loc='upper left', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
-          plt.tight_layout()
-          plt.savefig('bubbles_eu.svg')
-          plt.show()
-        </code></pre>
-      </div>  
-<h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
-      <p>Install needed packages and define key parameters.</p>
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          from matplotlib import colors
-          import numpy as np
-        </code></pre>
-      </div> 
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          step = 4  #interval for selecting years (every 4th year)
-          start_idx = 4 #start of year to display
-          sample_years = yrs[start_idx::step]
-        </code></pre>
-      </div> 
-      <p>Compute the monthly temperature anomalies.</p>
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          anom_month = temp_eu_month - temp_eu_month.sel(year = 1940) #lazy compute monthly anomaly
-          anom_month_vals = anom_month.values #extract values
-          anom_month_plt = anom_month_vals[:, start_idx::step] #select years to display
-        </code></pre>
-      </div> 
-      <p>Display the data in a <b>scatter plot</b>.
-        This scatter (bubble) plot shows the <b>mean monthly temperature anomalies in Europe</b>, relative to the baseline 1940, with both the <b>color</b> and <b>size</b> of the bubbles indicating the magnitude of the anomaly. As is common in climate data visualization, 
-        <b>warmer temperatures</b> compared to the 1940 baseline appear in shades of red, while colder ones are shown in blue shades. The size of each bubble also shows the strength of this deviation, making it easy to spot extreme anomalies.</p>
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-          plt.figure(figsize=(12, 8))
-
-          X, Y = np.meshgrid(sample_years, months) 
-          
-          vmax_plt = np.max(np.abs(anom_month_plt))
-          norm = colors.TwoSlopeNorm(vmin=-vmax_plt, vcenter=0, vmax=vmax_plt)
-          bubble_size = np.abs(anom_month_plt) * 160 #to enhance the bubble size, otherwise too small
-          
-          sc = plt.scatter(
-              X.flatten(), Y.flatten(),
-              s=bubble_size.flatten(),
-              c=anom_month_plt.flatten(),
-              norm=norm,
-              cmap='coolwarm',
-              alpha=0.85,
-              edgecolors='black',
-              linewidth=0.6)
-          
-          for i in range(len(months)):
-              for j in range(len(sample_years)):
-                  val = anom_month_plt[i, j]
-                  if bubble_size[i, j] > 210:
-                      color = "white" if abs(val) > 3.3 else "black"
-                      size = 6 if abs(val) < 2.5 else 10
-                      plt.text(X[i, j], Y[i, j], f"{val:.1f}", fontsize=size, ha='center', va='center', color=color, fontweight='bold')
-                      #add the respective anomaly values to the bubbles
-          
-          cbar = plt.colorbar(sc, aspect=50, pad=0.02)
-          cbar.set_label("Temperature anomaly (°C)", fontsize=14)
-          
-          plt.xticks(sample_years, sample_years, fontsize=12, rotation=45)
-          plt.yticks(range(len(months)), ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=12)
-          plt.xlabel("Year", fontsize=14, labelpad=10)
-          plt.ylabel("Months", fontsize=14, labelpad=10)
-          plt.title("Monthly temperature anomalies in Europe (1944–2024)", fontsize=18, fontweight='bold', pad=20)
-          plt.grid(True, linestyle='--', alpha=0.5)
-          plt.margins(x=0.04, y=0.06)
-          
-          plt.tight_layout()
-          plt.savefig('bubbles_eu.svg')
-          plt.show()
-        </code></pre>
-      </div> 
-    <h3><b>Scatter animation of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
-    <p>Install needed packages and define key parameters.</p>
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          import matplotlib.animation as animation
-        </code></pre>
-      </div> 
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          ini = 0
-          yrs_frame = 10
-          fin = ini + yrs_frame
-          years_dyn = yrs[ini:fin]
-          anom_month_dyn = anom_month_vals[:, ini:fin]
-        </code></pre>
-      </div> 
-<p>Animate the scatter plot.</p>
-      <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code class="language-python">
-          fig, ax = plt.subplots(figsize = (10,6))
-
-          X, Y = np.meshgrid(years_dyn, months)
-          
-          vmax = np.max(np.abs(anom_month_dyn))
-          norm = colors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)
-          bubble_size = np.abs(anom_month_dyn) * 160 
-          
-          sc = ax.scatter(
-              X.flatten(), Y.flatten(),
-              s=bubble_size.flatten(),
-              c=anom_month_dyn.flatten(),
-              norm=norm,
-              cmap='coolwarm',
-              alpha=0.85,
-              edgecolors='black',
-              linewidth=0.6)
-              
-
-          #add aesthetics
-          ax.grid(True, linestyle='--', alpha=0.5)
-          ax.margins(x=0.07, y=0.1)
-              
-          #axes & title
-          cbar = fig.colorbar(sc, ax = ax, aspect=50, pad=0.02)
-          cbar.set_label("Temperature anomaly (°C)", fontsize=14)
-          ax.set_xticks(years_dyn)
-          ax.set_xticklabels(years_dyn, fontsize=12, rotation=45)
-          ax.set_yticks(range(len(months)))
-          ax.set_yticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=12)
-          ax.set_xlabel("Year", fontsize=14, labelpad=10)
-          ax.set_ylabel("Months", fontsize=14, labelpad=10)
-          ax.set_title("Monthly temperature anomalies in Europe relative to 1940 (1944–2024)", fontsize=18, fontweight='bold', pad=20)
-              
-          
-          #define the update function
-          def update(frame):
-              ax.clear() #clear the plot after each frame to avoid overlapping drawing
-              start_idx = frame
-              end_idx = frame + yrs_frame
-          
-              #update the years and displayed values
-              years_dyn = yrs[start_idx:end_idx]
-              anom_month_dyn = anom_month_vals[:, start_idx:end_idx]
-          
-              #update the mesh and the bubble size to avoid any errors
-              X, Y = np.meshgrid(years_dyn, months) 
-              bubble_size = np.abs(anom_month_dyn) * 160 
-          
-              #update the scatter plot
-              sc = ax.scatter(
-                  X.flatten(), Y.flatten(),
-                  s=bubble_size.flatten(),
-                  c=anom_month_dyn.flatten(),
-                  norm=norm,
-                  cmap='coolwarm',
-                  alpha=0.85,
-                  edgecolors='black',
-                  linewidth=0.6)
-          
-              #axis & title
-              ax.set_xticks(years_dyn)
-              ax.set_xticklabels(years_dyn, fontsize=12, rotation=45)
-              ax.set_yticks(range(len(months))) 
-              ax.set_yticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=12)
-              ax.set_xlabel("Year", fontsize=14, labelpad=10)
-              ax.set_ylabel("Months", fontsize=14, labelpad=10)
-              ax.set_title(f"Monthly temperature anomalies in Europe ({yrs[start_idx]}–{yrs[end_idx-1]})", fontsize = 18, fontweight = 'bold', pad = 20)
-          
-              #aesthetics
-              #update the displayed values of the anomalies
-              for i in range(len(months)):
-                  for j in range(len(years_dyn)):
-                      val = anom_month_dyn[i, j]
-                      if bubble_size[i, j] > 210:
-                          color = "white" if abs(val) > 3.3 else "black"
-                          size = 6 if abs(val) < 2.5 else 10
-                          ax.text(X[i, j], Y[i, j], f"{val:.1f}", fontsize=size, ha='center', va='center', color=color, fontweight='bold')
-              ax.grid(True, linestyle='--', alpha=0.5)
-              ax.margins(x=0.07, y=0.1)
-              return sc
-          
-          ani_frames = len(yrs) - (yrs_frame - 1) # Number of years from 1941 to 2024
-          ani = animation.FuncAnimation(fig, update, frames=ani_frames, interval=140, blit=False)
-          ani.save('bubble_ani.mp4')
-          
-          plt.tight_layout()
-          plt.show()
-        </code></pre>
-      </div> 
-      <h3><b>Temperature plot of the yearly temperature anomalies in Europe between 1940 and 2024</b></h3>
-      <p>Install needed packages and define key parameters and functions.</p>
-        <div class="code-container">
-          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-          <pre><code class="language-python">
-            import cartopy.crs as ccrs
-          </code></pre>
-        </div> 
-        <div class="code-container">
-          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-          <pre><code class="language-python">
-            europe_projection = ccrs.EuroPP()
-
-            #compute the mean temperature for a given year in Celsius
-            def mean_temp(year):
-                return temp.sel(valid_time=str(year)).mean('valid_time') - 273.15 #compute in Celsius
-
-            #define the 1940 baseline
-            ref_1940 = mean_temp(1940)
-
-            #compute the temperature anomaly for a given year
-            def anom_temp(year):
-                return mean_temp(year) - ref_1940 
-
-            #define the plot function for compactness and to easily adjusting parameters
-            def plot_temp(data, ax=None, vmin=-10, vmax=20):
-                return data.plot.imshow(ax=ax, transform=ccrs.PlateCarree(), cmap='coolwarm', vmin=vmin, vmax=vmax, add_colorbar=False)
-          </code></pre>
-        </div> 
-<p>Display the data in a <b>temperature plot</b>. These temperature maps show the <b>mean yearly temperatures and temperature anomalies across Europe</b>, 
-  with each point representing the temperature or anomaly relative to 1940 at a specific location. The first two plots display the actual <b>temperatures for the years 1940 and 2024</b>,
-  where, as usual, red indicates warmer temperatures and blue indicates colder ones. The third plot shows the <b>temperature anomaly in 2024 relative to 1940</b>, with red areas highlighting 
-  regions with a higher anomaly. For example, when a region transitions from dark blue in 1940 to light blue or neutral in 2024, it appears as a deep red in the anomaly map, making the 
-  warming easy to spot.</p>
-  <div class="code-container">
-    <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-    <pre><code class="language-python">
-      fig, (ax_1940, ax_2024, ax_anom) = plt.subplots(1, 3, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(15, 7))
-
-      plots = [plot_temp(mean_temp(1940), ax_1940),
-              plot_temp(mean_temp(2024), ax_2024),
-              plot_temp(anom_temp(2024), ax_anom, vmin=-5, vmax=5)]
-
-      #aesthetics
-      for ax in [ax_1940, ax_2024, ax_anom]:
-          ax.coastlines(linewidth=0.5, color='black')
-          ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
-
-      #axes & title
-      for ax in [ax_1940, ax_2024]:
-          cbar = fig.colorbar(plots[0], ax=ax, orientation='horizontal', pad=0.05, aspect=50)
-          cbar.set_label('Temperature (°C)', fontsize=12, labelpad=5)
-      cbar_anom = fig.colorbar(plots[2], ax=ax_anom, orientation='horizontal', pad=0.05, aspect=50)
-      cbar_anom.set_label('Temperature anomaly (°C)', fontsize=12, labelpad=5)
-
-      ax_1940.set_title("Mean temperature in Europe (°C)", fontsize=14, fontweight = 'bold', x = 1.25, y = 1.18)
-      ax_2024.set_title('')
-      fig.text(0.15, 0.85, "1940", fontsize=12, fontweight='bold')
-      fig.text(0.48, 0.85, "2024", fontsize=12, fontweight='bold')
-      ax_anom.set_title("Mean temperature anomaly (°C) \n in Europe (2024)", fontsize=14, fontweight='bold', x = 0.5, y = 1.12)
-
-      plt.tight_layout(pad=2)
-      plt.savefig('temp_map_eu.svg')
-      plt.show()
-    </code></pre>
-  </div> 
-    </div>
-  </div>
-
-<div id="modalResults2" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modalResults2')">&times;</span>
-      <h1><b>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
-      <h3>For this project, I used the 2m air temperature data from the 
-        <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
-        provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
-      </h3>
-      <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
-        evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
-        the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies.   
-        </h3>
-      <h3> The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
-        from Github</a> to experiment and make your modifications.</h3>
-      <h3><b>Accuracy of the lstm neural network</b></h3>
-      <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
-      <img src="images/lstm_accuracy.svg" width = '100%' alt="Accuracy of the lstm model">
-      <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
-        to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
-        Indeed, the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
-        steeper peaks. As a result, the model probably finds it easier to learn from the validation data. Additionally, the <b>dropout layer</b> is active during training
-        but not during validation, as standard in Keras, which could also explain the difference of accuracy. The y-axis of the plot is logarithmically scaled to better 
-        visualize the results.</p>
-      <p>Despite these differences, both the training and validation losses ultimately reach a <b>sufficiently small error</b>, showing that the model is <b>performing well</b>
-        on both datasets.</p>
-      <h3><b>Results of the lstm predictions</b></h3>
-      <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
-      <img src="images/lstm_temp_comparison.svg" width = '100%' alt="Accuracy of the lstm model">
-      <p>The plot shows that the <b>mean predictions from MC dropout</b>, in red and orange, <b>closely match the original model predictions</b>, in green and light blue, 
-        and are almost overlapping. This is due to the low dropout rate of 0.2, so that the variation across different runs stays small. When comparing the MC uncertainty 
-        for inputs from the training period and the validation period, the difference is clear. For inputs from the earlier years, data the model has already seen during 
-        training, the <b>uncertainty remains low</b>, showing that the <b>model is confident with known patterns</b>. But in the test period, especially from year 2018 to 2024,
-        the <b>uncertainty grows significantly</b>. This is expected, since when the model makes predictions with unknown data, it becomes less certain, a <b>common behavior 
-        in time series models</b>, where small differences can accumulate over time. Despite this, both the model’s predictions and the MC dropout mean <b>follow the overall 
-        trend</b> of the observed temperature anomalies and match the exponential trend quite well within the uncertainty range. 
-        In summary, the plot shows that even a <b>simple LSTM neural network</b> can do a good job at <b>reproducing the trend of rising temperatures across Europe</b>,
-        following the exponential pattern quite clearly.</p>
-        <h2>Estimation of future temperature evolution</h2>
-      <p>Finally, the trained model is used to forecast the temperature anomalies for the next 10 years.</p>
-      <img src="images/forecast.svg" width = '120%' alt="Result of the future predictions">  
-      <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model, while
-        the second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024.  
-        Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. By 2034, the LSTM forecasts anomalies approaching 55°C, while the MC Dropout model forecasts around 49°C. 
-        These values are, of course, not realistic and come from the <b>model's simplistic extrapolation of historical trend</b>, without taking into account real-world climate and feedback 
-        mechanisms. However, these results should not be interpreted as "literal" future temperatures, as they just show the model’s learned trend, namely a <b>rapid and accelerating increase in 
-        temperature anomalies</b>. This also highlights the main point, that even a basic time series model shows how fast temperatures are rising in Europe.
-      </p>
-    </div>
-  </div>
-
-  <div id="modalCode2" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('modalCode2')">&times;</span>
-      <h3>For information on the data and goal of this project, see the Results section.</h3>
-      <h3><b>Creating the LSTM neural network</b></h3>
-        <p>Install necessary packages and initialize data</p>
-
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        import numpy as np
-        import xarray as xr
-        import matplotlib.pyplot as plt
-        from tensorflow.keras.models import Sequential
-        from tensorflow.keras.layers import LSTM, Dense, Dropout
-
-        file = 'data_t2m_tot.nc' #2m air temperature
-        ds = xr.open_dataset(file, chunks = {'valid_time' : 50}) #chunks for faster computation
-        temp = ds.t2m
-      </code></pre>
-    </div>
-      
-    <p>Define key parameters.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        yrs = range(1940, 2035)
-        cutoff = 66 #year 2005
-        forecast = 10 #years to forecast
-        epochs = 100
-        patience = 25 #early stopping if no improvement after 25 epochs
-        baseline = 0.02, #early stopping if improvement stays below this threshold
-        start_epoch = 50 #wait 50 epochs before checking for early stopping
-        input_size = 5
-        batch_size = 4
-      </code></pre>
-    </div>
-    <p>Compute the temperature anomalies as the <b> between the mean temperature for each year and month, relative to the value for the year 1940</b>.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        temp_mean = temp.groupby(['valid_time.year']).mean(dim=['valid_time', 'latitude', 'longitude']) # (year)
-        anom_year = temp_mean - temp_mean.sel(year = 1940) #lazy compute yearly anomaly
-        anom_year_vals = anom_year.values[:-1] #extract values
-      </code></pre>
-    </div>
-    <p>Build the neural network. The model uses an <b>LSTM lneural network</b>, which is optimal for <b>time series data</b> like the one used in this project. 
-      It consists of three LSTM layers with <b>up to 30 neurons</b>, which showed good performance during testing. There is a <b>dropout layer</b> before the final layer 
-      to reduce the risk of overfitting. Although the dataset is relatively small, adding a low rate dropout layer gives an extra layer of caution and it also allows
-      to estimate the uncertainty using <b>Monte Carlo dropout</b>, as mentioned below.
-    </p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        def build_lstm(input_size):
-            model = Sequential()
-            model.add(Input((input_size, 1)))
-            model.add(LSTM(5, activation='relu', return_sequences=True))
-            model.add(LSTM(15, activation='relu', return_sequences=True))
-            model.add(Dropout(0.2)) #low dropout rate to prevent overfitting due to limited training data
-            model.add(LSTM(30, activation='relu'))
-            model.add(Dense(1))
-            model.compile(optimizer='adam', loss='mse')
-            model.summary() #summary of the model
-            return model
-
-        model_lstm = build_lstm(input_size)
-      </code></pre>
-    </div>
-    <p>An <b>early stopping</b> callback is defined to stop training once the model stops improving, as this helps save computation time and prevents overfitting by avoiding unnecessary epochs.
-    </p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        early_stopping = EarlyStopping(monitor = 'val_loss', #monitor the test error
-                               patience = patience,
-                               verbose = 1, #shows when callback is used
-                               baseline = baseline,
-                               restore_best_weights = True, #restore weights from the best performing epoch
-                               start_from_epoch = start_epoch)
-      </code></pre>
-    </div>
-<p>Define a function to prepare the input data by splitting it into <b>overlapping sequences of fixed length</b>. For example, if given the list [1, 2, 3, 4, 5, 6] 
-  and an input size of 3, the function returns the input sequences [[1, 2, 3], [2, 3, 4], [3, 4, 5]], together with their corresponding output values [4, 5, 6].</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        def prep_data(data, input_size):
-            x = np.zeros((len(data) - input_size, input_size))
-            for i in range(len(x)):
-                x[i] = data[i:i+input_size] #input darta
-            y = np.array(data[input_size:]) #output data
-            return x, y
-      </code></pre>
-    </div>
-  <p>Format the data and prepare it for training and testing.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        #split data
-        training = anom_year_vals[:cutoff] 
-        test = anom_year_vals[cutoff - input_size -1:]  #-1 to let it begin with the last year of training
-
-        #format into input-output pairs
-        x_train, y_train = prep_data(training, input_size)
-        x_test, y_test = prep_data(test, input_size)
-      </code></pre>
-    </div>
-<p>Train the model.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        fit_lstm = model_lstm.fit(x_train, y_train,
-                        epochs=epochs,
-                        validation_data=(x_test, y_test), #show error
-                        callbacks=[early_stopping],
-                        shuffle = False,
-                        batch_size = batch_size)
-
-        res_test = model_lstm.predict(x_test, verbose=0).flatten()
-        res_train = model_lstm.predict(x_train, verbose=0).flatten()
-      </code></pre>
-    </div>
-    <h3><b>Plotting the accuracy and results with MC  dropout</b></h3>
-<p>Plot the training and validation (test) loss.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        plt.figure(figsize=(8, 5))
-
-        plt.plot(fit_lstm.history['loss'], color='blue', linewidth=2, label="Training Loss")
-        plt.plot(fit_lstm.history['val_loss'], color='red', linewidth=2, linestyle='--', label="Validation Loss")
-
-        #axes & title
-        plt.yscale('log')
-        plt.xticks(fontsize=12)
-        plt.yticks(fontsize=12)
-        plt.xlabel('Epochs', fontsize=12,  labelpad=10)
-        plt.ylabel('Loss', fontsize=12, labelpad=10)
-        plt.title('Training and Validation Loss', fontsize=18, fontweight='bold', pad=20)
-        plt.grid(True, linestyle='--', alpha=0.6)
-
-        plt.legend(loc='best', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
-        plt.tight_layout()
-        plt.savefig('lstm_accuracy.svg')
-        plt.show()
-      </code></pre>
-    </div>
-  <p>Define the <b>Monte Carlo dropout</b> function following <i><a href="https://arxiv.org/abs/1506.02142" target="_blank">Gal & Ghahramani (2015)</a></i> to estimate the uncertainty of the model. 
-    The MC dropout keeps the <b>dropout layer active during inference</b>, instead of only during training. Then, by performing multiple forward passes with the same 
-    input, the MC dropout generates a <b>distribution of outputs</b>. The mean corresponds to the final prediction, while the variance reflects the model’s confidence.
-    Also define an <b>exponential fit</b> to model the warming trend in the temperature anomaly. This is used to compare between the neural network's predictions and the
-    <b>overall trend</b>, checking if the model captures the exponential nature of the warming over time.
-    </p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        def MC_dropout(model, X, n):
-            preds = np.array([model(X, training=True) for i in range(n)])
-            mean_preds = preds.mean(axis=0)
-            var = preds.var(axis=0)
-            return mean_preds.flatten(), var.flatten()
-
-        def exp_fit(x, a, b, c):
-            return a*np.exp(b * x) + c
-      </code></pre>
-    </div>
-<p>Compute MC Dropout predictions and fit curve.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        n_MC = 100 #forward passes
-        mean_preds_train, var_train = MC_dropout(model_lstm, x_train, n_MC)
-        mean_preds_test, var_test = MC_dropout(model_lstm, x_test, n_MC)
-        std_dev_test = np.sqrt(var_test)  
-        std_dev_train = np.sqrt(var_train)
-        
-        x_fit = np.array(yrs[:-forecast])-1940
-        params, _ = curve_fit(exp_fit, x_fit, anom_year_vals, p0= [1, 0.001, 0])
-        fit_data = exp_fit(x_fit, *params)      
-      </code></pre>
-    </div>
-    <p>Define key function for plotting.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        def Uncertainty_plt(ax, x, y, mean, std, label_y, label_m, color_y, color_m, linewidth):
-        ax.plot(x, y,  label=label_y, color=color_y, linewidth= linewidth) #lstm prediction
-        ax.plot(x, mean, label=label_m, color=color_m, linewidth= linewidth) #mc dropout prediction
-        ax.fill_between(x, mean + std, mean - std, color=color_m, alpha=0.2, linewidth= linewidth) #range of uncertainty      </code></pre>
-    </div>
-<p>Display the results in a <b>line plot</b>.
-  This plot shows the <b>neural network's predictions</b> together with the <b>actual temperature anomalies</b>. The black line represents the observed temperature
-  anomalies, while the blue line shows the exponential fit. The orange line represents the inference results of the model for the training and test data.
-  The purple line show the results of the MC dropout, here taken as the mean of 100 forward passes. The uncertainty from MC dropout predictions
-  is represented by the shaded regions in purple. The background colors indicate the training and test regions.</b>.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        plt.figure(figsize = (10,6))
-
-        yrs_train = yrs[input_size:cutoff]
-        yrs_test = yrs[cutoff -1 :-forecast]
-        
-        plt.plot(yrs[:-forecast], anom_year_vals, linestyle='--', color='black', label='CDS Temperature anomaly', linewidth = 1.5)
-        plt.plot(yrs[:-forecast], fit_data, color='dodgerblue', linewidth=1.5, label='Exponential fit')
-        Uncertainty_plt(plt, yrs_train, res_train, mean_preds_train, std_dev_train, 'LSTM predictions', 'MC Dropout predictions',
-                    'darkorange', 'darkviolet', 2)
-        Uncertainty_plt(plt, yrs_test, res_test, mean_preds_test, std_dev_test, '', '',
-                    'darkorange', 'darkviolet', 2)
-        
-        #add aesthetics
-        plt.vlines(2005, -2, 5, color = 'black', linestyle = '--', alpha = 0.3)
-        plt.axvspan(yrs[0], yrs[cutoff - 1], color='lime', alpha=0.1)
-        plt.axvspan(yrs[cutoff - 1], yrs[-forecast -1], color='pink', alpha=0.2)
-        plt.text(x=1980, y=3.1, s='Training', fontsize = 15, fontweight = 'bold', 
-                color='darkgreen', bbox=dict(facecolor='white', edgecolor='darkgreen', boxstyle='round'))
-        plt.text(x=2012, y=3.1, s='Test', fontsize = 15, fontweight = 'bold', 
-                color='mediumvioletred', bbox=dict(facecolor='white', edgecolor='mediumvioletred', boxstyle='round'))
-        plt.grid(True, linestyle='--', alpha=0.6)
-        
-        #axes & title
-        year_ticks = np.arange(1940, 2026, 5)
-        plt.xticks(year_ticks, year_ticks, fontsize=10, rotation=45)
-        plt.yticks(fontsize=10)
-        plt.xlabel('Year', fontsize=12)
-        plt.ylabel('Temperature anomaly (°C)', fontsize=12)
-        plt.ylim(-0.25, 3.5)
-        plt.xlim(yrs[0], yrs[-forecast -1])
-        plt.title('Temperature anomalies in Europe and LSTM predictions (1940–2024)', fontsize=14, fontweight='bold', pad=20)
-        
-        plt.legend(loc='upper left', fontsize=10, frameon=True, fancybox=True, shadow=True, borderpad=1)
-        plt.tight_layout()
-        plt.savefig('lstm_temp_comparison.svg')
-        plt.show()
-      </code></pre>
-    </div>
-    <h3><b>Making future predictions</b></h3>
-    <p>With the trained model, it is now possible to make <b>predictions for future years</b> to estimate how the mean temperature anomaly in Europe might change.</p>
-    <p>Reshape the input data, so that the model <b>predicts one year at a time</b>. Each new prediction is <b>added to the input sequence</b> to predict the next year.</p>
-    <div class="code-container">
-      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-      <pre><code class="language-python">
-        last = anom_year_vals[-5:].reshape(1,5) #2024, adjust to match the wanted shape
-        preds_future = []
-        preds_yrs = 11
-        
-        for i in range(preds_yrs):
-            pred = model_lstm.predict(last, verbose=0).flatten()
-            preds_future.append(pred)
-            last = np.append(last, pred)[-5:].reshape(1,5)  #new input
-        
-        preds_future = np.reshape(preds_future, preds_yrs)
-      </code></pre>
-    </div>
-<p>Compute the mean MC Dropout forecast similarly, but this time using the <b>MC Dropout prediction</b> function instead of the standard LSTM model.</p>
-<div class="code-container">
-  <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-  <pre><code class="language-python">
-    last = anom_year_vals[-5:].reshape(1,5) #2024, adjust to match the wanted shape
-    preds_future = []
-    preds_yrs = 11
+<!-- Home tab -->
+<div id="home" class="tabcontent" style="display:block;">
+  <h1 align="center" style="font-size:44px;color:rgb(182, 3, 119)"> <b>Welcome to my website!</b></h1>
+  <p align="center" style="font-size:20px;color:rgb(182, 3, 119)">
     
-    for i in range(preds_yrs):
-        pred = model_lstm.predict(last, verbose=0).flatten()
-        preds_future.append(pred)
-        last = np.append(last, pred)[-5:].reshape(1,5)  #new input
     
-    preds_future = np.reshape(preds_future, preds_yrs)
-  </code></pre>
-</div>
-<p>Plot the results in a <b>line plot</b>.
-  The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model. 
-  The LSTM predictions are shown in orange, while the MC Dropout results are shown in purple, together with shaded uncertainty regions representing the prediction accuracy. 
-  The second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024. It highlights the predicted anomalies from both models and their uncertainty regions, 
-  for a more detailed examination of the extrapolated trends. Both plots include the training, test, and forecast phases.</p>
-  <div class="code-container">
-    <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-    <pre><code class="language-python">
-      fig, (ax_tot, ax_fut) = plt.subplots(1, 2, figsize=(14, 6), sharey= True)
-
-      yrs_forec = yrs[-forecast -1:]
-      
-      #all the years
-      ax_tot.plot(yrs[:-forecast], anom_year_vals, linestyle='--', color='black', label='CDS Temperature anomaly', linewidth = 1.5)
-      Uncertainty_plt(ax_tot, yrs_train, res_train, mean_preds_train, std_dev_train, 'LSTM predictions', 'MC Dropout predictions', 'darkorange', 'darkviolet', 2)
-      Uncertainty_plt(ax_tot, yrs_test, res_test, mean_preds_test, std_dev_test, '', '', 'darkorange', 'darkviolet', 2)
-      Uncertainty_plt(ax_tot, yrs_forec, preds_future, preds_future_MC, std_dev_MC, '', '', 'darkorange', 'darkviolet', 2)
-      
-      #zoom on forecast
-      Uncertainty_plt(ax_fut, yrs_forec, preds_future, preds_future_MC, std_dev_MC, '', '', 'darkorange', 'darkviolet', 2)
-      
-      #add aesthetics
-      ax_tot.vlines(2005, -5, 65, color = 'black', linestyle = '--', alpha = 0.3)
-      ax_tot.vlines(2024, -5, 65, color = 'black', linestyle = '--', alpha = 0.3)
-      ax_tot.axvspan(yrs_train[0]-input_size, yrs_train[-1], color='lime', alpha=0.1)
-      ax_tot.axvspan(yrs_test[0], yrs_test[-1], color='pink', alpha=0.2)
-      ax_tot.axvspan(yrs_forec[0], yrs_forec[-1], color='gold', alpha=0.2)
-      ax_fut.axvspan(yrs_forec[0], yrs_forec[-1], color='gold', alpha=0.2)
-      ax_tot.text(x=1980, y=57, s='Training', fontsize = 15, fontweight = 'bold', 
-              color='darkgreen', bbox=dict(facecolor='white', edgecolor='darkgreen', boxstyle='round'))
-      ax_tot.text(x=2011, y=57, s='Test', fontsize = 15, fontweight = 'bold', 
-              color='mediumvioletred', bbox=dict(facecolor='white', edgecolor='mediumvioletred', boxstyle='round'))
-      ax_tot.text(x=2015, y=45, s='Forecast', fontsize = 15, fontweight = 'bold', 
-              color='goldenrod', bbox=dict(facecolor='white', edgecolor='goldenrod', boxstyle='round'))
-      ax_fut.text(2032.5, preds_future_MC[-1]-1, f"{preds_future_MC[-1]:.2f}°C", fontsize=12, color = 'indigo', fontweight = 'bold')
-      ax_fut.plot(yrs[-1], preds_future_MC[-1], color = 'darkviolet', marker = 'o')
-      ax_fut.text(2032.5, preds_future[-1]-1, f"{preds_future[-1]:.2f}°C", fontsize=12, color = 'orangered', fontweight = 'bold')
-      ax_fut.plot(yrs[-1], preds_future[-1], color = 'darkorange', marker = 'o')
-      ax_tot.grid(True, linestyle='--', alpha=0.6)
-      ax_fut.grid(True, linestyle='--', alpha=0.6)
-      
-      #axes & title
-      ax_fut.set_yticks(np.arange(0,61,5), np.arange(0,61,5))
-      ax_fut.set_xticks(yrs_forec, yrs_forec, rotation = 45)
-      ax_tot.set_xticks(yrs[::5], yrs[::5], rotation = 45)
-      ax_tot.set_xlim(1940,2035.5)
-      ax_fut.set_xlim(2024,2034.2)
-      ax_tot.set_ylim(-1,65)
-      ax_tot.set_ylabel('Temperature anomaly (°C)')
-      ax_tot.legend(fontsize=9, frameon=True, fancybox=True)
-      ax_tot.set_xlabel('Year')
-      ax_fut.set_title('Zoom 2024 - 2034', fontweight = 'bold')
-      ax_tot.set_title('1940 – 2034', fontweight = 'bold')
-      fig.suptitle('Temperature anomalies in Europe (1940-2024) and LSTM forecast (2024-2034)', fontsize=15, fontweight='bold', y=1.05)
-      
-      plt.tight_layout()
-      plt.subplots_adjust(top=0.93)
-      plt.savefig('forecast.svg')
-      plt.show()      
-    </code></pre>
-  </div>    
-
-  </div>
+    This is a personal website where I showcase my projects and share my curriculum vitae.</p>
+    <h2><b>Hello and welcome to my GitHub :) 👋</b></h2>
+Here I explore ideas and projects I find interesting, mostly around <b>machine learning, data visualization and analysis</b>. With bachelor's and master's degrees in physics, and a strong background in <i>theoretical physics</i>, I’m comfortable working with complex data and programming, but I’m still eager to push myself further and learn new things.  
+You can check out my projects on <a href="https://altheacappelli.github.io/">my website</a>, and contact me by email at <i>tea.cappelli@gmail.com</i> !
+    <img src="images/AltheaCappelli.png" alt="Althea Cappelli" style="display:block; margin:auto; width:300px; height:auto;">
 </div>
 
 
 
 
-  <div class="cv-section">
-   <h1 align="center" style="font-size:44px;"> <b>Curriculum Vitae</b></h1>.
-    <div class="cv-options">
-      <div class="cv-box deu" onclick="openCV('images/CV_Cappelli_deu.pdf')">DEU</div>
-      <div class="cv-box eng" onclick="openCV('images/CV_Cappelli_eng.pdf')">ENG</div>
+
+<div id="cv" class="tabcontent">
+    <div style="text-align:center;">
+      <h2 style="color:#0ac40d; font-size:44px; margin-bottom:10px;"><b>Curriculum vitae</b></h2>
+      <p style="color:rgb(0, 255, 179); margin-top:0;">Choose the language:</p>
     </div>
+
+  <div class="cv-options">
+    <button class="cv-box deu" onclick="openModalCV('images/CV_Deu.png')">DEU</button>
+    <button class="cv-box eng" onclick="openModalCV('images/CV_Eng.png')">ENG</button>
   </div>
-  
-  <div id="modalCV" class="modal">
+  <h2 align="center" style="font-size:44px; margin-top:50px"> <a style="color:rgb(226, 43, 205)" href="https://www.linkedin.com/in/althea-cappelli-078761345/" target="_blank"> <b>Linkedin</b> </a></h2>.
+</div>
+
+
+<div id="cvModal" class="modal" onclick="if(event.target === this) closeModalCV()">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('modalCV')">&times;</span>
-    <h2>Curriculum Vitae</h2>
-    <iframe id="cvFrame" src="" style="width: 100%; height: 80vh; border: none;"></iframe>
+    <button class="close-btn" onclick="closeModalCV()">Close</button>
+    <img id="modalImage" src="" usemap="#image-map" alt="CV Image" />
+    <map name="image-map">
+      <area href="https://www.linkedin.com/in/althea-cappelli-078761345" target="_blank" alt="LinkedIn" title="LinkedIn" coords="381,90,564,124" shape="rect">
+      <area href="https://github.com/AltheaCappelli" target="_blank" alt="Portfolio" title="Portfolio" coords="590,60,750,90" shape="rect">
+    </map>
   </div>
 </div>
 
-<div class="linkedin">
-  <h1 align="center" style="font-size:44px;"> <a href="https://www.linkedin.com/in/althea-cappelli-078761345/" target="_blank"> <b>Linkedin</b> </a></h1>.
-   <div class="cv-options">
-   </div>
- </div>
 
 
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = 'block';
+
+
+<script>
+
+
+function openModalCV(imageSrc) {
+  const modal = document.getElementById('cvModal');
+  const modalImage = document.getElementById('modalImage');
+
+  modal.style.display = 'block';
+
+  // Reset src to force reload
+  modalImage.src = '';
+  modalImage.onload = function() {
+    if (window.imageMapResize) {
+      imageMapResize(document.querySelectorAll('map'));
     }
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-    function openCV(file) {
-      document.getElementById('cvFrame').src = file;
-        openModal('modalCV');
-    }  
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
-      }
-    }
+  };
+  modalImage.src = imageSrc;
+}
 
-    function copyToClipboard(button) {
-    const pre = button.parentElement.querySelector('pre');
-    const text = pre.innerText;
+  function closeModalCV() {
+    const modal = document.getElementById('cvModal');
+    const modalImage = document.getElementById('modalImage');
 
-      navigator.clipboard.writeText(text).then(() => {
-        button.innerText = 'Copied!';
-          setTimeout(() => {
-            button.innerText = 'Copy';
-        }, 1500);
-      }).catch(err => {
-        console.error('Failed to copy text: ', err);
-      });
-    }
-    
+    modal.style.display = 'none';
+    modalImage.src = '';
+  }
 
-  </script>
+
+</script>
+
+
 </body>
 </html>
