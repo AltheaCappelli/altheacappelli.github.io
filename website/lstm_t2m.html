@@ -5,6 +5,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,6 +13,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
+      padding-bottom: 20px;
     }  
 
     .code-container {
@@ -37,43 +39,33 @@
 
       /*------tab-------*/
 .topnav {
-  overflow: hidden;
-  background-color: #ffffff00;
+  display: flex;
+  padding-top: 3px;
+  position: fixed;
 }
 
-.topnav a {
-  float: left;
+.nav-button {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.nav-button a {
+  display: inline-block;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 25px;
   text-decoration: none;
-  font-size: 17px;
-  
+  font-size: 18px;
+  transition:
+    background-image 0.2s ease,
+    padding: 0.2s ease,
+    font-size 0.2s ease;
 }
 
-.topnav a:hover {
-    transform: scale(1.05);
-    background-image: conic-gradient(
-    #af7b7d 0deg 26deg,
-    #9f8976 26deg 51deg,
-    #7f8b6a 51deg 77deg,
-    #6b946e 77deg 102deg,
-    #5da47c 102deg 128deg,
-    #50ab89 128deg 154deg,
-    #42a492 154deg 180deg,
-    #3d9b9d 180deg 205deg,
-    #3f91a8 205deg 231deg,
-    #4782ac 231deg 257deg,
-    #5472ae 257deg 282deg,
-    #6863a9 282deg 308deg,
-    #78559b 308deg 334deg,
-    #a66892 334deg 360deg
-    );
-    color: white;
-}
-
-.topnav a.active {
-    background-image: conic-gradient(
+.nav-button a:hover{
+  padding: 18px 30px;
+  font-size: 22px;
+  background-image: conic-gradient(
     #eca4a8 0deg 26deg,
     #d9bba1 26deg 51deg,
     #bfd1a0 51deg 77deg,
@@ -89,15 +81,36 @@
     #b07ce4 308deg 334deg,
     #e892cc 334deg 360deg
     );
-    color: rgb(109, 0, 145);
+    opacity: 0.7;
+    color: white;
+}
+
+.nav-button a.active {
+  background-image: conic-gradient(
+    #eca4a8 0deg 26deg,
+    #d9bba1 26deg 51deg,
+    #bfd1a0 51deg 77deg,
+    #a3e3a7 77deg 102deg,
+    #87eeb3 102deg 128deg,
+    #6ff2c3 128deg 154deg,
+    #5fedd4 154deg 180deg,
+    #57e1e4 180deg 205deg,
+    #59cff0 205deg 231deg,
+    #65b9f7 231deg 257deg,
+    #79a2f7 257deg 282deg,
+    #928cef 282deg 308deg,
+    #b07ce4 308deg 334deg,
+    #e892cc 334deg 360deg
+    );
+    color: white;
 }
 
     /*---------sidebar---------*/
       .sidebar {
         margin: 0;
-        margin-top: 20px;
+        margin-top: 70px;
         padding: 0;
-        width: 200px;
+        width: 212px;
         background-image: 
           radial-gradient(circle at 50% 50%, #34c1e574 50%, transparent 50.05%),
           radial-gradient(circle at 41% 77%, #a9373735 22%, transparent 22.05%),
@@ -111,7 +124,7 @@
       .sidebar a {
         display: block;
         color: black;
-        padding: 16px;
+        padding: 17px;
         text-decoration: none;
       }
       
@@ -126,9 +139,8 @@
       }
 
       div.content {
-        margin-left: 200px;
+        margin-left: 225px;
         padding: 1px 16px;
-        height: 1000px;
       }
 
       @media screen and (max-width: 700px) {
@@ -148,27 +160,34 @@
         }
       }
 
-      .Results {
-        border-color: rgb(238, 255, 0);}
-
-      .Code {
-        border-color: rgb(238, 255, 0);}
-      
-      .Results:hover {
-        transform: scale(1.02);
-        background-image: url('images/crep_hover.png');
-        color: black;
+      .button {
+        padding: 15px 32px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
       }
 
-      .Code:hover {
+      .Results {
+        border-color: rgb(238, 255, 0);
+        background-color: #ffffff00;}
+
+      .Code {
+        border-color: rgb(238, 255, 0);
+      background-color: #ffffff00;}
+      
+      .Results:hover, .Code:hover,
+      .button.active:hover {
         transform: scale(1.02);	
-        background-image: url('images/crep_hover.png');
+        background-image: url('../images/sonnn.png');
         color: black;
+        background-size: cover; 
       }
 
       .button.active {
-      outline: 2px solid #ff00aa;
-      background-image: url('images/crep.png'); 
+      background-image: url('../images/crep.png'); 
+      background-size: cover; 
       color: white;}
 
     </style>
@@ -176,8 +195,9 @@
 <body>
 
 <div class="topnav">
-  <a href="https://altheacappelli.github.io/">Home</a>
-  <a class="active" href="https://altheacappelli.github.io/website/projects">Projects</a>
+  <div class="nav-button"><a href="https://altheacappelli.github.io">Home</a></div>
+    <div class="nav-button">
+  <a href="https://altheacappelli.github.io/website/projects.html" class="active">Projects</a></div>
 </div>
 
 <div class="sidebar">
@@ -186,7 +206,7 @@
 </div>
 
 <div class="content">
-<div id="Projects" class="tabcontent" style="display:block;">
+<div id="Projects" style="display:block;">
 <h1 style="color:rgb(182, 3, 119);"><b>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
     <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
     evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
@@ -201,14 +221,14 @@
     from Github</a> to experiment and make your modifications.
     </h4>
 <div class="tab">
-<button class="button Results" onclick="openCity(event, 'Results')">Results</button>
+<button class="button Results active" onclick="openCity(event, 'Results')">Results</button>
 <button class="button Code" onclick="openCity(event, 'Code')">Code</button>
 </div>
 
 <div id="Results" class="tabcontent" style="display: block;">
     <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
-      <img src="images/lstm_accuracy.svg" width = '100%' alt="Accuracy of the lstm model">
+      <img src="../images/lstm_accuracy.svg" width = '70%' alt="Accuracy of the lstm model">
       <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
         to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
         Indeed, the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
@@ -219,7 +239,7 @@
         on both datasets.</p>
       <h3><b>Results of the lstm predictions</b></h3>
       <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
-      <img src="images/lstm_temp_comparison.svg" width = '100%' alt="Accuracy of the lstm model">
+      <img src="../images/lstm_temp_comparison.svg" width = '70%' alt="Accuracy of the lstm model">
       <p>The plot shows that the <b>mean predictions from MC dropout</b>, in red and orange, <b>closely match the original model predictions</b>, in green and light blue, 
         and are almost overlapping. This is due to the low dropout rate of 0.2, so that the variation across different runs stays small. When comparing the MC uncertainty 
         for inputs from the training period and the validation period, the difference is clear. For inputs from the earlier years, data the model has already seen during 
@@ -231,13 +251,13 @@
         following the exponential pattern quite clearly.</p>
         <h3><b>Estimation of future temperature evolution</b></h3>
       <p>Finally, the trained model is used to forecast the temperature anomalies for the next 10 years.</p>
-      <img src="images/forecast.svg" width = '120%' alt="Result of the future predictions">  
+      <img src="../images/forecast.svg" width = '90%' alt="Result of the future predictions">  
       <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model, while
         the second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024.  
-        Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. By 2034, the LSTM forecasts anomalies approaching 55°C, while the MC Dropout model forecasts around 49°C. 
-        These values are, of course, not realistic and come from the <b>model's simplistic extrapolation of historical trend</b>, without taking into account real-world climate and feedback 
-        mechanisms. However, these results should not be interpreted as "literal" future temperatures, as they just show the model’s learned trend, namely a <b>rapid and accelerating increase in 
-        temperature anomalies</b>. This also highlights the main point, that even a basic time series model shows how fast temperatures are rising in Europe.
+        Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. These predicted values are, of course, not realistic and come from the <b>model's 
+        simplistic extrapolation of historical trend</b>, without taking into account real-world climate and feedback mechanisms. However, these results should not be interpreted as "literal" future 
+        temperatures, as they just show the model’s learned trend, namely a <b>rapid and accelerating increase in temperature anomalies</b>. This also highlights the main point, that even a basic
+        time series model shows how fast temperatures are rising in Europe.
       </p>
 </div>
 
@@ -575,13 +595,12 @@
 
 <script>
 function openCity(evt, cityName) {
-  let i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
+  const tabcontent = document.getElementsByClassName("tabcontent");
+  for (let i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("button");
-  for (i = 0; i < tablinks.length; i++) {
+  const tablinks = document.getElementsByClassName("button");
+  for (let i = 0; i < tablinks.length; i++) {
     tablinks[i].classList.remove("active");
   }
   document.getElementById(cityName).style.display = "block";
