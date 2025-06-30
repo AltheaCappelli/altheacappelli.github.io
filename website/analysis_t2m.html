@@ -241,11 +241,18 @@
       <p>This animation gives a more complete picture of how the monthly temperature anomalies evolved over time. The animation shows the data in <b>10-year intervals</b>, with each frame displaying a decade of temperature anomalies. It's interesting to see how the 
         <b>bubbles gradually get redder and larger</b> as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer fast, and the anomalies are becoming more extreme, especially in the colder months.</p>
       <h3><b>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
-      <p>Lastly, the mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
+      <p>The mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
       <img src="../images/temp_map_eu.svg" alt="European temperature and temperature anomaly" width="100%">
       <p>The <b>changes between the 1940 and 2024 maps are clearly visible</b>, as in 2024, many of the blue-shaded regions from 1940 have become much lighter. This difference is further highlighted in the temperature anomaly map, which shows which regions are being 
         affected the most. As expected, colder and more northern areas, such as <b>the Nordic countries</b>, the <b>Baltic states</b>, <b>Iceland</b>, and <b>the Alps</b>, show some of the strongest warming effects, consistent with broader climate change patterns 
         mentioned previously. However, it's not just the North: Other regions like <b>Italy, Eastern Europe</b> and parts of <b>Central Europe</b> also show considerable warming, highlighting that the <b>impacts of climate change</b> are widespread and <b>not confined to any specific region</b>.</p>
+      <h3><b>Temperature map animation of the yearly temperature anomalies in Europe between 1940 and 2024</b></h3>
+      <p>Lastly, I animated through the years the mean yearly temperature anomalies across Europe.</p>
+      <video width="100%" controls>
+        <source src="../images/anom_temp_map.mp4" type="video/mp4">
+      </video>
+      <p>This animation also gives a good overview of how temperature anomalies in Europe have changed over the years. As the previous plots already hinted, it is interesting to see how the map <b>gradually turns redder</b>, emphasizing the rising of temperatures across Europe.</p>
+
 </div>
 
 
@@ -522,65 +529,99 @@
             import cartopy.crs as ccrs
           </code></pre>
         </div> 
+        <p>Compute the temperature anomalies in the coordinate lattice</p>
         <div class="code-container">
           <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
           <pre><code class="language-python">
-            europe_projection = ccrs.EuroPP()
-
-            #compute the mean temperature for a given year in Celsius
-            def mean_temp(year):
-                return temp.sel(valid_time=str(year)).mean('valid_time') - 273.15 #compute in Celsius
-
-            #define the 1940 baseline
-            ref_1940 = mean_temp(1940)
-
-            #compute the temperature anomaly for a given year
-            def anom_temp(year):
-                return mean_temp(year) - ref_1940 
-
-            #define the plot function for compactness and to easily adjusting parameters
-            def plot_temp(data, ax=None, vmin=-10, vmax=20):
-                return data.plot.imshow(ax=ax, transform=ccrs.PlateCarree(), cmap='coolwarm', vmin=vmin, vmax=vmax, add_colorbar=False)
+            temp_latlon = temp_grp.mean('month') - 273.15 # (year, lat, lon) in Celsius
+            anom_latlon = temp_latlon - temp_latlon.sel(year = 1940) #lazy compute anomaly
           </code></pre>
         </div> 
-<p>Display the data in a <b>temperature plot</b>. These temperature maps show the <b>mean yearly temperatures and temperature anomalies across Europe</b>, 
-  with each point representing the temperature or anomaly relative to 1940 at a specific location. The first two plots display the actual <b>temperatures for the years 1940 and 2024</b>,
-  where, as usual, red indicates warmer temperatures and blue indicates colder ones. The third plot shows the <b>temperature anomaly in 2024 relative to 1940</b>, with red areas highlighting 
-  regions with a higher anomaly. For example, when a region transitions from dark blue in 1940 to light blue or neutral in 2024, it appears as a deep red in the anomaly map, making the 
-  warming easy to spot.</p>
-  <div class="code-container">
-    <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-    <pre><code class="language-python">
-      fig, (ax_1940, ax_2024, ax_anom) = plt.subplots(1, 3, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(15, 7))
+        <div class="code-container">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          <pre><code class="language-python">
+            temp_latlon_vals = temp_latlon.values #extract temperatures
+            anom_latlon_vals = anom_latlon.values #extract anomalies
+            lat = ds.latitude.values  #extract values for meshgrid
+            lon = ds.longitude.values
+          </code></pre>
+        </div> 
+        <p>Define the grid boundaries and key variables.</p>
+        <div class="code-container">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          <pre><code class="language-python">
+            lat_bounds = np.linspace(lat[0] + 0.2, lat[-1] - 0.2, len(lat) + 1) #adjust the bounds
+            lon_bounds = np.linspace(lon[0] + 0.2, lon[-1] - 0.2, len(lon) + 1)
+            lon_grid, lat_grid = np.meshgrid(lon_bounds, lat_bounds)
+            europe_projection = ccrs.EuroPP()
+          </code></pre>
+        </div>   
+        <p>Display the data in a <b>temperature plot</b>.</p>
+        <p>These temperature maps show the <b>mean yearly temperatures and temperature anomalies across Europe</b>, with each point representing the temperature or anomaly relative to 1940 
+          at a specific location. The first two plots display the actual <b>temperatures for the years 1940 and 2024</b>, where, as usual, red indicates warmer temperatures and blue indicates colder
+          ones. The third plot shows the <b>temperature anomaly in 2024 relative to 1940</b>, with red areas highlighting regions that with a higher anomaly.</p>
+        <div class="code-container">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          <pre><code class="language-python">
+          fig, (ax_base, ax_24, ax_anom) = plt.subplots(1, 3, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(15, 7))
 
-      plots = [plot_temp(mean_temp(1940), ax_1940),
-              plot_temp(mean_temp(2024), ax_2024),
-              plot_temp(anom_temp(2024), ax_anom, vmin=-5, vmax=5)]
+          lat_bounds = np.linspace(lat[0] + 0.2, lat[-1] - 0.2, len(lat) + 1) #adjust the coordinates points of grid
+          lon_bounds = np.linspace(lon[0] + 0.2, lon[-1] - 0.2, len(lon) + 1)
+          lon_grid, lat_grid = np.meshgrid(lon_bounds, lat_bounds)
 
-      #aesthetics
-      for ax in [ax_1940, ax_2024, ax_anom]:
-          ax.coastlines(linewidth=0.5, color='black')
-          ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+          plots = [(ax_base, temp_latlon_vals[:, :, 0], 'Temperature (°C)', -10, 20, "1940"),
+                  (ax_24, temp_latlon_vals[:, :, -2], 'Temperature (°C)', -10, 20, "2024"),
+                  (ax_anom, anom_latlon_vals[:, :, -2], 'Temperature anomaly (°C)', -5, 5, "Mean temperature anomaly (°C)\nin Europe (2024)")]
 
-      #axes & title
-      for ax in [ax_1940, ax_2024]:
-          cbar = fig.colorbar(plots[0], ax=ax, orientation='horizontal', pad=0.05, aspect=50)
-          cbar.set_label('Temperature (°C)', fontsize=12, labelpad=5)
-      cbar_anom = fig.colorbar(plots[2], ax=ax_anom, orientation='horizontal', pad=0.05, aspect=50)
-      cbar_anom.set_label('Temperature anomaly (°C)', fontsize=12, labelpad=5)
+          #plots, axis & aesthetics
+          for ax, data, label, vmin, vmax, title in plots:
+              plot = ax.pcolormesh(lon_grid, lat_grid, data, transform=ccrs.PlateCarree(), cmap='coolwarm', shading='auto', vmin=vmin, vmax=vmax)
+              fig.colorbar(plot, ax=ax, orientation='horizontal', pad=0.05, aspect=50).set_label(label, fontsize=12, labelpad=5)
+              ax.coastlines(linewidth=0.5)
+              ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+              ax.set_title(title, fontsize=14, fontweight='bold')
 
-      ax_1940.set_title("Mean temperature in Europe (°C)", fontsize=14, fontweight = 'bold', x = 1.25, y = 1.18)
-      ax_2024.set_title('')
-      fig.text(0.15, 0.85, "1940", fontsize=12, fontweight='bold')
-      fig.text(0.48, 0.85, "2024", fontsize=12, fontweight='bold')
-      ax_anom.set_title("Mean temperature anomaly (°C) \n in Europe (2024)", fontsize=14, fontweight='bold', x = 0.5, y = 1.12)
+          fig.text(0.22, 0.92, "Mean temperature in Europe (°C)", fontsize=14, fontweight='bold')
 
-      plt.tight_layout(pad=2)
-      plt.savefig('temp_map_eu.svg')
-      plt.show()
-    </code></pre>
-  </div> 
-</div>
+          plt.tight_layout(pad=2)
+          plt.savefig('temp_map_eu.svg')
+          plt.show()
+          </code></pre>
+        </div>         
+
+
+
+      <h3><b>Temperature plot animation of the yearly temperature anomalies in Europe between 1940 and 2024</b></h3>
+        <div class="code-container">
+          <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+          <pre><code class="language-python">
+            fig, ax = plt.subplots(subplot_kw={'projection': europe_projection}, dpi=150, figsize=(10, 6))
+
+            yrs_ind = range(len(yrs))
+            data = anom_latlon_vals[:, :, yrs_ind[1]]
+
+            map = ax.pcolormesh(lon_grid, lat_grid, data, transform=ccrs.PlateCarree(),
+                                cmap='coolwarm', shading='auto', vmin = -5, vmax = 5)
+
+            #aesthetics
+            ax.coastlines(linewidth=0.5)
+            ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+            cbar = fig.colorbar(map, ax=ax, orientation='horizontal', pad=0.05, fraction = 0.046)
+            cbar.set_label('Temperature anomaly (°C)', fontsize=12, labelpad=5)
+
+            #update function
+            def update(frame):
+                year = yrs_ind[frame]+1
+                data_dyn = anom_latlon_vals[:, :, year]
+                map.set_array(data_dyn)
+                title = ax.set_title(f"Yearly temperature anomaly in Europe ({yrs[frame]+1})", fontweight = 'bold')
+                return map, title
+
+            ani = animation.FuncAnimation(fig, update, frames=len(yrs_ind)-1, interval=120, blit=False)
+            ani.save('anom_temp_map.mp4')
+            plt.show()
+          </code></pre>
+        </div>         
 
 </div>
 </div>
