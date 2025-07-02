@@ -201,16 +201,17 @@
 </div>
 
 <div class="sidebar">
-  <a href="https://altheacappelli.github.io/website/analysis_t2m.html">Analysis of temperature anomaly in Europe</a>
-  <a class="active" href="https://altheacappelli.github.io/website/lstm_t2m.html">LSTM predictions of temperature anomaly in Europe</a>
+  <a href="https://altheacappelli.github.io/website/analysis_t2m.html">Analysis of temperature anomalies in Europe</a>
+  <a class="active" href="https://altheacappelli.github.io/website/lstm_t2m.html">LSTM predictions of mean temperature anomalies in Europe</a>
+  <a href="https://altheacappelli.github.io/website/conv_t2m.html">Convolutional LSTM predictions of temperature anomalies in Europe</a>
 </div>
 
 <div class="content">
 <div id="Projects" style="display:block;">
-<h1 style="color:rgb(182, 3, 119);"><b>LSTM-based prediction of the 2m air temperature data from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
+<h1 style="color:rgb(182, 3, 119);"><b>LSTM-based prediction of the mean 2m air temperature anomaly from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
     <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
     evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
-    the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies.   
+    the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies between 2024 and 2035.   
     </h3>
     <h4>I used the 2m air temperature data from the 
     <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
