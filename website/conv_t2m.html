@@ -190,6 +190,16 @@
       background-size: cover; 
       color: white;}
 
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        
+        video {
+          display: block;
+          margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -210,14 +220,488 @@
 <div id="Projects" style="display:block;">
 
 <h1 style="color:rgb(182, 3, 119);"><b>Predicting with a convolutional LSTM network the 2m air temperature anomalies in Europe from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
-    <h3>The goal of this project is to see if a convolutional LSTM network can be used to predict the 2m air temperature anomalies in Europe. In this case, the temperature grid from Europe is fed to the neural network,
-        which uses a convolutional filter of the size 3x3 to predict the outcome. The model is trained on temperature data between 1940 and 2010, and is tested from 2010 to 2024. Different layer setup and parameters were tested to improve the model's performance.
-        After the model is trained, it is used to predict future temperature anomalies between 2024 and 2035.</h3>
-    <h4>I used the 2m air temperature data from the 
-    <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
-    provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
-    </h4>
-<p>Coming soon!</p>
+    <h3>The goal of this project is to build a simple Convolutional LSTM (ConvLSTM) neural network to predict temperature anomalies over Europe. The model is trained on data from 1940 to 2015 and evaluated on both the training set and a test set from 2015 to 2024. Different layer and network configurations were tested to improve the model's performance while keeping the model simple. While more complex approaches for such 
+      a problem exist, as in <a href="https://www.nature.com/articles/s41598-024-68906-6" target="blank">this paper</a> by Q. Guo, Z. He, and Z. Wang, this project focuses creating a model that can run on a typical laptop without needing large-scale computing resources, and can still produce meaningful results. </h3>
+      <h3>The model’s predictions on the training and test data are shown to give an idea of its accuracy. The training data is used to check if the model can reproduce known patterns, while the test results show its generalization to unknown data. For comparison, the performance of
+        the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM model</a> is also included. Finally, the trained network is used to forecast future temperature anomalies up to 2034, including a comparison with the LSTM results. </h3>
+    <h4>I used the 2m air temperature data from the <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
+    provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.</h4>
+    <h4>The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
+      from Github</a> to experiment and make your modifications.</h4>
+      </h4>
+  <div class="tab">
+  <button class="button Results active" onclick="openCity(event, 'Results')">Results</button>
+  <button class="button Code" onclick="openCity(event, 'Code')">Code</button>
+  </div>
+  
+  <div id="Results" class="tabcontent" style="display: block;">
+      <h3><b>Accuracy of the lstm neural network</b></h3>
+        <p>First, the training and validation losses were plotted. The model is trained on the mean yearly temperature data from 1940 to 2014, and validated on data from 2005 to 2024.</p>
+        <img src="../images/convlstm_accuracy.svg" width = '60%' alt="Accuracy of the convlstm model" class="center">
+        <p>Both the training and validation loss <b>decrease quickly</b> after the first few epochs, with the validation loss showing an even steeper drop. After this initial phase, <b>both losses stabilize</b> and remain relatively constant. The validation loss even falls below the training loss, 
+          probably due to the nature of the data, as discussed in the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM approach</a>.</p>
+        <h3><b>Results of the ConvLSTM predictions</b></h3>
+        <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
+        <img src="../images/convLSTM_res.png" width = '100%' alt="ConvLSTM results" class="center">
+        <p>The plot shows that the ConvLSTM model has <b>learned decently</b>. In the case of 2015, the last year from the training data, the predicted anomaly map looks quite similar to the original. The model 
+        <b>correctly recognizes the main warm spots</b>, like in Iceland, parts of Northern and Eastern Europe, where the anomalies are clearly higher and appear redder. However, the model <b>struggles more with regions 
+          showing lower anomalies</b>. In these areas, blue (cooler) zones often appear more red in the prediction, suggesting that the model tends to overestimate the anomaly where it should be lower.</p>
+        <p>For 2024, last year of the test set, the model's performance declines as expected. While it still identifies some of the main warming patterns, such as in Eastern Europe, Iceland, and parts of Northern Europe, 
+          it performs poorly in other regions like Italy and the Alps, where the predicted anomalies are much lighter than the observed ones. Also, the model underestimates cooler anomalies like over the ocean, again showing a <b>tendency to overestimate warmer anomalies</b>.
+          Overall, even though the model isn't perfect, it still does a decent job at capturing the overall warming trend in Europe.</p>
+        <h3><b>Comparison with the results of the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM approach</a></b></h3>
+        <p>The yearly mean taken over each grid point of the ConvLSTM model have been compared to the results of the LSTM model.</p>
+        <img src="../images/ConvLSTM_preds.svg" width = '70%' alt="Comparison with LSTM" class="center">  
+        <p>The plot shows that both the LSTM and ConvLSTM predictions have their strengths and weaknesses. Specifically, as seen before, the ConvLSTM tends to <b>smooth out areas with stronger anomalies</b>, resulting in more neutral 
+          predictions across the map. This leads to mean temperature anomalies that are quite close to the observed values overall, but the model has difficulty capturing the more extreme localized anomalies. So, while it captures the general trend, it 
+          <b>misses some of the local spatial trends</b>.</p>
+        <h3><b>Forecast of future temperature anomalies</b></h3>
+        <p>With the trained model, it is now possible to make predictions about future years, forecasting <b>year per year</b> like in the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM approach</a>.</p>
+        <img src="../images/convLSTM_forecast.png" width = '100%' alt="Result of the future ConvLSTM predictions" class="center">  
+        <p>While the first two predicted maps for 2025 and 2030 are not too bad, as they do show a progressively redder Europe, the darker localized spots in last plot for 2034 become noticeably quite blurry. Indeed, the <b>red areas</b> appear more <b>faded and spread out</b>,
+          almost melting into the rest of the map, making everything look more neutral. This suggests that the <b>model struggles with predicting too far into the future</b>, as at some point, it no longer reproduces the continued rise in temperature anomalies. Since the 
+          forecast is based on what the model has learned, it ends up <b>extrapolating patterns</b>. In this way, the prediction error grows with each year, eventually becoming so large, to not be able to reproduce the overall warming trend anymore.</p>
+        <p>Altogether, these plots show <b>the limitations of the model</b> when forecasting beyond a certain range.</p>
+        <p>The limits of the model when predicting future years can be also seen also in an animation of the full forecast period.</p>
+        <video width="70%" controls>
+          <source src="../images/anom_temp_map_CNN.mp4" type="video/mp4" class="center">
+        </video> 
+        <p>The animation shows that the redder spots with higher temperature anomaly grow continuosly <b>until around 2028</b>, after which they only shifts slightly. This behavior aligns with how the model generates its predictions and its limitations. To predict the 
+          anomaly for 2025, the model uses the years 2020-2024 as input, all of which are observed data. However, starting from 2026, each new prediction increasingly relies on previously computed data instead of actual observations. For instance, <b>by 2029</b>, the model’s 
+          input consists of the years 2024-2028, where <b>only 2024 is real data and the rest are predictions</b>. Therefore, as briefly mentioned before, the <b>errors accumulate over time</b>. From 2029 onward, the input is composed almost entirely of the model’s own forecasts, 
+          causing a drop of the accuracy of further predictions and results in blurrier, less realistic anomaly maps.</p>
+        <h3><b>Comparison of forecasts with the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM approach</a></b></h3>
+        <p>Again, the yearly mean of the ConvLSTM's forecast results is taken to compare to the results of the LSTM model's forecast.</p>
+        <img src="../images/forecast_CNNvsLSTM.svg" width = '90%' alt="Result of the future predictions" class="center">  
+        <p>Interestingly, even though the ConvLSTM model did not seem to perform that well in the temperature maps, where it tended to underestimate the growing temperature anomalies in Europe, its predictions over the forecast period turn out to be 
+          <b>more realistic than those from the LSTM</b>. While the ConvLSTM results are quite flat and don't show a strong increase, they stay within a believable range. In contrast, the LSTM predictions show the anomaly growing very quickly over just 10 years.
+          It looks like the ConvLSTM might be underestimating the rise in temperature anomalies, while the LSTM is likely overshooting it, but ultimately only time will tell which results are closer to reality.</p>
+  
+      </div>
+  
+  <div id="Code" class="tabcontent" style="display: none;">
+  <h3><b>Creating the LSTM neural network</b></h3>
+          <p>Install necessary packages and initialize data</p>
+  
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          import xarray as xr
+          from tensorflow.keras.models import Sequential
+          from tensorflow.keras.layers import Input, ConvLSTM2D, Conv2D
+          from tensorflow.keras.callbacks import EarlyStopping
+          import tensorflow.keras.regularizers as regularizers
+          import numpy as np
+  
+          file = 'data_t2m_tot.nc' #2m air temperaty_test_Cure
+          ds = xr.open_dataset(file, chunks = {'valid_time' : 50}) #chunks for faster computation
+          temp = ds.t2m 
+        </code></pre>
+      </div>
+        
+      <p>Define key parameters.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          yrs = range(1940, 2035)
+          cutoff = 76 #until year 2015
+          forecast = 10 #years to forecast
+          epochs = 25
+          patience = 5 #early stopping if no improvement after 5 epochs
+          baseline = 0.01, #early stopping if improvement stays below this threshold
+          start_epoch = 5 #wait 5 epochs before checking for early stopping
+          input_size = 5
+          batch_size = 4
+        </code></pre>
+      </div>
+      <p>Compute the mean temperature anomalies as the <b> difference between the mean yearly temperature at each grid point and the value for the year 1940</b>.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          temp_grp = temp.groupby(['valid_time.year']).mean(dim=['valid_time']) #xarray with shape (:, year)
+          anom_year = temp_grp - temp_grp.sel(year = 1940) #lazy compute yearly anomaly
+          anom_year_vals = anom_year.values[:-1, :, :] #extract values and transpose to (lat, lon, year), remove last year (2025)
+          np.savez("anom_year_convLSTM.npz", anom_yrs = anom_year_vals)
+        </code></pre>
+      </div>
+      <p>Define a function to prepare the input data by splitting it into <b>overlapping sequences of fixed length</b>, similar to the approach used in the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM model</a>.
+        Differently then in the LSTM case, it is crucial here to <b>reshape the input and output correctly</b> the CNN layers: <br>
+        <i>Input (x)</i> shape: batch (samples), time (years), height (lat), width (lon), channels (temp) <br>
+        <i>Output (y)</i> shape: batch (samples), height (lat), width (lon), channels (temp) <br>
+        The channel dimension represents the variables of interest, in this case only the temperature. Since there's just one parameter, an extra axis is added to maintain the expected shape for the network.
+        Unlike the input, the output does not have a time dimension. This is because the model is trained to predict the next year's anomaly one step at a time.
+      </p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          def prep_data_CNN(data, input_size):
+          x = np.zeros((data.shape[0]-input_size, input_size, data.shape[1], data.shape[2])) #shape: batch(samples), time(years), height(lat), width(lon)
+          for i in range(x.shape[0]):
+              x[i, :, :, :] = data[i:i+input_size, :, :]
+          y = np.array(data[input_size:, :, :]) #shape: batch(samples), height(lat), width(lon)
+          x = x[..., np.newaxis]  #shape: batch(samples), time(years), height(lat), width(lon), channels(temp)
+          y = y[..., np.newaxis]  #shape: batch(samples), height(lat), width(lon), channels(temp)
+          return x, y
+        </code></pre>
+      </div>
+      <p>Format the data and prepare it for training and testing.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          #split data
+          training = anom_year_vals[1:cutoff+1] #to 20
+          test = anom_year_vals[cutoff - input_size-1:] #-1 to let it begin with the last year of training
+          
+          #format into input-output pairs
+          x_train, y_train = prep_data_CNN(training, input_size)
+          x_test, y_test = prep_data_CNN(test, input_size)
+        </code></pre>
+      </div>
+      <p>Build the neural network. <br>
+        The model uses a <b>convolutional LSTM neural network</b>, combining both spatial and temporal pattern recognition. While the LSTM keeps track of how 
+        the patterns change over time, the convolution looks at the grid in small 3×3 patches, capturing the spatial patterns within each year. The first two 
+        convolutional layers have 3 and 7 filters respectively. These may seem like small numbers, but they help to keep the number of trainable parameters low, 
+        making the model efficient while still producing reasonably good results.
+        The final Conv2D layer has 1 filter, which reduces the output to a single 2D anomaly map with one channel. This output is directly compared with the observed 
+        anomaly for that year to minimize the error function and improve the model’s predictions.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          def convLSTM_2D(input_size, data_height, data_width):
+          model = Sequential()
+          model.add(Input(shape=(input_size, data_height, data_width, 1)))
+          model.add(ConvLSTM2D(filters=3, kernel_size=(3, 3), activation='relu', padding='same', return_sequences=True, kernel_regularizer=regularizers.l2(1e-4))) #use first convolutional LSTM layer 
+          model.add(ConvLSTM2D(filters=7, kernel_size=(3, 3), activation='relu', padding='same', return_sequences=False, kernel_regularizer=regularizers.l2(1e-4))) #use second convolutional LSTM layer 
+          model.add(Conv2D(filters=1, kernel_size=(1, 1), activation='linear', padding='same')) #reduce to one filter
+          model.compile(optimizer='adam', loss='mse')
+          model.summary()  #summary of the model
+          return model
+      
+      convLSTM = convLSTM_2D(input_size, x_train.shape[2], x_train.shape[3])
+        </code></pre>
+      </div>
+      <p>An <b>early stopping</b> callback is defined to stop training once the model stops improving, as this helps save computation time and prevents overfitting by avoiding unnecessary epochs.
+      </p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          early_stopping = EarlyStopping(monitor = 'val_loss', #monitor the test error
+                               patience = patience,
+                               verbose = 1, #shows when callback is used
+                               baseline = baseline,
+                               restore_best_weights = True, #restore weights from the best performing epoch
+                               start_from_epoch = start_epoch) 
+        </code></pre>
+      </div>
+  <p>Train the model.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+        conv_fit = convLSTM.fit(x_train, y_train,
+                        epochs = epochs, 
+                        validation_data=(x_test, y_test), #show error
+                        verbose = 1, 
+                        batch_size=batch_size, 
+                        callbacks=[early_stopping], 
+                        shuffle=False)
+
+        res_test = convLSTM.predict(x_test, verbose=1)
+        res_train = convLSTM.predict(x_train, verbose=1)
+        np.savez("res_convLSTM.csv", res_train = res_train, res_test = res_test)
+        </code></pre>
+      </div>
+    <h3><b>Plot the results of the model</b></h3>
+    <p>Import needed packages..</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          import matplotlib.pyplot as plt
+          import cartopy.crs as ccrs
+        </code></pre>
+      </div>
+      <p>Plot the accuracy of the model.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          plt.figure(figsize=(8, 5))
+
+          plt.plot(conv_fit.history['loss'], color='blue', linewidth=2, label="Training loss")
+          plt.plot(conv_fit.history['val_loss'], color='red', linewidth=2, linestyle='--', label="Validation loss")
+          
+          #axes & title
+          plt.yscale('log')
+          plt.xticks(fontsize=12)
+          plt.yticks(fontsize=12)
+          plt.xlabel('Epoch', fontsize=12,  labelpad=10)
+          plt.ylabel('Loss', fontsize=12, labelpad=10)
+          plt.title('Training and validation loss', fontsize=18, fontweight='bold', pad=20)
+          plt.grid(True, linestyle='--', alpha=0.6)
+          
+          plt.legend(loc='best', fontsize=12, frameon=True, fancybox=True, shadow=True, borderpad=1)
+          plt.tight_layout()
+          plt.savefig('convlstm_accuracy.svg')
+          plt.show()
+        </code></pre>
+      </div>
+      <p>Define key functions for plotting, like the grid bouds.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          lat = ds.latitude.values  #extract values for meshgrid
+          lon = ds.longitude.values
+          lat_bounds = np.linspace(lat[0] + 0.2, lat[-1] - 0.2, len(lat)) #adjust the coordinates of the grid
+          lon_bounds = np.linspace(lon[0] + 0.2, lon[-1] - 0.2, len(lon))
+          lon_grid, lat_grid = np.meshgrid(lon_bounds, lat_bounds) #create meshgrid
+          
+          europe_projection = ccrs.EuroPP() #projection for Europe
+        </code></pre>
+      </div>
+      <p>Display the results in a <b>temperature plot</b>.<br>
+        These temperature maps show the <b>mean yearly anomalies across Europe</b>, where each point represents the temperature anomaly 
+        relative to 1940. The results are compared to those predicted by the ConvLSTM model. The first row displays the anomalies for 2015, 
+        the final year of the training period, while the second row shows the anomalies for 2024, the final year in the test set. As usual, 
+        warmer colors indicate higher anomalies and cooler colors indicate lower ones.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          fig, axs = plt.subplots(2, 2, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(10, 6))
+
+          plots = [(axs[0,0], anom_year_vals[69, :, :], "2015 original data"),
+                   (axs[0,1], res_train[-1, :, :, 0], "2015 ConvLSTM"),
+                   (axs[1,0], anom_year_vals[-1, :, :], "2024 original data"),
+                   (axs[1,1], res_test[-1, :, :, 0], "2024 ConvLSTM")]
+          
+          #plots, axis & aesthetics
+          for ax, data, title in plots:
+              plot = ax.pcolormesh(lon_grid, lat_grid, data, transform=ccrs.PlateCarree(), cmap='coolwarm', shading='auto', vmin=-5, vmax=5)
+              ax.coastlines(linewidth=0.5)
+              ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+              ax.set_title(title, fontsize=14, fontweight='bold')
+          
+          cbar_ax = fig.add_axes([0.3, 0.08, 0.4, 0.02])
+          fig.colorbar(plot, cax=cbar_ax, orientation='horizontal', pad=0.15, aspect=50, label='Temperature anomaly (°C)')
+          fig.subplots_adjust(hspace=0.4, wspace =-0.4, bottom=0.15)
+          
+          plt.savefig("convLSTM_res.svg")
+          plt.show()
+        </code></pre>
+      </div>
+      <h3><b>Compare the results with the mean temperature anomalies calculated in the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM approach</a></b></h3>
+      <p>Load the data.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          mean_anomaly = np.load("anom_year_LSTM.npz")["anom_years"]
+          res_test_LSTM = np.load("res_LSTM.npz")["res_test"]
+          res_train_LSTM = np.load("res_LSTM.npz")["res_train"]
+          sd_train = np.load('MC_LSTM.npz')['std_dev_train']
+          sd_test = np.load('MC_LSTM.npz')['std_dev_test']
+        </code></pre>
+      </div>
+      <p>Compute the mean of the grid points of the ConvLSTM results.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          mean_test_convLSTM = np.mean(res_test, axis=(1, 2))[:, 0]  #shape: (years)
+          mean_train_convLSTM = np.mean(res_train, axis=(1, 2))[:, 0]  
+        </code></pre>
+      </div>
+      <p>Define the different y axes, as each test- and training dataset has a different length.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          yrs_train_CNN = yrs[input_size:cutoff]  #years for training data ConvLSTM
+          yrs_test_CNN = yrs[cutoff-1:-forecast] #years for test data ConvLSTM
+          yrs_train = yrs[input_size:len(res_train_LSTM)+input_size] #training LSTM
+          yrs_test = yrs[len(res_train_LSTM)+input_size-1:-forecast] #test LSTM
+        </code></pre>
+      </div>
+      <p>Plot the data in a line plot. <br>
+        The plot shows various lines, the original anomaly data, and the ConvLSTM and LSTM results for both training and test periods,
+        each in different colors. Shaded areas indicate the error around the LSTM predictions.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          plt.figure(figsize=(11, 5))
+
+          plt.plot(yrs[:-forecast], mean_anomaly, label='Observed anomaly', color='black', linewidth=2)
+          plt.plot(yrs_train, res_train_LSTM, label='LSTM train', color='orange', linestyle=':', linewidth = 2)
+          plt.plot(yrs_test, res_test_LSTM, label='LSTM test', color='limegreen', linestyle=':', linewidth = 2)
+          plt.fill_between(yrs_train, res_train_LSTM + sd_train, res_train_LSTM - sd_train, color='yellow', alpha=0.4, linewidth= 1) #range of uncertainty
+          plt.fill_between(yrs_test,res_test_LSTM + sd_test, res_test_LSTM - sd_test, color='mediumspringgreen', alpha=0.2, linewidth= 1) #range of uncertainty
+          plt.plot(yrs_train_CNN, mean_train_convLSTM, label='ConvLSTM train', color='red', linestyle='--', linewidth = 2)
+          plt.plot(yrs_test_CNN, mean_test_convLSTM, label='ConvLSTM test', color='blue', linestyle='--', linewidth = 2)
+          
+          #aesthetics
+          plt.xlabel("Year", fontsize=11)
+          plt.xlim(1940, 2025)
+          plt.ylabel("Mean temperature anomaly (°C)", fontsize=11)
+          plt.title("Mean temperature anomalies in Europe and ConvLSTM predictions (1940-2024)", fontsize=13, fontweight='bold')
+          plt.xticks(np.arange(1940, 2026, 5), fontsize=9, rotation=45)
+          plt.yticks(fontsize=9)
+          plt.grid(True, linestyle='--', alpha=0.6)
+          
+          plt.legend(fontsize=10, frameon=True, fancybox=True, shadow=True, borderpad=1)
+          plt.savefig('ConvLSTM_preds.svg')
+          plt.tight_layout()
+          plt.show()
+        </code></pre>
+      </div>
+      <h3><b>Forecasts of future years</b></h3>
+      <p>DWith the trained model, it is now possible to make predictions about future years, forecasting <b>year per year</b> like in the <a href="https://altheacappelli.github.io/website/lstm_t2m.html" target="blank">LSTM approach</a>.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          last = anom_year_vals[-5:][np.newaxis,..., np.newaxis]  #last 5 years, add channel dimension temperature
+
+          preds_future = [res_test[-1, :, :, 0]]  #initialize with the last year of test data
+          for i in range(forecast):
+              pred = convLSTM.predict(last, verbose=1)  #predict next year
+              preds_future.append(pred[0, :, :, 0])  #append the prediction to the list
+              last = np.concatenate((last[:, 1:], pred[:, np.newaxis]), axis=1)   
+          
+          np.savez("preds_future_convLSTM.npz", preds_future = preds_future)
+        </code></pre>
+      </div>
+      <p>And plot the result in a temperature plot. <br>
+        Here, the original data from 2024, the last available year, is shown on the left, followed by 2025, the first fully forecasted year, 
+        then 2030, and finally 2034, the last year of the forecast.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          fig, axs = plt.subplots(2, 2, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(10, 6))
+          yrs_forecast = yrs[-forecast:]
+          
+          plots = [(axs[0,0], anom_year_vals[-1, :, :], "2024 original data"),
+                   (axs[0,1], preds_future[1], "2025 ConvLSTM"),
+                   (axs[1,0], preds_future[5], "2030 original data"),
+                   (axs[1,1], preds_future[-1], "2034 ConvLSTM")]
+          
+          #plots, axis & aesthetics
+          for ax, data, title in plots:
+              plot = ax.pcolormesh(lon_grid, lat_grid, data, transform=ccrs.PlateCarree(), cmap='coolwarm', shading='auto', vmin=-5, vmax=5)
+              ax.coastlines(linewidth=0.5)
+              ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+              ax.set_title(title, fontsize=14, fontweight='bold')
+          
+          cbar_ax = fig.add_axes([0.3, 0.08, 0.4, 0.02])
+          fig.colorbar(plot, cax=cbar_ax, orientation='horizontal', pad=0.15, aspect=50, label='Temperature anomaly (°C)')
+          fig.subplots_adjust(hspace=0.4, wspace =-0.4, bottom=0.15)
+          
+          plt.savefig("convLSTM_pred.svg")
+          plt.show()
+        </code></pre>
+      </div>
+      <p>The limits of the model when predicting future years can be also seen also in an animation of the full forecast period.</p>
+      <p>Import needed packages.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          import matplotlib.animation as animation
+          from matplotlib.animation import FuncAnimation
+        </code></pre>
+      </div>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          fig, ax = plt.subplots(subplot_kw={'projection': europe_projection}, dpi=150, figsize=(10, 6))
+
+          yrs_ind = range(forecast+1) #include 2024
+          data = preds_future[0] #first plot
+          
+          map = ax.pcolormesh(lon_grid, lat_grid, data, transform=ccrs.PlateCarree(),
+                               cmap='coolwarm', shading='auto', vmin = -5, vmax = 5)
+          
+          #aesthetics
+          ax.coastlines(linewidth=0.5)
+          ax.gridlines(draw_labels=True, color='gray', linestyle='--', linewidth=0.5)
+          cbar = fig.colorbar(map, ax=ax, orientation='horizontal', pad=0.05, fraction = 0.046)
+          cbar.set_label('Temperature anomaly (°C)', fontsize=12, labelpad=5)
+          
+          #update function
+          def update(frame):
+              year = yrs_ind[frame]
+              data_dyn = preds_future[year]
+              map.set_array(data_dyn)
+              title = ax.set_title(f"Yearly temperature anomaly in Europe ({yrs[-len(preds_future):][frame]})", fontweight = 'bold')
+              return map, title
+          
+          ani = animation.FuncAnimation(fig, update, frames=len(yrs_ind), interval=200, blit=False)
+          ani.save('anom_temp_map_CNN.mp4')
+          plt.show()
+        </code></pre>
+      </div>
+      <h3><b>Comparison of forecast results with LSTM and ConvLSTM</b></h3>
+      <p>Load the needed data and take the yearly mean of the grid points of the COnvLSTM results.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          preds_future_LSTM = np.load("future_LSTM.npz")["preds_future"]  #load predictions from LSTM
+          preds_future_CNN = [np.mean(i) for i in preds_future]
+        </code></pre>
+      </div>
+      <p>Define key parameters.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          yrs_forecast = yrs[-1-forecast:]
+        </code></pre>
+      </div>
+      <p>Plot the data in two line plots. <br>
+        The left plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, with the original data in black, the LSTM 
+        predictions in red, and the ConvLSTM predictions in orange. The forecast period is highlighted with a yellow shaded area. Since 
+        the main focus is on comparing the forecasts, training and test periods are not separated in different colors. On the right,
+        there is a zoom-in on the forecast period, showing the maximum temperature anomaly reached by the end of the forecast years for each model.</p>
+      <div class="code-container">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code class="language-python">
+          fig, (ax_tot, ax_fut) = plt.subplots(1, 2, dpi=150, figsize=(14, 6))
+
+          #all the data
+          ax_tot.plot(yrs[:-forecast], mean_anomaly, label='Observed anomaly', color='black', linewidth=2)
+          ax_tot.plot(yrs_train, res_train_LSTM, color='orange', linewidth = 1)
+          ax_tot.plot(yrs_test, res_test_LSTM, label='LSTM', color='orange', linewidth=1)
+          ax_tot.plot(yrs_train_CNN, mean_train_convLSTM, color='red', linewidth = 1)
+          ax_tot.plot(yrs_test_CNN, mean_test_convLSTM, label='ConvLSTM', color='red', linewidth = 1)
+          ax_tot.plot(yrs_forecast, preds_future_CNN, color='red', linewidth=1.5)
+          ax_tot.plot(yrs_forecast, preds_future_LSTM, color='orange', linewidth=1.5)
+          
+          #forecast zoomed in
+          ax_fut.plot(yrs_forecast, preds_future_LSTM, label='LSTM forecast', color='orange', linewidth=1.5)
+          ax_fut.plot(yrs_forecast, preds_future_CNN, label='ConvLSTM forecast', color='red', linewidth=1.5)
+          ax_fut.plot(yrs[-1], preds_future_CNN[-1], color = 'red', marker = 'o')
+          ax_fut.text(2033, preds_future_CNN[-1]-1, f"{preds_future_CNN[-1]:.2f}°C", fontsize=12, color = 'red', fontweight = 'bold')
+          ax_fut.plot(yrs[-1], preds_future_LSTM[-1], color = 'orange', marker = 'o')
+          ax_fut.text(2032, preds_future_LSTM[-1]-0.5, f"{preds_future_LSTM[-1]:.2f}°C", fontsize=12, color = 'orange', fontweight = 'bold')
+          
+          #aesthetics
+          for ax in [ax_tot, ax_fut]:
+              ax.set_xlabel("Year", fontsize=11)
+              ax.tick_params(axis='x', rotation=45)
+              ax.grid(True, linestyle='--', alpha=0.6)
+              ax.set_yticks(np.arange(0, 12.5, 1))
+          
+          ax_tot.set_ylabel("Mean temperature anomaly (°C)", fontsize=11)
+          ax_tot.axvspan(yrs_forecast[0], yrs_forecast[-1], color='gold', alpha=0.2)
+          ax_fut.axvspan(yrs_forecast[0], yrs_forecast[-1], color='gold', alpha=0.2)
+          ax_tot.vlines(yrs_forecast[0], -1,13, color = 'black', linestyle = '--', alpha = 0.3)
+          ax_tot.set_ylim(-1, 12.5)
+          ax_tot.set_xlim(1940, 2035)
+          ax_fut.set_xlim(2024,2034.5)
+          ax_tot.set_xticks(np.arange(1940, 2036, 5))
+          ax_fut.set_xticks(yrs_forecast)
+          ax_tot.set_title("1940 - 2034", fontsize=12, fontweight='bold')
+          ax_fut.set_title("Zoom on 2024 - 2034", fontsize=12, fontweight='bold')
+          fig.suptitle("Observed and computed mean temperature anomalies in Europe: LSTM vs ConvLSTM (1940–2034)", fontsize=14, fontweight='bold')
+          
+          ax_tot.legend(fontsize=10, frameon=True, fancybox=True, shadow=True, borderpad=1)
+          plt.savefig('forecast_CNNvsLSTM.svg')
+          plt.tight_layout(rect=[0, 0, 1, 0.99])  # leave space for suptitle
+          plt.show()
+        </code></pre>
+      </div>
+  
+
 
 <script>
 function openCity(evt, cityName) {

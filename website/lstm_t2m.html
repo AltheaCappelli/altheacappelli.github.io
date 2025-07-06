@@ -190,6 +190,12 @@
       background-size: cover; 
       color: white;}
 
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
     </style>
 </head>
 <body>
@@ -217,10 +223,8 @@
     <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 
     provided by the Copernicus Climate Data Store (CDS). ERA5 is a global climate reanalysis dataset that provides hourly estimates of atmospheric variables, including the 2m air temperature.
     </h4>
-    <h4>
-    The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
-    from Github</a> to experiment and make your modifications.
-    </h4>
+    <h4>The following plots summarize the main results of the project. You can view the code in the Code section, and you can download the full project <a href="https://github.com/AltheaCappelli/lstm_climate_change_predicter/tree/main" target="_blank">
+    from Github</a> to experiment and make your modifications.</h4>
 <div class="tab">
 <button class="button Results active" onclick="openCity(event, 'Results')">Results</button>
 <button class="button Code" onclick="openCity(event, 'Code')">Code</button>
@@ -229,7 +233,7 @@
 <div id="Results" class="tabcontent" style="display: block;">
     <h3><b>Accuracy of the lstm neural network</b></h3>
       <p>First, the training and validation losses were plotted. The model is trained on the mean temperature data from 1940 to 2004, and validated on data from 2005 to 2024.</p>
-      <img src="../images/lstm_accuracy.svg" width = '70%' alt="Accuracy of the lstm model">
+      <img src="../images/lstm_accuracy.svg" width = '60%' alt="Accuracy of the lstm model" class="center">
       <p>The training loss decreases quickly already after a few epochs, indicating that <b>the model is learning fast</b>. However, even if the validation loss takes longer
         to decrease, it eventually falls below the training loss after several more epochs. This could be for different reasons, one being the nature of the data. 
         Indeed, the validation data, which spans from 2005 on, is <b>slightly smoother</b>, it has fewer fluctuations compared to the training data, which in contrary has 
@@ -240,7 +244,7 @@
         on both datasets.</p>
       <h3><b>Results of the lstm predictions</b></h3>
       <p>Then, the results of the predictions have been plotted together with the MC dropout, which is the mean of 100 forward passes, to be able to estimate the uncertainty ranges of the model's result.</p>
-      <img src="../images/lstm_temp_comparison.svg" width = '70%' alt="Accuracy of the lstm model">
+      <img src="../images/lstm_temp_comparison.svg" width = '60%' alt="Accuracy of the lstm model" class="center">
       <p>The plot shows that the <b>mean predictions from MC dropout</b>, in red and orange, <b>closely match the original model predictions</b>, in green and light blue, 
         and are almost overlapping. This is due to the low dropout rate of 0.2, so that the variation across different runs stays small. When comparing the MC uncertainty 
         for inputs from the training period and the validation period, the difference is clear. For inputs from the earlier years, data the model has already seen during 
@@ -252,7 +256,7 @@
         following the exponential pattern quite clearly.</p>
         <h3><b>Estimation of future temperature evolution</b></h3>
       <p>Finally, the trained model is used to forecast the temperature anomalies for the next 10 years.</p>
-      <img src="../images/forecast.svg" width = '90%' alt="Result of the future predictions">  
+      <img src="../images/forecast.svg" width = '80%' alt="Result of the future predictions" class="center">  
       <p>The first plot shows the <b>full range of temperature anomalies from 1940 to 2034</b>, comparing the actual data with the predictions from the LSTM model and MC Dropout model, while
         the second plot shows a <b>closer look at the forecast period</b>, focusing on the years from 2024.  
         Both plots show a <b>steep rise</b> in predicted temperature anomalies, especially after 2030. These predicted values are, of course, not realistic and come from the <b>model's 
@@ -349,7 +353,7 @@
         def prep_data(data, input_size):
             x = np.zeros((len(data) - input_size, input_size))
             for i in range(len(x)):
-                x[i] = data[i:i+input_size] #input darta
+                x[i] = data[i:i+input_size] #input data
             y = np.array(data[input_size:]) #output data
             return x, y
       </code></pre>
@@ -380,6 +384,8 @@
 
         res_test = model_lstm.predict(x_test, verbose=0).flatten()
         res_train = model_lstm.predict(x_train, verbose=0).flatten()
+        np.savez("res_LSTM.npz", res_train = res_train, res_test = res_test)
+
       </code></pre>
     </div>
     <h3><b>Plotting the accuracy and results with MC  dropout</b></h3>
@@ -435,6 +441,8 @@
         mean_preds_test, var_test = MC_dropout(model_lstm, x_test, n_MC)
         std_dev_test = np.sqrt(var_test)  
         std_dev_train = np.sqrt(var_train)
+        np.savez("MC_LSTM.npz", std_dev_train = std_dev_train, std_dev_test = std_dev_test, 
+        mean_preds_train = mean_preds_train, mean_preds_test = mean_preds_test)
         
         x_fit = np.array(yrs[:-forecast])-1940
         params, _ = curve_fit(exp_fit, x_fit, anom_year_vals, p0= [1, 0.001, 0])
@@ -528,6 +536,8 @@
         last = np.append(last, pred)[-5:].reshape(1,5)  #new input
     
     preds_future = np.reshape(preds_future, preds_yrs)
+    np.savez("future_LSTM.npz", preds_future = preds_future,
+        preds_future_MC = preds_future_MC, std_dev_MC = std_dev_MC)
   </code></pre>
 </div>
 <p>Plot the results in a <b>line plot</b>.

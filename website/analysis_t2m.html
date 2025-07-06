@@ -188,7 +188,19 @@
       .button.active {
       background-image: url('../images/crep.png'); 
       background-size: cover; 
-      color: white;}
+      color: white;
+      }
+
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        
+        video {
+          display: block;
+          margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -226,30 +238,30 @@
       <h3><b>Line plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>First, temperature anomalies were calculated as the difference between the average European temperature for each year and month relative to the baseline year 1940. 
        Moreover, out of curiosity, I chose to include the temperature anomalies of three different cities, Hannover, Helsinki, and Siena, as these are places where I’ve lived the longest, adding a personal touch to the project.</p>
-      <img src="../images/temp_anomals_eu.svg" alt="Temperature anomaly" width="70%">
+      <img src="../images/temp_anomals_eu.svg" alt="Temperature anomaly" width="60%" class="center">
       <p>The plot clearly shows how the effects of climate change are <b>strongest in the Arctic region</b>, with Helsinki showing the highest increase. In contrast, Hannover and Siena follow the European average more closely. In 2024, the mean temperature anomaly across Europe reached <b>2.56 °C</b>, almost 1°C more than the mean temperature anomaly across the whole world.</p>
       <h3><b>Scatter plot of the monthly temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>Secondly, the mean monthly temperature anomalies in Europe relative to the baseline 1940 have been visualized in a scatter plot. Each bubble represents the magnitude of the temperature anomaly,
         with both size and color emphasizing it, making it easier to spot the most extreme ones.</p>
-      <img src="../images/bubbles_eu.svg" alt="Monthly temperature anomaly" width="80%">
+      <img src="../images/bubbles_eu.svg" alt="Monthly temperature anomaly" width="70%" class="center">
       <p>The plot shows that the colder months, December, January, February, and March, are the most affected by climate change. This reflects the broader trend where <b>colder regions or seasons tend to warm faster</b> than already warm ones, similar to how the Arctic is warming more 
         rapidly than the global average mentioned in the previous section. The highest anomaly was <b>6.9°C in January 2020</b>, followed by <b>6.8°C in February 2020</b>.</p>
       <h3><b>Animation of the scatter plot</b></h3>
       <p>For completeness, I added an animation of the previous scatter plot, including all the years between 1940 and 2024.</p>
-      <video width="70%" controls>
+      <video width="60%" controls>
         <source src="../images/bubble_ani.mp4" type="video/mp4">
       </video> 
       <p>This animation gives a more complete picture of how the monthly temperature anomalies evolved over time. The animation shows the data in <b>10-year intervals</b>, with each frame displaying a decade of temperature anomalies. It's interesting to see how the 
         <b>bubbles gradually get redder and larger</b> as the years pass, visually supporting the trend observed earlier, that Europe is getting warmer fast, and the anomalies are becoming more extreme, especially in the colder months.</p>
       <h3><b>Temperature map plot of the temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>The mean yearly temperatures and temperature anomalies across Europe have been visualized, with each point representing the temperature or anomaly relative to 1940 at a specific location. </p>
-      <img src="../images/temp_map_eu.svg" alt="European temperature and temperature anomaly" width="100%">
+      <img src="../images/temp_map_eu.svg" alt="European temperature and temperature anomaly" width="100%" class="center">
       <p>The <b>changes between the 1940 and 2024 maps are clearly visible</b>, as in 2024, many of the blue-shaded regions from 1940 have become much lighter. This difference is further highlighted in the temperature anomaly map, which shows which regions are being 
         affected the most. As expected, colder and more northern areas, such as <b>the Nordic countries</b>, the <b>Baltic states</b>, <b>Iceland</b>, and <b>the Alps</b>, show some of the strongest warming effects, consistent with broader climate change patterns 
         mentioned previously. However, it's not just the North: Other regions like <b>Italy, Eastern Europe</b> and parts of <b>Central Europe</b> also show considerable warming, highlighting that the <b>impacts of climate change</b> are widespread and <b>not confined to any specific region</b>.</p>
       <h3><b>Temperature map animation of the yearly temperature anomalies in Europe between 1940 and 2024</b></h3>
       <p>Lastly, I animated through the years the mean yearly temperature anomalies across Europe.</p>
-      <video width="0%" controls>
+      <video width="60%" controls>
         <source src="../images/anom_temp_map.mp4" type="video/mp4">
       </video>
       <p>This animation also gives a good overview of how temperature anomalies in Europe have changed over the years. As the previous plots already hinted, it is interesting to see how the map <b>gradually turns redder</b>, emphasizing the rising of temperatures across Europe.</p>
@@ -565,10 +577,6 @@
           <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
           <pre><code class="language-python">
           fig, (ax_base, ax_24, ax_anom) = plt.subplots(1, 3, subplot_kw={'projection': europe_projection}, dpi=150, figsize=(15, 7))
-
-          lat_bounds = np.linspace(lat[0] + 0.2, lat[-1] - 0.2, len(lat) + 1) #adjust the coordinates points of grid
-          lon_bounds = np.linspace(lon[0] + 0.2, lon[-1] - 0.2, len(lon) + 1)
-          lon_grid, lat_grid = np.meshgrid(lon_bounds, lat_bounds)
 
           plots = [(ax_base, temp_latlon_vals[:, :, 0], 'Temperature (°C)', -10, 20, "1940"),
                   (ax_24, temp_latlon_vals[:, :, -2], 'Temperature (°C)', -10, 20, "2024"),
