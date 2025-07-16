@@ -4,16 +4,19 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Carme" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Carme, sans-serif;
       background-image: url('images/hintt.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
       padding-bottom: 20px;
+      font-size:18px;
     }  
 
     .code-container {
@@ -214,7 +217,7 @@
 
 <div class="content">
 <div id="Projects" style="display:block;">
-<h1 style="color:rgb(182, 3, 119);"><b>LSTM-based prediction of the mean 2m air temperature anomaly from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
+<h1 style="color:rgb(182, 3, 119);font-family: 'Righteous', sans-serif; font-size:40px;"><b>LSTM-based prediction of the mean 2m air temperature anomaly from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
     <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
     evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
     the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies between 2024 and 2035.   

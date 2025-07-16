@@ -2,11 +2,13 @@
 <html>
 <head>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Carme" />
   <meta charset="UTF-8">
   <title>Althea Cappelli Website</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Carme, sans-serif;
       background-image: url('images/hintt.png');
       background-repeat: no-repeat;
       background-size: cover;
@@ -128,37 +130,43 @@
     color: white;
 }
 
-/*------pic & text--------*/
-.container {
- display: flex;
- align-items: center; 
- justify-content: center;
- gap: 20px;
+/* ------main container------*/
+.main-container {
+  display: flex;
 }
+
+/* Images stay in a row */
+.image-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 110px;
+}
+
+/* Text blocks stack vertically */
+.text-container {
+  display: flex;
+  flex-direction: column;
+  margin-top:-68px;
+  margin-left:-15px;
+}
+
+/*------pic & text-ci-------*/
   .text {
-      top: 20%;
-      left: 40%;
-      width: 49%;
-      height: 60%;
-      padding: 30px;
+      width: 90%;
       color: black;
       text-align: center;
-      background-color: #ffffff73;
-      font-size: 17px;
+      background-color: #ffffffa1;
+      font-size: 18px;
+      margin-top: 30px;
     }
-
-  #borderimg { 
-  border: 5px solid transparent;
-  border-image: url(images/back.svg) 30 stretch;
-}
 
 /*-------icons------*/
 
 .icons-container {
   display: flex;
   justify-content: center; 
-  top: 50px;
-  margin: 80px 0 0px;
+  top: 70px;
+  margin: 40px 0 0px;
 }
 
 .fa {
@@ -169,6 +177,8 @@
   text-decoration: none;
   margin: 5px 2px;
   border-radius: 50%;
+  cursor: pointer;
+
 }
 
 .fa:hover {
@@ -218,7 +228,81 @@ button.fa {
   border-radius: 50%;
 }
 
-  </style>
+/*image slideshow*/
+
+.mySlides {
+  opacity: 0;
+  position: absolute;
+  width: 65%;
+  height: 65%;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.mySlides.active-slide {
+  opacity: 1;
+  z-index: 1;
+}
+
+img {vertical-align: middle;
+object-fit: contain;
+max-width: 100%;
+max-height: 100%;
+}
+
+.slideshow-container {
+  width: 600px;
+  height: 400px;
+  margin-left: -70px;
+  margin-top: -50px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  cursor: pointer;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -500px;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+.page-title {
+  text-align: center;
+  color: rgb(182, 3, 119);
+  font-size: 60px;
+  margin-top: -25px;
+  font-family: 'Righteous', sans-serif;
+}
+
+.page-title .subtitle {
+  margin-left: 220px;
+  font-size: 45px;
+  font-family: 'Righteous';
+}
+
+
+</style>
 </head>
 
 <body>
@@ -227,28 +311,58 @@ button.fa {
   <a href="https://altheacappelli.github.io/" class="active">Home</a></div>
   <div class="nav-button"><a href="https://altheacappelli.github.io/website/projects.html">Projects</a></div>
 </div>
-
-
-<!-- Home tab -->
 <div id="home" class="tabcontent" style="display:block;">
-<h2 align="center" style="color:rgb(182, 3, 119); font-size: 30px;"><b>Hi, I'm Althea, and welcome to my website! </b></h2>
-  <div class="container">
-    <img id="borderimg" src="images/Bewerbungsfoto.jpeg" style="width:17%;"/>
-    <p class="text">Here I share <span style="color: blueviolet">coding projects</span> I’ve been working on in my free time out of curiosity. <br>
+<h2 class="page-title"><b>Hi, I'm Althea,<br> 
+  <span style="display:inline-block; width: 500px;"> </span> <span class="subtitle">and welcome to my website! </span></b></h2>
+  <!-- <div class="container"> -->
+<div class="main-container">
+  <div class="image-container">
+      <div class="slideshow-container">
+    <div class = "mySlides">
+      <img src="images/DPG.png" style="width:110%">
+    </div>
+    <div class = "mySlides">
+      <img src="images/Phaeno.jpg" style="width:70%">
+    </div>
+    <div class = "mySlides">
+      <img src="images/Abschlussfeier.jpg" style="width:70%">
+    </div>
+    <div class = "mySlides">
+      <img src="images/Bewerbungsfoto2.png" style="width:70%">
+    </div> 
+    <div class = "mySlides">
+      <img src="images/harz.jpg" style="width:45%">
+    </div> 
+<div class="dots-container">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  </div>
+</div> 
+</div>
+<!-- <p class="text"><span align="left" style="font-size:20px; margin-top: 20px;"><i>Here I share <b>coding projects</b> I’ve been working on in my free time out of curiosity. <br>
+I’m passionate about coding, solving complex problems, and contributing to a <b>more sustainable future</b>.</i></span><br><br> -->
+<div class="text-container">
+<div class="text" style="text-align: right; font-size: 20px; width:80%; margin-left:80px;">
+  <i>I’m passionate about <b>programming, solving complex problems,</b> and <b>contributing to a more sustainable future</b>;
+    here I share <b>personal projects</b> I’ve worked on out of curiosity and to further develop my coding skills. <br>
+    </i>
+</div>
 
-I studied <span style="color: blueviolet">physics at Leibniz University Hannover</span>, where I focused on theoretical physics during my Master’s and spent a semester abroad in Helsinki. I’m passionate about coding, 
-solving complex problems, and contributing to a more sustainable future. <br>
-
+<br>
+<p class="text">I studied <b>physics at Leibniz University Hannover</b>, where I focused on theoretical physics during my Master’s and spent a semester abroad in Helsinki. <br>
 In my Bachelor’s thesis, I explored the probability of recovering quantum information from a black hole using tensor networks. For my Master’s, I modeled a proposed dark matter 
-detection experiment and simulated its response to a theoretical signal using numerical methods. <br>
+detection experiment and simulated its response to a theoretical signal using numerical methods. <br><br>
 
-Alongside my studies, I took extra lectures in computer physics and data science in Python, and have since deepened my skills in <span style="color: blueviolet">data analysis and machine learning</span>. I also picked 
-up<span style="color: blueviolet"> HTML, CSS, and SQL</span> to build this website and support my projects. <br>
+Alongside my studies, I took extra lectures in computer physics and <b>data science</b> in Python, and have since deepened my skills in <b>software development, data analysis and machine learning</b>. I also picked 
+up <b> HTML, CSS, and SQL</b> to build this website and support my projects. <br><br>
 
-Until recently, I worked as a lab assistant, helping students with experiments and Python-based data analysis. Before that, I taught theoretical physics exercises for several years. <br>
-
-I speak Italian, German, and English fluently, plus Spanish and a bit of Finnish. Outside of work, you’ll likely find me bouldering, training taekwondo, or out hiking somewhere 
+I speak <b>Italian, German, and English</b> fluently, plus <b>Spanish</b> and a bit of <b>Finnish</b>. Outside of work, you’ll likely find me bouldering, training taekwondo, or out hiking somewhere 
 in nature :)</p>
+</div>
+
 
 </div>
   </div>
@@ -266,10 +380,11 @@ in nature :)</p>
   <div class="modal-content">
     <button class="close-btn" onclick="closeModalCV()">Close</button>
     <img id="modalImage" src="" usemap="#image-map" alt="CV Image"/>
-    <map name="image-map">
-      <area href="https://www.linkedin.com/in/althea-cappelli-078761345" target="_blank" alt="LinkedIn" title="LinkedIn" coords="381,90,564,124" shape="rect">
-      <area href="https://github.com/AltheaCappelli" target="_blank" alt="Portfolio" title="Portfolio" coords="590,60,750,90" shape="rect">
-    </map>
+  <map name="image-map">
+    <area target="_blank" alt="Cappelli-Althea-Linkedin" title="Cappelli-Althea-Linkedin" href="https://www.linkedin.com/in/althea-cappelli-078761345" coords="256,4,414,35" shape="rect">
+    <area target="_blank" alt="Github-Cappelli-Althea" title="Github-Cappelli-Althea" href="https://github.com/AltheaCappelli/altheacappelli.github.io" coords="420,4,555,35" shape="rect">
+    <area target="_blank" alt="Mail-Cappelli-Althea" title="Mail-Cappelli-Althea" href="mailto:tea.cappelli@gmail.com" coords="570,4,730,35" shape="rect">
+  </map>
   </div>
 </div>
 
@@ -301,6 +416,57 @@ function openModalCV(imageSrc) {
     modalImage.src = '';
   }
 
+let slideIndex = 1;
+let slideTimer;
+
+showSlides(slideIndex);
+startAutoSlide();
+
+function plusSlides(n) {
+  clearTimeout(slideTimer);
+  showSlides(slideIndex += n);
+  startAutoSlide();
+}
+
+function currentSlide(n) {
+  clearTimeout(slideTimer);
+  showSlides(slideIndex = n);
+  startAutoSlide();
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+
+  for (i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active-slide");
+  }
+
+  for (i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  slides[slideIndex - 1].classList.add("active-slide");
+  dots[slideIndex - 1].classList.add("active");
+}
+
+
+function startAutoSlide() {
+  slideTimer = setTimeout(function() {
+    showSlides(++slideIndex);
+    startAutoSlide();
+  }, 3000);
+}
+const dots = document.getElementsByClassName("dot");
+for (let i = 0; i < dots.length; i++) {
+  dots[i].addEventListener("click", function() {
+    currentSlide(i + 1);
+  });
+}
 
 </script>
 
