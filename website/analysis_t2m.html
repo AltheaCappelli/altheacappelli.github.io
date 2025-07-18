@@ -11,17 +11,19 @@
   <style>
     body {
       font-family: Carme, sans-serif;
-      background-image: url('images/hintt.png');
+      background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white color */
+      background-image: url('../images/hintt.png');
+      background-blend-mode: screen;
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
       padding-bottom: 20px;
-      font-size: 18px;
+      font-size:18px;
+      margin: 0;
     }  
  /*------tab---------*/
 .topnav {
   display: flex;
-  padding-top: 3px;
     position: fixed; /* Set the navbar to fixed position */
 }
 
@@ -146,21 +148,39 @@
         padding: 1px 16px;
       }
 
-      @media screen and (max-width: 700px) {
-        .sidebar {
-          width: 100%;
+      .page-title {
+        color: rgb(182, 3, 119);
+        font-size: 40px;
+        margin-top: 5%;
+        font-family: 'Righteous', sans-serif;
+      }
+
+      img {
+          max-width: 100%;
           height: auto;
-          position: relative;
-        }
-        .sidebar a {float: left;}
-        div.content {margin-left: 0;}
         }
 
-      @media screen and (max-width: 400px) {
-        .sidebar a {
-          text-align: center;
-          float: none;
+      @media screen and (max-width: 700px) {
+        .sidebar {
+          position: fixed;
+          width: 35%;
+          font-size: 12px;
         }
+        .topnav{
+          position: fixed;
+          font-size: 12px;
+        }
+        .content{
+          position: relative;
+          font-size: 12px;
+        }
+        .page-title{
+          position: relative;
+          font-size: 30px;
+        }
+        img {
+            width: 120%;
+          }
       }
 
       .button {
@@ -223,7 +243,7 @@
 
 <div class="content">
 <div id="Projects" style="display:block;">
-<h1 style="color:rgb(182, 3, 119);font-family: 'Righteous', sans-serif; font-size:40px;"><b> Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i> </b></h1>
+<div class="page-title"><b> Analysis of the 2m air temperature data from the <i>Copernicus Climate Data Store (CDS)</i> </b></div>
     <h3>The goal of this project is to analyse the 2m air temperature data and visualize it in different ways, to highlight patterns and trends. Various types of plots are used, making it easier to understand temperature changes over time and across different areas.</h3>
     <h4>I used the 2m air temperature data from the 
     <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank">ERA5 Reanalysis dataset</a> 

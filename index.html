@@ -10,9 +10,9 @@
     body {
       font-family: Carme, sans-serif;
       background-image: url('images/hintt.png');
+      margin: 0;
       background-repeat: no-repeat;
       background-size: cover;
-      background-attachment: fixed;
     }  
   
   /* Modal styles */
@@ -66,7 +66,9 @@
     /*-----navigation tab up--------*/
 .topnav {
   display: flex;
-  padding-top: 3px;
+  justify-content: left;
+  gap: 0px;
+  padding: 0px 0;
 }
 
 .nav-button {
@@ -82,9 +84,7 @@
   text-decoration: none;
   font-size: 18px;
   transition:
-    background-image 0.2s ease,
-    padding 0.2s ease,
-    font-size 0.2s ease;
+    all 0.2s ease;
 }
 
 .nav-button a:hover{
@@ -132,32 +132,48 @@
 
 /* ------main container------*/
 .main-container {
+  box-sizing: border-box;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /*allows stacking on smaller screens */
+  padding: 20px;
 }
 
 /* Images stay in a row */
-.image-container {
+.image-container{
   display: flex;
-  flex-direction: row;
-  margin-left: 110px;
+  flex: 1 1 300px; /* grow, shrink, basis */
+  max-width: 600px;
+  margin-left: 5%;
+  margin-top: -7%;
 }
 
 /* Text blocks stack vertically */
 .text-container {
   display: flex;
+  max-width: 700px;
+  margin-right: 7%;
   flex-direction: column;
-  margin-top:-68px;
-  margin-left:-15px;
+  width: 80%;
+}
+
+.subtext{
+  text-align: right;
+  font-size: 20px;
+  width: 100%;
+  margin-top: -9%;
+  background-color: #ffffffa1;
+
 }
 
 /*------pic & text-ci-------*/
   .text {
-      width: 90%;
+      margin: 0 auto;
+      padding: 20px;
       color: black;
       text-align: center;
       background-color: #ffffffa1;
       font-size: 18px;
-      margin-top: 30px;
     }
 
 /*-------icons------*/
@@ -165,8 +181,7 @@
 .icons-container {
   display: flex;
   justify-content: center; 
-  top: 70px;
-  margin: 40px 0 0px;
+  position: bottom;
 }
 
 .fa {
@@ -178,7 +193,6 @@
   margin: 5px 2px;
   border-radius: 50%;
   cursor: pointer;
-
 }
 
 .fa:hover {
@@ -233,38 +247,34 @@ button.fa {
 .mySlides {
   opacity: 0;
   position: absolute;
-  width: 65%;
-  height: 65%;
   transition: opacity 1.5s ease-in-out;
+  width: 100%;
 }
 
 .mySlides.active-slide {
   opacity: 1;
   z-index: 1;
+  display: block;
 }
 
-img {vertical-align: middle;
+.mySlides img {
+  vertical-align: middle;
 object-fit: contain;
-max-width: 100%;
-max-height: 100%;
+width: 100%;
+height: auto;
 }
 
 .slideshow-container {
-  width: 600px;
-  height: 400px;
-  margin-left: -70px;
-  margin-top: -50px;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  display: flex;
-  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0%;
 }
 
 .dot {
   height: 15px;
   width: 15px;
-  margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -273,31 +283,56 @@ max-height: 100%;
 }
 
 .dots-container {
-  display: flex;
   justify-content: center;
-  margin-bottom: -500px;
+  margin-top: 85%;
+  position: relative;
+  /* margin-bottom: 10px; */
+  /* display: flex; */
 }
 
-.active {
+.dot.active {
   background-color: #717171;
 }
 
 /* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
+@media only screen and (max-width: 1200px) {
+  .main-container {
+    align-items: center;
+  }
+
+  .text-container{
+      margin-top: 10%;
+    }
+
+  .image-container {
+    flex: 1 1 100%;
+    margin-top: -5%;
+    min-width: 80%;
+  }
+
+  .subtext {
+    margin-top: 0%;
+    margin-right: 100%;
+  }
+
+  .slideshow-container {
+max-width: 90vw;
+  }
 }
 
 .page-title {
   text-align: center;
   color: rgb(182, 3, 119);
   font-size: 60px;
-  margin-top: -25px;
+  margin-top: 0%;
   font-family: 'Righteous', sans-serif;
 }
 
 .page-title .subtitle {
-  margin-left: 220px;
+  display: right;
   font-size: 45px;
+  margin-right: 10%;
+  text-align: right;
   font-family: 'Righteous';
 }
 
@@ -313,25 +348,25 @@ max-height: 100%;
 </div>
 <div id="home" class="tabcontent" style="display:block;">
 <h2 class="page-title"><b>Hi, I'm Althea,<br> 
-  <span style="display:inline-block; width: 500px;"> </span> <span class="subtitle">and welcome to my website! </span></b></h2>
+ <div class="subtitle">and welcome to my website! </div></b></h2>
   <!-- <div class="container"> -->
 <div class="main-container">
   <div class="image-container">
       <div class="slideshow-container">
-    <div class = "mySlides">
-      <img src="images/DPG.png" style="width:110%">
+    <div class = "mySlides active-slide">
+      <img src="images/DPG.png" style="width:70%">
     </div>
     <div class = "mySlides">
-      <img src="images/phaeno.jpg" style="width:70%">
+      <img src="images/phaeno.jpg" style="width:60%">
     </div>
     <div class = "mySlides">
-      <img src="images/Abschlussfeier.jpg" style="width:70%">
+      <img src="images/Abschlussfeier.jpg" style="width:60%">
     </div>
     <div class = "mySlides">
-      <img src="images/Bewerbungsfoto2.png" style="width:70%">
+      <img src="images/Bewerbungsfoto2.png" style="width:60%">
     </div> 
     <div class = "mySlides">
-      <img src="images/harz.jpg" style="width:45%">
+      <img src="images/harz.jpg" style="width:70%">
     </div> 
 <div class="dots-container">
   <span class="dot"></span> 
@@ -345,7 +380,7 @@ max-height: 100%;
 <!-- <p class="text"><span align="left" style="font-size:20px; margin-top: 20px;"><i>Here I share <b>coding projects</b> I’ve been working on in my free time out of curiosity. <br>
 I’m passionate about coding, solving complex problems, and contributing to a <b>more sustainable future</b>.</i></span><br><br> -->
 <div class="text-container">
-<div class="text" style="text-align: right; font-size: 20px; width:80%; margin-left:80px;">
+<div class="subtext">
   <i>I’m passionate about <b>programming, solving complex problems,</b> and <b>contributing to a more sustainable future</b>;
     here I share <b>personal projects</b> I’ve worked on out of curiosity and to further develop my coding skills. <br>
     </i>

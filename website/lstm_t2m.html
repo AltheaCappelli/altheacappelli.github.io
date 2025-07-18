@@ -11,12 +11,16 @@
   <style>
     body {
       font-family: Carme, sans-serif;
-      background-image: url('images/hintt.png');
+      background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white color */
+      background-image: url('../images/hintt.png');
+      background-blend-mode: screen;
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
       padding-bottom: 20px;
       font-size:18px;
+      margin: 0;
+      display: flex;
     }  
 
     .code-container {
@@ -43,7 +47,6 @@
       /*------tab-------*/
 .topnav {
   display: flex;
-  padding-top: 3px;
   position: fixed;
 }
 
@@ -146,22 +149,40 @@
         padding: 1px 16px;
       }
 
-      @media screen and (max-width: 700px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-        }
-        .sidebar a {float: left;}
-        div.content {margin-left: 0;}
+      .page-title {
+        color: rgb(182, 3, 119);
+        font-size: 40px;
+        margin-top: 5%;
+        font-family: 'Righteous', sans-serif;
       }
 
-      @media screen and (max-width: 400px) {
-        .sidebar a {
-          text-align: center;
-          float: none;
+      img {
+          max-width: 100%;
+          height: auto;
         }
+
+      @media screen and (max-width: 700px) {
+        .sidebar {
+          position: fixed;
+          font-size: 12px;
+          width: 35%;
+        }
+        .topnav{
+          position: fixed;
+          font-size: 12px;
+        }
+        .content{
+          font-size: 12px;
+         }
+        .page-title{
+          position: relative;
+          font-size: 30px;
+        }
+        img {
+            width: 120%;
+          }
       }
+
 
       .button {
         padding: 15px 32px;
@@ -191,13 +212,15 @@
       .button.active {
       background-image: url('../images/crep.png'); 
       background-size: cover; 
-      color: white;}
+      color: white;
+    }
 
       .center {
         display: block;
         margin-left: auto;
         margin-right: auto;
         }
+
 
     </style>
 </head>
@@ -217,7 +240,9 @@
 
 <div class="content">
 <div id="Projects" style="display:block;">
-<h1 style="color:rgb(182, 3, 119);font-family: 'Righteous', sans-serif; font-size:40px;"><b>LSTM-based prediction of the mean 2m air temperature anomaly from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
+  <div class="page-title"><b>LSTM-based prediction of the mean 2m air temperature anomaly from the <i>Copernicus Climate Data Store</i> (CDS)</b>
+</div>
+
     <h3>The goal of this project is to build a simple LSTM neural network that can still perform reasonably well in predicting the mean temperature anomaly in Europe. The model is trained on data from 1940 to 2004 and 
     evaluated on both the training data and the test data from 2005 to 2024. Different layer setups were tested to improve the model's performance. The results of the model's inference on both the training and test data are shown to give an idea of the LSTM accuracy. Specifically, 
     the training data is used to check if the model can reproduce the known patterns, while the test data is used to evaluate how well the model generalizes to unknown data. Finally, the trained network is used to predict future temperature anomalies between 2024 and 2035.   

@@ -11,12 +11,15 @@
   <style>
     body {
       font-family: Carme, sans-serif;
-      background-image: url('images/hintt.png');
+      background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white color */
+      background-image: url('../images/hintt.png');
+      background-blend-mode: screen;
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
       padding-bottom: 20px;
       font-size:18px;
+      margin: 0;
     }  
 
     .code-container {
@@ -43,7 +46,6 @@
       /*------tab-------*/
 .topnav {
   display: flex;
-  padding-top: 3px;
   position: fixed;
 }
 
@@ -59,10 +61,7 @@
   padding: 14px 25px;
   text-decoration: none;
   font-size: 18px;
-  transition:
-    background-image 0.2s ease,
-    padding 0.2s ease,
-    font-size 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .nav-button a:hover{
@@ -146,22 +145,40 @@
         padding: 1px 16px;
       }
 
-      @media screen and (max-width: 700px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-        }
-        .sidebar a {float: left;}
-        div.content {margin-left: 0;}
+      .page-title {
+        color: rgb(182, 3, 119);
+        font-size: 40px;
+        margin-top: 5%;
+        font-family: 'Righteous', sans-serif;
       }
 
-      @media screen and (max-width: 400px) {
-        .sidebar a {
-          text-align: center;
-          float: none;
+      img {
+          max-width: 100%;
+          height: auto;
         }
+
+      @media screen and (max-width: 700px) {
+        .sidebar {
+          position: fixed;
+          width: 35%;
+          font-size: 12px;
+        }
+        .topnav{
+          position: fixed;
+          font-size: 12px;
+        }
+        .content{
+          font-size: 12px;
+         }
+        .page-title{
+          position: relative;
+          font-size: 30px;
+        }
+        img {
+            width: 120%;
+          }
       }
+
 
       .button {
         padding: 15px 32px;
@@ -222,7 +239,7 @@
 <div class="content">
 <div id="Projects" style="display:block;">
 
-<h1 style="color:rgb(182, 3, 119);font-family: 'Righteous', sans-serif; font-size:40px;"><b>Predicting with a convolutional LSTM network the 2m air temperature anomalies in Europe from the <i>Copernicus Climate Data Store</i> (CDS)</b></h1>
+<div class="page-title"><b>Predicting with a convolutional LSTM network the 2m air temperature anomalies in Europe from the <i>Copernicus Climate Data Store</i> (CDS)</b></div>
     <h3>The goal of this project is to build a simple Convolutional LSTM (ConvLSTM) neural network to predict temperature anomalies over Europe. The model is trained on data from 1940 to 2015 and evaluated on both the training set and a test set from 2015 to 2024. Different layer and network configurations were tested to improve the model's performance while keeping the model simple. While more complex approaches for such 
       a problem exist, as in <a href="https://www.nature.com/articles/s41598-024-68906-6" target="blank">this paper</a> by Q. Guo, Z. He, and Z. Wang, this project focuses creating a model that can run on a typical laptop without needing large-scale computing resources, and can still produce meaningful results. </h3>
       <h3>The model’s predictions on the training and test data are shown to give an idea of its accuracy. The training data is used to check if the model can reproduce known patterns, while the test results show its generalization to unknown data. For comparison, the performance of
