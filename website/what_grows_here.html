@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Carme" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: Carme, sans-serif;
+      background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white color */
+      background-image: url('../images/hintt.png');
+      background-blend-mode: screen;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      padding-bottom: 20px;
+      font-size:18px;
+      margin: 0;
+    }  
+
+      /*------tab-------*/
+.topnav {
+  display: flex;
+  position: fixed;
+}
+
+.nav-button {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.nav-button a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.nav-button a:hover{
+  padding: 18px 30px;
+  font-size: 22px;
+  background-image: conic-gradient(
+    #eca4a8 0deg 26deg,
+    #d9bba1 26deg 51deg,
+    #bfd1a0 51deg 77deg,
+    #a3e3a7 77deg 102deg,
+    #87eeb3 102deg 128deg,
+    #6ff2c3 128deg 154deg,
+    #5fedd4 154deg 180deg,
+    #57e1e4 180deg 205deg,
+    #59cff0 205deg 231deg,
+    #65b9f7 231deg 257deg,
+    #79a2f7 257deg 282deg,
+    #928cef 282deg 308deg,
+    #b07ce4 308deg 334deg,
+    #e892cc 334deg 360deg
+    );
+    opacity: 0.7;
+    color: white;
+}
+
+.nav-button a.active {
+  background-image: conic-gradient(
+    #eca4a8 0deg 26deg,
+    #d9bba1 26deg 51deg,
+    #bfd1a0 51deg 77deg,
+    #a3e3a7 77deg 102deg,
+    #87eeb3 102deg 128deg,
+    #6ff2c3 128deg 154deg,
+    #5fedd4 154deg 180deg,
+    #57e1e4 180deg 205deg,
+    #59cff0 205deg 231deg,
+    #65b9f7 231deg 257deg,
+    #79a2f7 257deg 282deg,
+    #928cef 282deg 308deg,
+    #b07ce4 308deg 334deg,
+    #e892cc 334deg 360deg
+    );
+    color: white;
+}
+
+    /*---------sidebar---------*/
+      .sidebar {
+        margin: 0;
+        margin-top: 70px;
+        padding: 0;
+        width: 212px;
+        background-image: 
+          radial-gradient(circle at 50% 50%, #34c1e574 50%, transparent 50.05%),
+          radial-gradient(circle at 41% 77%, #a9373735 22%, transparent 22.05%),
+          radial-gradient(circle at 13% 25%, #eeff0062 26%, transparent 26.05%),
+          linear-gradient(211deg, #ffae00ff 40%, transparent 65.05%);
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+      }
+
+      .sidebar a {
+        display: block;
+        color: black;
+        padding: 17px;
+        text-decoration: none;
+      }
+      
+      .sidebar a.active {
+        background-color: rgba(190, 6, 119, 0.542);
+        color: white;
+      }
+
+      .sidebar a:hover:not(.active) {
+        background-color: rgba(243, 117, 255, 0.391);
+        color: white;
+      }
+
+      div.content {
+        margin-left: 225px;
+        padding: 1px 16px;
+      }
+
+      .page-title {
+        color: rgb(182, 3, 119);
+        font-size: 40px;
+        margin-top: 5%;
+        font-family: 'Righteous', sans-serif;
+      }
+
+      img {
+          max-width: 100%;
+          height: auto;
+          border:2px solid rgb(182, 3, 119);
+          border-radius:10px;
+        }
+
+      @media screen and (max-width: 700px) {
+        .sidebar {
+          position: fixed;
+          width: 35%;
+          font-size: 12px;
+        }
+        .topnav{
+          position: fixed;
+          font-size: 12px;
+        }
+        .content{
+          font-size: 12px;
+         }
+        .page-title{
+          position: relative;
+          font-size: 30px;
+        }
+        img {
+            width: 120%;
+          }
+        .prev, .next,.text {font-size: 11px}
+      }
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+      .button {
+        padding: 15px 32px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+    
+.mySlides {display: none}
+
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  margin-right: -8%;
+  margin-left: -8%;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: #57e2e495;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+.formula{
+  background: #f2faf2;
+  border: 1px dashed rgba(16,80,20,0.06);
+  padding:10px;
+  border-radius:6px;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="nav-button"><a href="https://altheacappelli.github.io">Home</a></div>
+    <div class="nav-button">
+  <a href="https://altheacappelli.github.io/website/projects.html" class="active">Projects</a></div>
+</div>
+
+<div class="sidebar">
+  <a href="https://altheacappelli.github.io/website/analysis_t2m.html">Analysis of temperature anomalies in Europe</a>
+  <a href="https://altheacappelli.github.io/website/lstm_t2m.html">LSTM predictions of mean temperature anomalies in Europe</a>
+  <a href="https://altheacappelli.github.io/website/conv_t2m.html">Convolutional LSTM predictions of temperature anomalies in Europe</a>
+  <a class="active" href="https://altheacappelli.github.io/website/what_grows_here.html">What grows here?</a>
+</div>
+
+<div class="content">
+  <div id="Projects">
+    <div class="page-title">
+        <b>Suggesting balcony-friendly plants with a Django webapp</b>
+    </div>
+      <h3>
+        The goal of this project is to build a simple Django-based web application that recommends suitable plants for balconies. 
+        The app considers factors such as sunlight exposure, USDA hardiness zone and balcony direction to suggest plants that can thrive on a balcony.
+        Planned next updates include features such as choosing any location, setting balcony size, 
+        and showing the best time to plant.
+      </h3>
+      <h3>
+        Unfortunately, the project is not yet online, so for now, this page shows a preview of how the app looks and what it can do. <br>
+        However, the code is available on <a href="https://github.com/AltheaCappelli/what-grows-here">my Github</a> and can be downloaded. If you are curious, 
+        you can install Django (see the <a href="https://docs.djangoproject.com/en/5.2/topics/install/">official tutorial</a> for setup) and run it locally.
+        This way, the app can be tried out and plants can be explored directly.
+      </h3>
+      <p> In the <b>"Map"</b> section, an interactive map is shown and it is possible to select an European city. 
+          After picking a location, it is possible to choose the balcony direction and the month of interest. 
+          With this information, the app gives suggestions for plants that could work well under those conditions.
+      </p>
+
+<div style="text-align:center;">
+  <img src="../images/WGH_homepage.png" alt="What grows here? - Home page" class="center" style="width:60%;">
+  <p><i>View of the interactive map</i></p>
+  <img src="../images/WGH_choosing.png" alt="What grows here? choosing" class="center" style="width:45%;">
+  <p><i>Selecting a city on the interactive map, with options for month and balcony direction</i></p>
+  <img src="../images/WGH_choosing2.png" alt="What grows here? choosing2" class="center" style="width:45%;">
+  <p><i>Example of the selection process</i></p>
+</div>
+
+<p> Below are some examples of results for cities in different USDA hardiness zones, combined with different balcony orientations.
+</p>
+
+<div class="slideshow-container">
+    <div class="mySlides fade">
+    <img src="../images/WGH_results_DUE.png" alt="What grows here? results Düsseldorf" class="center" width="120%">
+      <div class="text">Example in Düsseldorf</div>
+    </div>
+    <div class="mySlides fade">
+      <img src="../images/WGH_results_HEL.png" alt="What grows here? results helsinki" class="center" width="120%">
+      <div class="text">Example in Helsinki</div>
+    </div>
+    <div class="mySlides fade">
+      <img src="../images/WGH_results_SI.png" alt="What grows here? results siena" class="center" width="120%">
+      <div class="text">Example in Siena</div>
+
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+
+    <p> In the <b>"Methods"</b> part, it is explained how the data behind the app was prepared. 
+        Climate data from the <i>Copernicus Climate Data Store</i> was used, focusing on shortwave radiation and minimum annual mean temperature. 
+        From temperature values <a href="https://ddg-web.de/files/DDG-Bilder/WHZ/MDDG_109_2024_081-098_Wulff_Bouillon_Neue-Winterhaertenzonen-fuer-Europa.pdf">USDA hardiness zone </a>, 
+        which describe how cold a place usually gets in winter and which plants can survive there, were calculated.
+        <div style="text-align:center">
+            <img src="../images/WGH_USDA.png" alt="What grows here? USDA" class="center" style="width:60%;">
+            <p><i>Comparison of calculated USDA hardiness zones (left) with <a href=https://ddg-web.de/whz.html>published reference map</a> (right). Results look very similar.</i></p>
+        </div>       
+        Using the <a href="https://www.hec.usace.army.mil/confluence/hmsdocs/hmstrm/meteorology/shortwave-radiation/fao56-shortwave-method" target="_blank">FAO56 Shortwave Method </a>, 
+        average monthly sunlight hours were estimated for each location using following equation:    
+        <div class="formula">
+            $$ n = \biggl(\frac{\bigl(\frac{R_s}{R_a}\bigr) - a_s}{b_s}\biggr)\,N, $$
+        </div>
+    <p> where \(R_s\) is the surface shortwave radiation (MJ m⁻² day⁻¹), \(R_a\) is the extraterrestrial radiation (MJ m⁻² day⁻¹),
+        \(a_s\) and \(b_s\) are empirical coefficients (their sum represents the fraction of extraterrestrial radiation reaching the earth on clear days and are estimated to be 0.25 and 0.50 respectively), 
+        \(n\) is the actual duration of sunshine (hours), and \(N\) is the maximum possible duration of sunshine or day length (hours). <br>
+    </p>
+
+    <div style="text-align:center">
+      <img src="../images/WGH_sunlight.png" alt="What grows here? sunlight" class="center" style="width:50%;">
+      <p><i>Example of estimated monthly sunlight hours for different months</i></p>
+    </div>
+   <p> The plants database is a combination of various sources such as <a href="https://ponicslife.com/how-much-sun-do-vegetables-need-a-complete-list/">Ponics life</a>
+    and <a href="https://victoryseeds.com/blogs/articles/how-much-sunlight-do-my-plants-need">Victory Seeds</a>. </p>
+   
+    <p> The reference period used for the climate data is 1991–2020, as it best represents recent conditions while also taking climate change into account. 
+        The maps are produced on a gridded resolution, which smooths out local variations such as urban heat islands, courtyard effects, or shading from buildings. 
+        Sunlight hours are estimated using the FAO-56 empirical method, meaning that small-scale obstructions like shading from buildings or trees are not included. 
+        Finally, the plant database is a combination of various sources such as <a href="https://ponicslife.com/how-much-sun-do-vegetables-need-a-complete-list/">Ponics life</a>
+        and <a href="https://victoryseeds.com/blogs/articles/how-much-sunlight-do-my-plants-need">Victory Seeds</a>, and it should be seen as suggestions rather than strict rules, since factors such as microclimate, soil type, pot size, and plant care also play an important role.
+        As I am not a botanist, I would be very happy to receive feedback to improve the plant database and the app in general.
+    </p>
+      
+you can see the code on my github and download it and need django (follow tutorial on webpage for installing) if you want to locally play iẃith plants!
+
+</body>
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+</html>
+    
